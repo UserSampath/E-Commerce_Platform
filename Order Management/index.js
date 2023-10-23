@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
-
+require('dotenv').config();
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -12,23 +12,21 @@ app.use(
         origin: "*",
     })
 );
-// middleware
 app.use(express.json());
 const OrderRouter = require("./routes/OrderRoute");
 
 app.use("/api/order",OrderRouter);
 
 mongoose.set("strictQuery", true);
-const port = process.env.PORT || 4000; 
 
-
-mongoose.connect("mongodb+srv://EADOrderMgt:EADOrderMgt@cluster0.rko547e.mongodb.net/", {
+//port and DB connection
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
     .then(() => {
-        const server = app.listen(port, () => {
-            console.log("Connected to the database and listening on port", port);
+        const server = app.listen(process.env.PORT, () => {
+            console.log("Connected to the database and listening on port", process.env.PORT);
         });
     })
     .catch((error) => {
