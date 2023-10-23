@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
@@ -15,6 +14,9 @@ app.use(
 );
 // middleware
 app.use(express.json());
+const OrderRouter = require("./routes/OrderRoute");
+
+app.use("/api/order",OrderRouter);
 
 mongoose.set("strictQuery", true);
 const port = process.env.PORT || 4000; 
