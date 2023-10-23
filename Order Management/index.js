@@ -15,7 +15,7 @@ app.use(
 app.use(express.json());
 const OrderRouter = require("./routes/OrderRoute");
 
-app.use("/api/order",OrderRouter);
+app.use("/api/order", OrderRouter);
 
 mongoose.set("strictQuery", true);
 
