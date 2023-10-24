@@ -27,5 +27,21 @@ const SelectOrder = async(req,res)=> {
     }
 }
 
+const  deleteOrder = async(req, res) => { 
+    const {id}= req.params;
 
-module.exports ={ SelectOrder};
+    try{
+        const order = await Order.findOneAndDelete({_id:id});
+        if(!order){
+            return res.status(404).json({error:"order not found"});
+        }
+
+        return res.json({order});
+    }catch(error){
+        console.error(error);
+        res.status(404).json({error:"Internal Server error"});
+        
+    }
+
+};
+module.exports ={ SelectOrder,deleteOrder};
