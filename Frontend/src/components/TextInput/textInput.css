@@ -1,0 +1,32 @@
+.inputComponent {
+  margin-top: 10px;
+}
+
+.inputLine {
+  display: flex;
+  background-color:var(--color2);
+  width: 280px;
+  height: 45px;
+  border-radius: 5px;
+}
+
+.input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background: transparent;
+  color: rgb(255, 255, 255);
+  outline: none;
+
+  cursor: text;
+}
+
+.icon {
+  height: 21px;
+  width: 21px;
+  margin-left: 4px;
+  margin-right: 7px;
+  margin-top: 12px;
+  color: #888888;
+}

@@ -1,0 +1,39 @@
+.button-1 {
+  color: white;
+  height: 40px;
+  border: 1px solid black;
+  padding: 8px 12px;
+  background-color: var(--buttonColor);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  display: inline-block;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.button-2 {
+  color: rgb(255, 255, 255);
+  height: 40px;
+  border: 1px solid black;
+  padding: 8px 12px;
+  background-color: var(--primary);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  display: inline-block;
+  font-weight: 600;
+  transition: all 0.3s;
+
+}
+
+.button-1:hover {
+  background-color: white;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.button-2:hover{
+  background-color: white;
+  color: var(--primary);
+  cursor: pointer;
+}
