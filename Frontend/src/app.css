@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;800&display=swap");
+
+:root {
+  /* --primary: #1f3e72;
+  --secondary: rgba(255, 255, 255, 0.78);
+  --black: #131110;
+  --blue-gradient: linear-gradient(97.05deg, #4066ff 3.76%, #2949c6 100%);
+  --orange-gradient: linear-gradient(270deg, #ffb978 0%, #ff922d 100%);
+  --blue: #4066ff;
+  --lightBlue: #eeeeff;
+  --shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25); */
+
+  --primary: #0b0d29;
+  --color2: #0b0e36;
+  --color3: #151a4e;
+  --buttonColor: #1f9ad6;
+
+  /* ===Fonts and Typography===*/
+  --body-font: "Open Sans", sans-serif;
+  --second-font: "Poppins", sans-serif;
+
+  --big-fon-size: 50px;
+  --h1-font-size: 50px;
+  --h2-font-size: 32px;
+  --h3-font-size: 24px;
+  --large-font-size: 18px;
+  --normal-font-size: 16px;
+  --small-font-size: 15px;
+  --smaller-font-size: 14px;
+  --tiny-font-size: 12px;
+
+  --weight-400: 400;
+  --weight-500: 500;
+  --weight-600: 600;
+  --weight-700: 700;
+  --weight-800: 800;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body,
+input,
+textarea {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  font-weight: var(--weight-500);
+}
+
+body {
+  background-color: var(--primary);
+  color: white;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--title-color);
+  font-family: var(--body-font);
+  font-weight: var(--weight-700);
+}
+
+a {
+  text-decoration: none;
+}
+
+/*=====================reuseable css============= */
+
+.container {
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: 15px;
+}
+
+.boxContainer {
+  max-width: 960px;
+  /* max-height: 450px; */
+  min-height: 540px;
+  background-color: var(--color2);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+.signInBox {
+  background-color: var(--color3);
+  height: 540px;
+  width: 440px;
+}
+
+.boxMiddle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
