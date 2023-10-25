@@ -7,17 +7,17 @@ export const Nav = (props) => {
     {
       path: "/",
       name: "name1",
-      category: "1",
+      category: "customer",
     },
     {
       path: "/",
       name: "name2",
-      category: "1",
+      category: "customer",
     },
     {
       path: "/",
       name: "name3",
-      category: "1",
+      category: "customer",
     },
     {
       path: "/",
