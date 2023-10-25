@@ -53,7 +53,7 @@ export const Nav = (props) => {
   return (
     <nav className="nav">
       <a href="#" className="nav__brand">
-        Track 9 
+        Track 9
       </a>
       <ul className={active}>
         {navItems

@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <Nav category="customer" />
-      
+
     </>
   );
 };
