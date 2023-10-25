@@ -1,0 +1,81 @@
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: darkgrey;
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background: rgb(7, 8, 28);
+
+}
+
+.nav__brand{
+    text-transform: uppercase;
+    font-weight: 1000;
+    margin-right: 5%;
+}
+
+.nav__menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 50px;
+
+}
+
+.nav__toggler div{
+    width: 30px;
+    height: 3px;
+    margin: 5px ;
+    background: darkgray;
+    transition: 0.4s ease-in;
+
+}
+
+.nav__toggler{
+    cursor: pointer;
+    display: none;
+}
+
+@media screen and (max-width:768px){
+.nav__toggler{
+    display: block;
+
+}
+.nav__menu{
+position: fixed;
+top:7vh;
+right: 0;
+width: 50%;
+height: 93vh;
+background: rgb(7, 8, 28);
+flex-direction: column;
+transform: translateX(100%);
+transition: 0.5s ease-in;
+}
+    
+}
+
+/*nav active class*/
+.nav__active {
+    transform: translateX(0);
+}
+
+/* toggle Icon Animation */
+
+.toggle .line1{
+transform: rotate(-45deg) translate(-6px, 5px);
+}
+.toggle .line2{
+    opacity: 0;
+}
+.toggle .line3{
+transform: rotate(45deg) translate(-6px, -5px);
+    
+}
