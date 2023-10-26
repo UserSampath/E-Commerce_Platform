@@ -39,7 +39,7 @@ const Home = () => {
       <div className="boxMiddle">
         <h1
           className="mainHeading"
-          style={{ marginTop: "20px", marginBottom: "20px" }}>
+          style={{ marginTop: "70px", marginBottom: "20px" }}>
           Inventory
         </h1>
       </div>

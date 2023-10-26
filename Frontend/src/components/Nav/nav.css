@@ -12,6 +12,8 @@ a{
     justify-content: center;
     height: 50px;
     background: rgb(7, 8, 28);
+    position:fixed;
+    width: 100%; /* Make it full-width if needed */
 
 }
 
