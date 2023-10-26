@@ -44,4 +44,34 @@ const  deleteOrder = async(req, res) => {
     }
 
 };
-module.exports ={ SelectOrder,deleteOrder};
+
+const getOrder = async(req,res)=>{
+    const {id}= req.params;
+    try{
+        const order = await Order.findOne({id:id})
+        .populate("OrderId");
+
+        if(!order){
+            return res.status(404).json({error:"order not found"});
+
+        }
+        return res.json({order});
+
+    }catch(error){
+        console.error(error);
+        res.status(500).json({error:"internal server error"});
+    }
+}
+const getAllOrders = async (req, res) => {
+    try {
+        // Use the find() method to retrieve all orders
+        const orders = await Order.find().populate("OrderId"); // Assuming "items" is the field you want to populate
+
+        return res.json({ orders });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
+
+module.exports ={ SelectOrder,deleteOrder,getOrder,getAllOrders};
