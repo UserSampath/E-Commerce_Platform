@@ -37,13 +37,13 @@ const SignUp = () => {
             />
 
             <div className="buttonsContainer">
-              <Button type={"1"} text="Sign Up" />
+              <Button type={"button-blue"} text="Sign Up" />
             </div>
             <div className="newHereContainer">
               <div>
                 <h2>Already have an account?</h2>
                 <div className="newHereButton2">
-                  <Button type={"2"} text="Sign In" />
+                  <Button type={"button-black"} text="Sign In" />
                 </div>
               </div>
             </div>

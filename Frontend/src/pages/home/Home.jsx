@@ -1,6 +1,36 @@
 import React from "react";
 import "./home.css";
 import { Nav } from "../../components/Nav/Nav";
+import Button from "../../components/Button/Button";
+import InventoryItem from "../../components/InventoryItem/InventoryItem";
+
+const items = [
+  {
+    name: "Asus laptop",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
+    quantity: 24,
+  },
+  {
+    name: "Asus laptop",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
+    quantity: 24,
+  },
+  {
+    name: "Asus laptop",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
+    quantity: 24,
+  },
+  {
+    name: "Asus laptop",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
+    quantity: 24,
+  },
+
+];
 
 const Home = () => {
   return (
@@ -13,20 +43,11 @@ const Home = () => {
           Inventory
         </h1>
       </div>
-      <div className="boxMiddle">
-        <div
-          className="itemContainer"
-          style={{
-            width: "1000px",
-            height: "90px",
-            background: "rgba(171, 205, 239, 0.1)",
-            border: "1px solid black",
-            borderRadius: "20px",
-            padding: "8px",
-          }}>df
-          
-          </div>
-      </div>
+      {items.map((item,index) => {
+        return (
+          <InventoryItem key={index} name={item.name} description={item.description} quantity={item.quantity} />
+        )
+      })}
     </>
   );
 };
