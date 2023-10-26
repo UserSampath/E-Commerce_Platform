@@ -1,4 +1,4 @@
-.button-1 {
+.button-blue {
   color: white;
   height: 40px;
   border: 1px solid black;
@@ -11,7 +11,7 @@
   font-weight: 600;
   transition: all 0.3s;
 }
-.button-2 {
+.button-black {
   color: rgb(255, 255, 255);
   height: 40px;
   border: 1px solid black;
@@ -26,13 +26,34 @@
 
 }
 
-.button-1:hover {
+.button-red {
+  color: rgb(255, 255, 255);
+  height: 40px;
+  border: 1px solid black;
+  padding: 8px 12px;
+  background-color: red;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  display: inline-block;
+  font-weight: 600;
+  transition: all 0.3s;
+
+}
+
+.button-blue:hover {
   background-color: white;
   color: var(--primary);
   cursor: pointer;
 }
 
-.button-2:hover{
+.button-black:hover{
+  background-color: white;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.button-red:hover{
   background-color: white;
   color: var(--primary);
   cursor: pointer;

@@ -25,13 +25,13 @@ const SignIn = () => {
 
             <div className="buttonsContainer">
               <div className="forgotPassword">Forgot Password</div>
-              <Button type={"1"} text="Sign In" />
+              <Button type={"button-blue"} text="Sign In" />
             </div>
             <div className="newHereContainer">
               <div>
                 <h2>New Here?</h2>
                 <div className="newHereButton">
-                  <Button type={"2"} text="Sign Up" />
+                  <Button type={"button-black"} text="Sign Up" />
                 </div>
               </div>
             </div>
