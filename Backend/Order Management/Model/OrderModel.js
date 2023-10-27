@@ -31,6 +31,9 @@ const OrderSchema = new Schema(
             type:String,
             required : true,
         },
+        deliverId:{
+            type:String,
+        }
     },
 {timestamps:true}
 );
