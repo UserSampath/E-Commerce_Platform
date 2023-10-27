@@ -64,7 +64,6 @@ const getOrder = async(req,res)=>{
 }
 const getAllOrders = async (req, res) => {
     try {
-        // Use the find() method to retrieve all orders
         const orders = await Order.find().populate("OrderId"); // Assuming "items" is the field you want to populate
 
         return res.json({ orders });
