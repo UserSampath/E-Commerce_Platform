@@ -1,16 +1,15 @@
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import createToken from "../utils/CreateToken.js";
 
 const register = async (req, res, next) => {
   const { password, email } = req.body;
 
   let user;
-  console.log("hiiiiiiiiiiii");
   try {
     user = await User.findOne({ email: email });
 
-    if (user) return next(createError(409, "User already exists"));
+    //if (user) return next(createError(409, "User already exists"));
 
     const hashedPassword = bcrypt.hashSync(password, 12);
     const newUser = new User({
@@ -19,7 +18,12 @@ const register = async (req, res, next) => {
     });
 
     await newUser.save();
+    const token = createToken(newUser._id);
+    res
+    .status(200)
+    .json({ email,  token,role: newUser.role,_id:newUser._id});
     res.status(201).send("New user has been created!");
+   
   } catch (err) {
     console.log(err);
     next(err);
