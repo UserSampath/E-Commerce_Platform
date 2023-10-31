@@ -1,4 +1,7 @@
 const mongoose =  require("mongoose");
+const { OngoingStatus } = require("../utils/Constant");
+
+
 const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema(
@@ -18,12 +21,19 @@ const OrderSchema = new Schema(
         },
         Status:{
             type: String,
-            required : true,
+            enum:[
+                OngoingStatus.OrderReady,
+                OngoingStatus.OrderPickup,
+                OngoingStatus.DeliveredOrder
+            ]
         },
         Quantity:{
             type:String,
             required : true,
         },
+        deliverId:{
+            type:String,
+        }
     },
 {timestamps:true}
 );
