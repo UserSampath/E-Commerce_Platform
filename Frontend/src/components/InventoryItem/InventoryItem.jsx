@@ -11,10 +11,11 @@ const InventoryItem = ({name,description,quantity}) => {
           height: "90px",
           background: "rgba(171, 205, 239, 0.1)",
           border: "1px solid black",
-          borderRadius: "10px",
+          borderRadius: "7px",
           display: "flex",
           justifyContent: "space-between",
-          paddingRight: "10px",
+            paddingRight: "10px",
+        
         }}>
         <div
           className="itemImage"

@@ -76,7 +76,7 @@ const authUser = async (req, res) => {
     const userID = await User.findOne({ _id }).select("_id role ");
     return res.json(userID);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     if (error.name === "TokenExpiredError") {
       res.status(401).json({ error: "user token is expired" });
     } else {
@@ -84,4 +84,26 @@ const authUser = async (req, res) => {
     }
   }
 };
-export { register, login,authUser };
+
+
+const getUserDetails = async (req, res) => {
+  const { authorization } = req.headers;
+
+  if (!authorization) {
+    return res.status(401).json({ error: "Authorization token required" });
+  }
+  const token = authorization.split(" ")[1];
+  try {
+    const { _id } = jwt.verify(token, process.env.SECRET);
+    const user = await User.findOne({ _id })
+    return res.json(user);
+  } catch (error) {
+    // console.log(error);
+    if (error.name === "TokenExpiredError") {
+      res.status(401).json({ error: "user token is expired" });
+    } else {
+      res.status(401).json({ error: "Request is not authorized" });
+    }
+  }
+};
+export { register, login, authUser, getUserDetails };
