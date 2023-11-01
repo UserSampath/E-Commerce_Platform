@@ -32,8 +32,6 @@ const CheckCustomer = async (authorization) => {
          
 }
 
-
-
 const SelectOrder = async(req,res)=> {
     const {OrderId,ProductId,CustomerId,Status,Quantity} = req.body;
     try{
