@@ -5,13 +5,13 @@ export const Nav = (props) => {
   const [toggleIcon, setToggleIcon] = useState("nav__toggler");
   const navItems = [
     {
-      path: "/",
-      name: "name1",
+      path: "/Inventory",
+      name: "Inventory",
       category: "customer",
     },
     {
-      path: "/",
-      name: "name2",
+      path: "/About",
+      name: "About",
       category: "customer",
     },
     {
@@ -53,7 +53,7 @@ export const Nav = (props) => {
   return (
     <nav className="nav">
       <a href="#" className="nav__brand">
-        Track 9
+        Shop Fusion
       </a>
       <ul className={active}>
         {navItems
@@ -68,6 +68,13 @@ export const Nav = (props) => {
             );
           })}
       </ul>
+      <div className="a" style={{ position: "absolute", right: "3%" }}>
+        <div className="boxMiddle">
+          
+          <div>nalaka sampath</div>
+          <img src="../../../image/lap.jpg" alt="" width={"40px"}  style={{borderRadius:"50px", marginLeft:"10px"}}/>
+        </div>
+      </div>
       <div onClick={navToggle} className={toggleIcon}>
         <div className="line1"></div>
         <div className="line2"></div>

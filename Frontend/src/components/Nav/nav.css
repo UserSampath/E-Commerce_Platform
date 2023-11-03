@@ -82,3 +82,7 @@ transform: rotate(-45deg) translate(-6px, 5px);
 transform: rotate(45deg) translate(-6px, -5px);
     
 }
+
+.nav__item :hover{
+color: aqua;
+}
