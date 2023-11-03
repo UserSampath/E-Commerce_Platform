@@ -43,7 +43,6 @@ const OrderSchema = new Schema(
     },
 {timestamps:true}
 );
-const Orders =mongoose.model("Order",OrderSchema
-);
+const Orders =mongoose.model("Order",OrderSchema);
 
 module.exports = Orders
