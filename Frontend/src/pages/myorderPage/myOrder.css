@@ -74,16 +74,18 @@
     .Orderrow{
       display: flex;
       flex-direction:row ;
-      gap:85px;
+      gap:115px;
       background-color: aliceblue;
       color:black;
       border-radius: 5px;
       height: 55px;
       font-size:16px;
-      margin-right: 165px;
+      margin-right: 155px;
+      margin-left: 125px;
       width: 1050px;
       margin-bottom: 35px;
-      margin-top: 65px;
+      margin-top: 35px;
+      
     }
     .item{
       margin-left: 35px;
@@ -91,7 +93,10 @@
 
     .mainHeading{
      
-       margin-bottom: 30px;
+       margin-bottom: 10px;
        text-align: center;
   margin-top: 20px;
+    }
+    .qty{
+      margin-left: 80px;
     }
