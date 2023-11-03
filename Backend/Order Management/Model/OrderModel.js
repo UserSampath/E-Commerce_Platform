@@ -30,6 +30,9 @@ const OrderSchema = new Schema(
         deliverId:{
             type:String,
         },
+        orderedDate: {
+            type: Date,
+        },
         deliveryAcceptedDate: {
             type: Date,
         },
