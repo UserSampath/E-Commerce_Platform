@@ -31,7 +31,7 @@ const SignIn = () => {
               <div>
                 <h2>New Here?</h2>
                 <div className="newHereButton">
-                  <Button type={"button-black"} text="Sign Up" />
+                  <Button type={"-bbuttonlack"} text="Sign Up" />
                 </div>
               </div>
             </div>

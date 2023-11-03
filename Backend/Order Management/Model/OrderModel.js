@@ -29,7 +29,17 @@ const OrderSchema = new Schema(
         },
         deliverId:{
             type:String,
+        },
+        deliveryAcceptedDate: {
+            type: Date,
+        },
+        PickedUpDate: {
+            type: Date,
+        },
+        orderDeliveredDate: {
+            type: Date,
         }
+
     },
 {timestamps:true}
 );
