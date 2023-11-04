@@ -28,12 +28,13 @@ cursor: pointer;
 }
 .about-img{
     position: relative;
-    background-image:url("../../components/Images/image.jpg") ;
+    background-image:url("../../components/Images/Image.jpeg") ;
     background-repeat: no-repeat;
     background-position: center center;
     height: 600px;
     width: 100%;
-    z-index: 1;
+    background-size: cover
+    /*z-index: 1;*/
     
 }
 .content{
