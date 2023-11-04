@@ -58,3 +58,25 @@
   color: var(--primary);
   cursor: pointer;
 }
+
+.button-rose{
+  color: rgb(255, 255, 255);
+  padding: 8px 12px;
+  background-color: rgb(255, 0, 208);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  display: inline-block;
+  font-weight: 500;
+  transition: all 0.3s;
+  width: 120px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.button-rose:hover{
+  background-color: white;
+  color: var(--primary);
+  cursor: pointer;
+}

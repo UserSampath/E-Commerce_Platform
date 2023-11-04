@@ -7,6 +7,10 @@ import About from "./pages/About/About";
 import ProductList from "./pages/Product/ProductList";
 import MyOrder from "./pages/myorderPage/MyOrder"
 import OrdDetails from './pages/OrdDetails/OrdDetails';
+// import Home from "./pages/home/Home";
+import ProductView from "./pages/ProductView/ProductView"
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +22,11 @@ function App() {
         <Route path="/products" element={<ProductList/>}></Route>
         <Route path = "/MyOrder" element={<MyOrder/>}></Route>
         <Route path = "/OrdDetails" element={<OrdDetails/>}></Route>
+        <Route path="/" element={<SignIn />}></Route>
+        {/* <Route path="/Home" element={<Home />}></Route> */}
+        <Route path="/register" element={<SignUp />}></Route>
+        <Route path="/ProductView" element={<ProductView />}></Route>
+
     
       </Routes>
     </BrowserRouter>

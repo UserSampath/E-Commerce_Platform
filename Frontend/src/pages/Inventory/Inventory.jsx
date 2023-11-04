@@ -1,6 +1,8 @@
 import React from "react";
 import "./Inventory.css";
 import { Nav } from "../../components/Nav/Nav";
+// import "./home.css";
+// import Button from "../../components/Button/Button";
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
 import Button from "../../components/Button/Button";
 
