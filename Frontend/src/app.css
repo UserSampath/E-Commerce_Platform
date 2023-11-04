@@ -101,6 +101,13 @@ a {
   align-items: center;
 }
 
+.boxEnd {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+
 /* ---------scrollbar----------- */
 
 ::-webkit-scrollbar {
