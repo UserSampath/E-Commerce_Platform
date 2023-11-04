@@ -33,7 +33,8 @@ cursor: pointer;
     background-position: center center;
     height: 600px;
     width: 100%;
-    background-size: cover
+    background-size: cover;
+    /* background-attachment: fixed; */
     /*z-index: 1;*/
     
 }

@@ -21,12 +21,12 @@ const About = () => {
               <div className={toggleTab === 1 ?"single-tab active-tab":"single-tab "} 
               onClick={() => toggleState(1)}
               >
-                <h2>About</h2>
+                <h2>Our Story</h2>
               </div>
               <div className={toggleTab === 2 ?"single-tab active-tab":"single-tab "}
               onClick={() => toggleState(2)}
               >
-                <h2>Skills</h2>
+                <h2>Our Team</h2>
               </div>
               <div className={toggleTab === 3 ?"single-tab active-tab":"single-tab "}
               onClick={() => toggleState(3)}
@@ -37,55 +37,33 @@ const About = () => {
             <div className="tab-content">
               {/*About Content*/}
               <div className={toggleTab === 1?"content active-content":"content"}>
-                <h2 className='aboutH2Heading'>My Story</h2>
+                <h2 className='aboutH2Heading'>Our Story</h2>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. It was popularised in the 1960s with
-                  the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum.
+                At Shop Fusion, our story is one of vision, innovation, and a deep love for shopping. Our journey started as a dream to revolutionize online retail, creating a space where customers could find everything they desire. We have always been dedicated to providing you with an extraordinary e-commerce experience. Our mission began with a simple idea - to blend convenience, quality, and affordability into one seamless shopping experience.
                 </p>
-                <h3 className='aboutH2Heading'>
-                  I am a Web designer and developer having 10 year of experience
-                </h3>
+
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam vitae justo sit amet ex ultricies iaculis in nec
-                  ligula. Aenean blandit fermentum sodales. Donec mollis
-                  porttitor neque, a sollicitudin erat vehicula at. Cras
-                  tristique ex sed semper fermentum. Fusce interdum accumsan
-                  risus, a sodales mauris sollicitudin dapibus
+                Over the years, we've put our hearts and souls into building an extensive collection of products that cater to every facet of your life. We believe in making your shopping journey effortless and enjoyable, backed by top-notch customer service. Our commitment to excellence and a passion for shopping brought us to where we are today. Join us in our quest to shop smarter and experience the fusion of quality and convenience - shop Fusion.
                 </p>
+
+
+                
               </div>
 
               {/*Skills Content*/}
               <div className={toggleTab === 2?"content active-content":"content"}>
-                <h2 className='aboutH2Heading'>Skills</h2>
+                <h2 className='aboutH2Heading'>Our Team</h2>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. It was popularised in the 1960s with
-                  the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum.
+                At Shop Fusion, our success story is deeply intertwined with the dedication and passion of our incredible team. We are more than just a company; we are a family of enthusiastic individuals united by a shared vision. Our diverse team brings together a wealth of experience, creativity, and expertise. From our skilled developers and designers to our customer support heroes, every member plays a crucial role in delivering excellence to our customers. Together, we work tirelessly to ensure that your shopping experience is second to none. Meet the people behind Shop Fusion, a team committed to making your shopping dreams a reality.
                 </p>
                 <div className="skills-row">
                   <div className="skills-column">
                     <div className="proggress-wrap">
-                      <h3 className='aboutH2Heading'>Developer</h3>
+                      <h3 className='aboutH2Heading'>Customers</h3>
 
                       <div className="proggress">
                         <div className="proggress-bar">
-                          <span>80%</span>
+                          <span>4800+</span>
                         </div>
                       </div>
                     </div>
@@ -93,77 +71,45 @@ const About = () => {
 
                   <div className="skills-column">
                     <div className="proggress-wrap">
-                      <h3 className='aboutH2Heading'>Designer</h3>
+                      <h3 className='aboutH2Heading'>Daily Orders</h3>
 
                       <div className="proggress">
                         <div className="proggress-bar Designer">
-                          <span>90%</span>
+                          <span>2000+</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="skills-column">
-                    <div className="proggress-wrap">
-                      <h3 className='aboutH2Heading'>Javascript</h3>
-
-                      <div className="proggress">
-                        <div className="proggress-bar Javascript">
-                          <span>85%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="skills-column">
-                    <div className="proggress-wrap">
-                      <h3 className='aboutH2Heading'>PhotoShop</h3>
-
-                      <div className="proggress">
-                        <div className="proggress-bar photoShop">
-                          <span>88%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                 
+                  
                 </div>
               </div>
               {/*Experience Content*/}
             <div className={toggleTab === 3?"content active-content":"content"}>
                 <div className="exp-column">
-                    <h3 className='aboutH2Heading'>Web Developer</h3>
-                    <span>2014-2022</span>
-                    <p> Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. </p>
+                    <h3 className='aboutH2Heading'>Customer Satisfaction</h3>
+                  
+                    <p> Our proudest achievement is the trust and satisfaction of our customers. With a customer satisfaction rate of 98%, we've consistently delivered on our promise to provide exceptional products and service. Your positive feedback motivates us to strive for excellence every day. </p>
                 </div>
 
                 <div className="exp-column">
-                    <h3 className='aboutH2Heading'>Graphic Designer</h3>
-                    <span>2015-2022</span>
-                    <p> Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. </p>
+                    <h3 className='aboutH2Heading'>Innovation and Technology</h3>
+                    
+                    <p> Innovation is at the core of our achievements. We've pioneered cutting-edge technologies to enhance your shopping experience. Our AI-powered product recommendations have increased sales by 25%, and our mobile app, featuring augmented reality shopping, has revolutionized the way you interact with our products. </p>
                 </div>
 
 
                <div className="exp-column">
-                    <h3 className='aboutH2Heading'>Project Manager</h3>
-                    <span>2017-2022</span>
-                    <p> Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. </p>
+                    <h3 className='aboutH2Heading'>Social Responsibility</h3>
+                    
+                    <p>We take our social responsibility seriously. Our achievement in this regard includes donating 10% of our profits to charitable causes, providing clean drinking water to 10,000 people in underserved communities, and ensuring that all our products are ethically sourced and sustainably produced. </p>
+                </div>
+
+                <div className="exp-column">
+                    <h3 className='aboutH2Heading'>Global Expansion</h3>
+                    
+                    <p>Expanding globally is a testament to our ambition. We've successfully launched in five new countries, establishing our presence on a global scale. Our achievement lies in reaching customers worldwide, offering them access to our curated collection of products and services. </p>
                 </div>
             </div>
             </div>
