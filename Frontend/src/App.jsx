@@ -12,6 +12,10 @@ import OrdDetails from './pages/OrdDetails/OrdDetails';
 import ProductView from "./pages/ProductView/ProductView"
 import AvailableProductDelivery from "./pages/AvailableProductDelivery/AvailableProductDelivery";
 import Geshan from "./pages/Geshan/Geshan"
+import DeliveryAccepted from "./pages/DeliveryAccepted/DeliveryAccepted"
+import DeliveryPickup from "./pages/DeliveryPickup/DeliveryPickup";
+// import PickupItems from "./pages/PickupItems/PickupItems";
+
 
 
 function App() {
@@ -29,8 +33,10 @@ function App() {
         <Route path="/" element={<SignIn />}></Route>
         <Route path="/register" element={<SignUp />}></Route>
         <Route path="/Geshan" element={<Geshan />}></Route>
-
+        <Route path="/DeliveryAccepted" element={<DeliveryAccepted />}></Route>
         <Route path="/ProductView" element={<ProductView />}></Route>
+        <Route path="/DeliveryPickup" element={<DeliveryPickup />}></Route>
+
         <Route
           path="/AvailableProductDelivery"
           element={<AvailableProductDelivery />}></Route>
