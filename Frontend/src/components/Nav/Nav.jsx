@@ -15,14 +15,24 @@ export const Nav = (props) => {
       category: "customer",
     },
     {
-      path: "/",
-      name: "name3",
+      path: "/signUp",
+      name: "signUp",
       category: "customer",
     },
     {
-      path: "/",
-      name: "name4",
-      category: "2",
+      path: "/products",
+      name: "products",
+      category: "customer",
+    },
+    {
+      path: "/MyOrder",
+      name: "MyOrder",
+      category: "customer",
+    },
+    {
+      path: "/OrdDetails",
+      name: "OrdDetails",
+      category: "customer",
     },
     {
       path: "/",
