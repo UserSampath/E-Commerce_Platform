@@ -1,0 +1,10 @@
+.ParentI{
+    display: flex;
+    width: calc(100%);
+    flex-wrap: wrap;
+}
+.childI{
+    width: 300px;
+    height: 100px;
+    background-color: aqua;
+}
