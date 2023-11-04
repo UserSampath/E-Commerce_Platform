@@ -16,7 +16,8 @@ const ProductView = () => {
       <Nav category="customer" />
       <br/>
       <h1 className="sanduniTesth1">Product Description</h1>
-      <div className="product-view-container">
+      <div className="boxMiddle">
+        <div className="product-view-container">
         <div className="product-image">
           <img src={product.imageUrl} alt={product.name} />
         </div>
@@ -31,6 +32,7 @@ const ProductView = () => {
         </div>
           
         
+      </div>
       </div>
     </>
   );
