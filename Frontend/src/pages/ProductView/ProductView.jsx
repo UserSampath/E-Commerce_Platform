@@ -32,7 +32,7 @@ const ProductView = () => {
           </div>
         </div>
       </div>
-      </div>
+      
     </>
   );
 
