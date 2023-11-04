@@ -1,5 +1,6 @@
 const Order= require("../models/OrderModel")
 const axios= require("axios")
+
 // get user data from user management
 const getUser = async(authorization) =>{
     if (!authorization) {
@@ -12,7 +13,12 @@ try{
             Authorization: `Bearer ${token}`
         }
     });
-    return response.data;
+    if(response.length==0){
+        return({ error: "User not found" });
+    } else{
+        return response.data;
+    }
+    
 }
 catch(error){
     console.log(error)
@@ -20,6 +26,7 @@ catch(error){
     
 }
 }
+//get all orders by  delivery person's ID
 const getOrderByDID = async(req,res) =>{
     const{authorization} = req.headers;
     try{
@@ -51,9 +58,7 @@ const getOrderByDID = async(req,res) =>{
 const deliveryUpdate =async(data, callback) =>{
     const {authorization} = data.authorization;
     const{id} = data.id;
-    // console.log(id)
     const update = data.update;
-    // console.log(update)
     try{
         const date = new Date();
         const user= await getUser(authorization);
@@ -70,7 +75,6 @@ const deliveryUpdate =async(data, callback) =>{
                 const error = {error:"order not found"}
                 return callback(error);
             }else{
-                // console.log(newupdate);
                 return callback(null, newupdate)
             }
             
@@ -84,7 +88,6 @@ const deliveryUpdate =async(data, callback) =>{
 }
 //aceept order function
 const acceptOrder = async(req, res) => {
-    // console.log(req.body)
     const date = new Date();
     const{authorization} = req.headers;
  
@@ -101,7 +104,6 @@ const acceptOrder = async(req, res) => {
         id:req.body,
         update: update
      }
-    //  console.log(update)
      deliveryUpdate(data,(err,result)=>{
         if(err){
             res.status(500).json({err})
@@ -116,7 +118,6 @@ const acceptOrder = async(req, res) => {
 }
 //mark order as picked up
 const pickedUpOrder = async(req, res) => {
-    // console.log(req.body)
     const date = new Date();
     const{authorization} = req.headers;
  try{
@@ -131,7 +132,7 @@ const pickedUpOrder = async(req, res) => {
         id:req.body,
         update: update
      }
-    //  console.log(update)
+    
      deliveryUpdate(data,(err,result)=>{
         if(err){
             res.status(500).json({err})
@@ -145,8 +146,8 @@ const pickedUpOrder = async(req, res) => {
 
 }
 
+//mark orders as delivered
 const orderDelivered = async(req, res) => {
-    // console.log(req.body)
     const date = new Date();
     const{authorization} = req.headers;
  try{
@@ -179,5 +180,5 @@ const orderDelivered = async(req, res) => {
 
 
 
-module.exports = {getUser,acceptOrder,pickedUpOrder,orderDelivered,getOrderByDID}
+module.exports = {acceptOrder,pickedUpOrder,orderDelivered,getOrderByDID}
 
