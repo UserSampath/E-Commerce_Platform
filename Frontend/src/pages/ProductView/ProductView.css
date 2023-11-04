@@ -1,20 +1,19 @@
 .sanduniTesth1{
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: left;
     font-size: 25px;
-    margin-left: 220px;
-}
+    margin-left: 240px;
+    margin-bottom: 10px;
+   }
+
 .product-view-container {
   display: flex;
   width: 1000px;
-  height: 500px;
+  height: 450px;
   border-radius: 14px;
   border: 1px solid #353434;
   background: #ffffff;
-  margin-left: 220px;
-  
-  
-}
+ }
 
 .product-details {
   flex: 1;
