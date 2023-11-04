@@ -9,6 +9,7 @@ import MyOrder from "./pages/myorderPage/MyOrder"
 import OrdDetails from './pages/OrdDetails/OrdDetails';
 // import Home from "./pages/home/Home";
 import ProductView from "./pages/ProductView/ProductView"
+import AvailableProductDelivery from "./pages/AvailableProductDelivery/AvailableProductDelivery";
 
 
 function App() {
@@ -19,15 +20,15 @@ function App() {
         <Route path="/Inventory" element={<Inventory />}></Route>
         <Route path="/signUp" element={<SignUp />}></Route>
         <Route path="/About" element={<About />}></Route>
-        <Route path="/products" element={<ProductList/>}></Route>
-        <Route path = "/MyOrder" element={<MyOrder/>}></Route>
-        <Route path = "/OrdDetails" element={<OrdDetails/>}></Route>
+        <Route path="/products" element={<ProductList />}></Route>
+        <Route path="/MyOrder" element={<MyOrder />}></Route>
+        <Route path="/OrdDetails" element={<OrdDetails />}></Route>
         <Route path="/" element={<SignIn />}></Route>
-        {/* <Route path="/Home" element={<Home />}></Route> */}
         <Route path="/register" element={<SignUp />}></Route>
         <Route path="/ProductView" element={<ProductView />}></Route>
-
-    
+        <Route
+          path="/AvailableProductDelivery"
+          element={<AvailableProductDelivery />}></Route>
       </Routes>
     </BrowserRouter>
   );

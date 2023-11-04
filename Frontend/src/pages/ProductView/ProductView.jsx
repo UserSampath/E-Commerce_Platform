@@ -14,23 +14,23 @@ const ProductView = () => {
   return (
     <>
       <Nav category="customer" />
-      <br/>
+      <br />
       <h1 className="sanduniTesth1">Product Description</h1>
-      <div className="product-view-container">
-        <div className="product-image">
-          <img src={product.imageUrl} alt={product.name} />
-        </div>
-        <div className="product-details">
-          <h1 className="product-name">{product.name}</h1>
-          <p className="product-description">{product.description}</p>
-          <p className="product-price">{product.price}</p>
-          <p className="product-discount">{product.discount}</p>
-          <div className="buttonsContainer">
+      <div className="boxMiddle">
+        <div className="product-view-container">
+          <div className="product-image">
+            <img src={product.imageUrl} alt={product.name} />
+          </div>
+          <div className="product-details">
+            <h1 className="product-name">{product.name}</h1>
+            <p className="product-description">{product.description}</p>
+            <p className="product-price">{product.price}</p>
+            <p className="product-discount">{product.discount}</p>
+            <div className="buttonsContainer">
               <Button type={"button-rose"} text="Buy Now" />
             </div>
+          </div>
         </div>
-          
-        
       </div>
     </>
   );
