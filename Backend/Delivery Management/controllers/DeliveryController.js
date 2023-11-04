@@ -1,9 +1,9 @@
 const Order= require("../models/OrderModel")
 const axios= require("axios")
-
+// get user data from user management
 const getUser = async(authorization) =>{
     if (!authorization) {
-        return res.status(401).json({ error: "Authorization token required" });
+        return ({ error: "Authorization token required" });
     }
     const token = authorization.split(" ")[1];
 try{
@@ -14,42 +14,170 @@ try{
     });
     return response.data;
 }
-catch(err){
-    res.status(500).json({err: err});
-    console.log(err)
+catch(error){
+    console.log(error)
+    return error; 
+    
 }
+}
+const getOrderByDID = async(req,res) =>{
+    const{authorization} = req.headers;
+    try{
+        const user= await getUser(authorization);
+        // console.log(user);
+        if(user.error){
+            const error = user.error;
+            res.status(400).json({error:"User authentication failed",error});
+        }else{
+            
+            const id = user._id;
+           const orders = await Order.find({deliverId:{ $in: id }});
+           console.log(orders);
+           if(orders.length==0){
+            res.status(400).json({error:"No orders found"})
+           }else{
+            res.status(200).json({orders})
+           } 
+        }
+    }catch(err){
+        console.log(err);
+        res.status(500).json({error})
+    }
+
+
 }
 
-const acceptOrder =async(req, res) =>{
-    const authorization = req.headers.authorization;
-    const{id} = req.body;
+// common function for updating delivery data
+const deliveryUpdate =async(data, callback) =>{
+    const {authorization} = data.authorization;
+    const{id} = data.id;
+    // console.log(id)
+    const update = data.update;
+    // console.log(update)
     try{
         const date = new Date();
         const user= await getUser(authorization);
         console.log(user);
-        if(!user){
-            res.status(403).json({err:"User authentication failed"})
+        if(user.error){
+            const userError= user.error;
+            const error = {error:"User authentication failed",userError}
+                return callback(error);
         }else{
 
-             const update= await Order.findByIdAndUpdate(id,{deliverId:user._id ,deliveryAcceptedDate:date})
-             if(!update){
-                console.log(err);
-                res.status(400).json({err:"update failed"})
+             const newupdate= await Order.findByIdAndUpdate(id,update)
+             if(!newupdate){
+                console.log();
+                const error = {error:"order not found"}
+                return callback(error);
             }else{
-                console.log(update);
-                res.status(200).json({update})
+                // console.log(newupdate);
+                return callback(null, newupdate)
             }
             
         }
        
     }catch(err){
         console.log(err);
-        res.status(500).json({err})
+        return callback(err);
     }
+
+}
+//aceept order function
+const acceptOrder = async(req, res) => {
+    // console.log(req.body)
+    const date = new Date();
+    const{authorization} = req.headers;
+ 
+ try{
+    const user= await getUser(authorization)
+    const update = [{
+        $set:{
+        deliverId:user._id,
+        deliveryAcceptedDate:date
+    }
+     }]
+    const data = {
+        authorization:req.headers,
+        id:req.body,
+        update: update
+     }
+    //  console.log(update)
+     deliveryUpdate(data,(err,result)=>{
+        if(err){
+            res.status(500).json({err})
+        }else{
+            res.status(200).json({message:"updated successfully", result})
+        }
+     })
+ }catch(err){
+    console.log(err);
+ }
+
+}
+//mark order as picked up
+const pickedUpOrder = async(req, res) => {
+    // console.log(req.body)
+    const date = new Date();
+    const{authorization} = req.headers;
+ try{
+    const update = [{
+        $set:{
+            Status:"ORDER PICKUP",
+            PickedUpDate:date
+    }
+     }]
+    const data = {
+        authorization:req.headers,
+        id:req.body,
+        update: update
+     }
+    //  console.log(update)
+     deliveryUpdate(data,(err,result)=>{
+        if(err){
+            res.status(500).json({err})
+        }else{
+            res.status(200).json({message:"updated successfully",result})
+        }
+     })
+ }catch(err){
+    console.log(err);
+ }
+
+}
+
+const orderDelivered = async(req, res) => {
+    // console.log(req.body)
+    const date = new Date();
+    const{authorization} = req.headers;
+ try{
+    const update = [{
+        $set:{
+            Status:"DELIVERED ORDER",
+            orderDeliveredDate:date
+    }
+     }]
+    const data = {
+        authorization:req.headers,
+        id:req.body,
+        update: update
+     }
+    //  console.log(update)
+     deliveryUpdate(data,(err,result)=>{
+        if(err){
+            res.status(500).json({err})
+        }else{
+            res.status(200).json({message:"updated successfully",result})
+        }
+     })
+ }catch(err){
+    console.log(err);
+ }
 
 }
 
 
 
-module.exports = {getUser,acceptOrder}
+
+
+module.exports = {getUser,acceptOrder,pickedUpOrder,orderDelivered,getOrderByDID}
 
