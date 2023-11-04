@@ -8,14 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.util.List;
 
 @Service
 @Transactional
-
 public class ItemService {
 
     @Autowired
@@ -23,7 +19,6 @@ public class ItemService {
 
     @Autowired
     private ModelMapper modelMapper;
-
 
     public ItemDTO save(ItemDTO itemDTO){
         itemRepository.save(modelMapper.map(itemDTO, Item.class));
@@ -45,16 +40,5 @@ public class ItemService {
     public ItemDTO getItemByID(String ID){
         Item item=itemRepository.getItemByID(ID);
         return modelMapper.map(item,ItemDTO.class);
-    }
-    public ItemDTO save(ItemDTO itemDTO, MultipartFile imageFile) throws IOException {
-        byte[] imageBytes = imageFile.getBytes();
-
-        Item item = modelMapper.map(itemDTO, Item.class);
-        item.setImage(imageBytes);
-        itemRepository.save(item);
-
-        itemDTO.setId(item.getId());
-
-        return itemDTO;
     }
 }

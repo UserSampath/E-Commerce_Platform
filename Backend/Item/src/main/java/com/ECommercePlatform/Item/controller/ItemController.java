@@ -38,11 +38,10 @@ public class ItemController {
         return itemService.delete(itemDTO);
     }
 
-    @GetMapping("/get/{ID}")
+    @GetMapping("/get/{userID}")
     public ItemDTO getItemByID(@PathVariable String ID)
     {
         return itemService.getItemByID(ID);
     }
-
+//add
 }
-
