@@ -100,3 +100,23 @@
     .qty{
       margin-left: 80px;
     }
+    .icons{
+      font-size:35px;
+      margin-right: 5px;
+      color: #ffffff; 
+    }
+    .icon-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .container {
+      display: flex;
+      justify-content: flex-end; /* This aligns the content to the right */
+    }
+    
+    .navicon {
+      display: flex;
+      margin-top: 50px; /* Optional: You can use flex properties if you want to control the alignment within the navicon */
+    }

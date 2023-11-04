@@ -3,7 +3,8 @@ import "./myOrder.css";
 import { Nav } from "../../components/Nav/Nav";
 import Button from "../../components/Button/Button";
 import ProductItem from "../../components/ProductItem/ProductItem";
-
+import {BsArrowLeftSquareFill} from "react-icons/bs"
+import {BsArrowRightSquareFill} from "react-icons/bs"
 const items = [
   {
     name: "Asus laptop",
@@ -74,6 +75,16 @@ const MyOrder = () => {
             <ProductItem key={index} name={item.name} description={item.description} price={item.price}quantity={item.quantity}  status={item.status} deliverExpectedby={item.deliverExpectedby}/>
           )
         })}
+        <div className="container">
+    <div className="navicon">
+      <button className="icon-button">
+        <BsArrowLeftSquareFill className="icons" />
+      </button>
+      <button className="icon-button">
+        <BsArrowRightSquareFill className="icons" />
+      </button>
+    </div>
+    </div>
       </>
     );
   };
