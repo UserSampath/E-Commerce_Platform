@@ -1,7 +1,8 @@
 import React from "react";
-import "./home.css";
+import "./Inventory.css";
 import { Nav } from "../../components/Nav/Nav";
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
+import Button from "../../components/Button/Button";
 
 const items = [
   {
@@ -31,7 +32,7 @@ const items = [
 
 ];
 
-const Home = () => {
+const Inventory = () => {
   return (
     <>
       <Nav category="customer" />
@@ -41,14 +42,22 @@ const Home = () => {
           style={{ marginTop: "70px", marginBottom: "20px" }}>
           Inventory
         </h1>
+        <div style={{ marginTop: "55px", marginLeft: "100px" }}>
+          <Button type={"button-blue"} text="Add new item" />
+        </div>
       </div>
-      {items.map((item,index) => {
+      {items.map((item, index) => {
         return (
-          <InventoryItem key={index} name={item.name} description={item.description} quantity={item.quantity} />
-        )
+          <InventoryItem
+            key={index}
+            name={item.name}
+            description={item.description}
+            quantity={item.quantity}
+          />
+        );
       })}
     </>
   );
 };
 
-export default Home;
+export default Inventory;
