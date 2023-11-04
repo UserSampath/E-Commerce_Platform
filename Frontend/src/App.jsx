@@ -4,6 +4,8 @@ import SignIn from "./pages/signIn/SignIn";
 import SignUp from "./pages/signUp/SignUp";
 import Home from "./pages/home/Home";
 import About from "./pages/About/About"; 
+import UploadAvatr from './UploadPhoto'
+
 
 function App() {
   return (
