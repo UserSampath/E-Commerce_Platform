@@ -18,7 +18,7 @@ const CartCard = ({name,description,unitPrice}) => {
         
         }}>
         <div
-          className="itemImage"
+          // className="itemImage"
           style={{ marginLeft: "20px", marginTop: "7px" }}>
           <img
             src="../../../image/lap.jpg"
