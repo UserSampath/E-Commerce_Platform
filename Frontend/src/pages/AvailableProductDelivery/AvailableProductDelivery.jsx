@@ -24,7 +24,7 @@ const AvailableProductDelivery = () => {
         <h1
           className="mainHeading"
           style={{ marginTop: "70px", marginBottom: "20px" }}>
-          Available Products to Delivery
+          Available Products
         </h1>
       </div>
 

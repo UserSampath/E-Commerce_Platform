@@ -22,36 +22,7 @@ const items = [
     customer: "Nalaka Sampath ",
     address: "ipsum dolor sit amet consectetur, adipisicing elit",
   },
-  {
-    name: "Asus laptop",
-    customer: "Nalaka Sampath ",
-    address: "ipsum dolor sit amet consectetur, adipisicing elit",
-  },
-  {
-    name: "Asus laptop",
-    customer: "Nalaka Sampath ",
-    address: "ipsum dolor sit amet consectetur, adipisicing elit",
-  },
-  {
-    name: "Asus laptop",
-    customer: "Nalaka Sampath ",
-    address: "ipsum dolor sit amet consectetur, adipisicing elit",
-  },
-  {
-    name: "Asus laptop",
-    customer: "Nalaka Sampath ",
-    address: "ipsum dolor sit amet consectetur, adipisicing elit",
-  },
-  {
-    name: "Asus laptop",
-    customer: "Nalaka Sampath ",
-    address: "ipsum dolor sit amet consectetur, adipisicing elit",
-  },
-  {
-    name: "Asus laptop",
-    customer: "Nalaka Sampath ",
-    address: "ipsum dolor sit amet consectetur, adipisicing elit",
-  },
+
 ];
 
 const DeliveryAccepted = () => {
@@ -62,7 +33,7 @@ const DeliveryAccepted = () => {
         <h1
           className="mainHeading"
           style={{ marginTop: "70px", marginBottom: "20px" }}>
-          Accepted products to delivery
+          Accepted products
         </h1>
       </div>
 
