@@ -1,0 +1,58 @@
+.sanduniTesth1{
+    margin-top: 100px;
+    text-align: left;
+    font-size: 25px;
+    margin-left: 300px;
+}
+.product-view-container {
+  display: flex;
+  width: 1000px;
+  height: 500px;
+  border-radius: 14px;
+  border: 1px solid #A4A2A2;
+  background: #ffffff;
+  margin-left: 300px;
+  
+}
+
+.product-details {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.product-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.product-description {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #27ae60;
+  margin-bottom: 10px;
+}
+
+.product-discount {
+  font-size: 16px;
+  color: #e74c3c;
+}
+
+.product-image img {
+  width: 463px;
+  height: 443px;
+  border-radius: 10px;
+}
+
+
+
