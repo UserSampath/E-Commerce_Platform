@@ -1,7 +1,6 @@
 import React from "react";
 import "./home.css";
 import { Nav } from "../../components/Nav/Nav";
-import Button from "../../components/Button/Button";
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
 
 const items = [

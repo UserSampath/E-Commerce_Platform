@@ -7,67 +7,7 @@ const axios = require('axios');
 var nodemailer = require("nodemailer");
 
 
-const getUserDetails = async (authorization) => {
-    if (!authorization) {
-        return res.status(401).json({ error: "Authorization token required" });
-    }
-    const token = authorization.split(" ")[1];
 
-    try {
-        const response = await axios.post("http://localhost:5000/api/auth/getUserDetails", {}, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        const userData = response.data;
-        if (!userData) {
-            console.log("User not found");
-            return null;
-        }
-        else {
-            return userData;
-        }
-    } catch (error) {
-        console.error("Error while fetching user details:", error);
-        return null;
-    }
-}
-
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: "lenzzhasthiyit@gmail.com",
-        pass: "mfmpeqgzbjbxkcja",
-    },
-});
-
-
-
-
-const sendMail = async (mail,subject,text) => {
-    const mailOptions = {
-        from: "lenzzhasthiyit@gmail.com",
-        to: mail ,
-        subject: subject ,
-        text: text,
-    };
-    try {
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log("error", error);
-                res.status(201).json({ status: 201, message: "Email not send" });
-            } else {
-                console.log("Email sent", info.response);
-                res
-                    .status(201)
-                    .json({ status: 201, message: "Email sent successfully " });
-            }
-        });
-    } catch (err) {
-
-    }
-
-}
 
 
 
@@ -86,7 +26,12 @@ const createOrder = async (req, res) => {
             CustomerId: userData._id,
             Status,
             Quantity,
+            
         });
+
+        // check the inventory with quantity
+        // pass itemId and quantity to check  inventory and quantity if avawalable that product reduce the quantity return item details
+
 
         sendMail(userData.email, "Your new order placed", "Your new order placed successfully , thank you for your order");
         res.status(200).json({
@@ -156,5 +101,67 @@ const getAllOrders = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 }
+const getUserDetails = async (authorization) => {
+    if (!authorization) {
+        return res.status(401).json({ error: "Authorization token required" });
+    }
+    const token = authorization.split(" ")[1];
+
+    try {
+        const response = await axios.post("http://localhost:5000/api/auth/getUserDetails", {}, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const userData = response.data;
+        if (!userData) {
+            console.log("User not found");
+            return null;
+        }
+        else {
+            return userData;
+        }
+    } catch (error) {
+        console.error("Error while fetching user details:", error);
+        return null;
+    }
+}
+
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "lenzzhasthiyit@gmail.com",
+        pass: "mfmpeqgzbjbxkcja",
+    },
+});
+
+
+
+
+const sendMail = async (mail, subject, text) => {
+    const mailOptions = {
+        from: "lenzzhasthiyit@gmail.com",
+        to: mail,
+        subject: subject,
+        text: text,
+    };
+    try {
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log("error", error);
+                res.status(201).json({ status: 201, message: "Email not send" });
+            } else {
+                console.log("Email sent", info.response);
+                res
+                    .status(201)
+                    .json({ status: 201, message: "Email sent successfully " });
+            }
+        });
+    } catch (err) {
+
+    }
+
+}
+
 
 module.exports = { createOrder, deleteOrder, getOrder, getAllOrders };

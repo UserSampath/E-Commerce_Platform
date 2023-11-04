@@ -1,5 +1,5 @@
 const mongoose =  require("mongoose");
-const { OngoingStatus } = require("../utils/Constant");
+
 
 
 const Schema = mongoose.Schema;
@@ -18,25 +18,18 @@ const OrderSchema = new Schema(
         Status:{
             type: String,
             enum:[
-                OngoingStatus.OrderReady,
-                OngoingStatus.OrderPickup,
-                OngoingStatus.DeliveredOrder,
-                OngoingStatus.Ordered
+                "ORDER READY",
+                "ORDER PICKUP",
+                "DELIVERED ORDER",
+                "NOT DELIVERED"
             ]
         },
         Quantity:{
             type:String,
             required : true,
         },
-        ShippingAddress: {
-            type: String,
-            required: true,
-        },
         deliverId:{
             type:String,
-        },
-        orderedDate: {
-            type: Date,
         },
         deliveryAcceptedDate: {
             type: Date,
@@ -51,5 +44,6 @@ const OrderSchema = new Schema(
     },
 {timestamps:true}
 );
+const Orders =mongoose.model("Order",OrderSchema);
 
-module.exports = mongoose.model("Order",OrderSchema);
+module.exports = Orders
