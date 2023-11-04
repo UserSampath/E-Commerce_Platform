@@ -20,7 +20,8 @@ const OrderSchema = new Schema(
             enum:[
                 "ORDER READY",
                 "ORDER PICKUP",
-                "DELIVERED ORDER"
+                "DELIVERED ORDER",
+                "NOT DELIVERED"
             ]
         },
         Quantity:{

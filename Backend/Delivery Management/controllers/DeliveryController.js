@@ -63,7 +63,7 @@ const deliveryUpdate =async(data, callback) =>{
         const date = new Date();
         const user= await getUser(authorization);
         console.log(user);
-        if(user.error){
+        if(user.error|| user.role != "Delivery Man"){
             const userError= user.error;
             const error = {error:"User authentication failed",userError}
                 return callback(error);
@@ -173,6 +173,35 @@ const orderDelivered = async(req, res) => {
  }catch(err){
     console.log(err);
  }
+}
+
+//mark orders as delivered
+const orderNotDelivered = async(req, res) => {
+    const{authorization} = req.headers;
+ try{
+    const update = [{
+        $set:{
+            Status:"NOT DELIVERED",
+            orderDeliveredDate:null
+
+    }
+     }]
+    const data = {
+        authorization:req.headers,
+        id:req.body,
+        update: update
+     }
+    
+     deliveryUpdate(data,(err,result)=>{
+        if(err){
+            res.status(500).json({err})
+        }else{
+            res.status(200).json({message:"updated successfully",result})
+        }
+     })
+ }catch(err){
+    console.log(err);
+ }
 
 }
 
@@ -180,5 +209,5 @@ const orderDelivered = async(req, res) => {
 
 
 
-module.exports = {acceptOrder,pickedUpOrder,orderDelivered,getOrderByDID}
+module.exports = {acceptOrder,pickedUpOrder,orderDelivered,getOrderByDID,orderNotDelivered}
 
