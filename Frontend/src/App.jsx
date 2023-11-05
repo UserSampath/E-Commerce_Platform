@@ -25,15 +25,20 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/signIn" element={<SignIn />}></Route>
+        <Route path="/" element={<SignIn />}></Route>
         <Route path="/Inventory" element={<Inventory />}></Route>
         <Route path="/register" element={<SignUp />}></Route>
         <Route path="/About" element={<About />}></Route>
         <Route path="/Cart" element={<Cart />}></Route>
         <Route path="/products" element={<ProductList />}></Route>
         <Route path="/MyOrder" element={<MyOrder />}></Route>
+<<<<<<< HEAD
         <Route path="/MyOrder/OrdDeatils/:id" element={<OrdDetails />}></Route>
         <Route path="/" element={<SignIn />}></Route>
+=======
+        <Route path="/OrdDetails" element={<OrdDetails />}></Route>
+        {/* <Route path="/register" element={<SignIn />}></Route> */}
+>>>>>>> 90eb1a7f4f0c63873a9590ccafa3c2c1be8f890f
         <Route path="/register" element={<SignUp />}></Route>
         <Route path="/DeliveryAccepted" element={<DeliveryAccepted />}></Route>
         <Route

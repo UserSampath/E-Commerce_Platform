@@ -25,7 +25,14 @@ const register = async (req, res, next) => {
 
     await newUser.save();
     const token = createToken(newUser._id);
-    res.status(200).json({ email, token, role: newUser.role });
+    const name = newUser.firstName + " " + newUser.lastName;
+    res.status(200).json({
+      email,
+      token,
+      role: newUser.role,
+      userImage: newUser.profilePic,
+      name: name,
+    });
   } catch (err) {
     console.log(err);
     next(err);
@@ -53,7 +60,14 @@ const login = async (req, res, next) => {
 
     // to prevent send password to the user.send details without password
     const token = createToken(user._id);
-    res.status(200).json({ email, token, role: user.role });
+    const name = user.firstName + " " + user.lastName;
+    res.status(200).json({
+      email: user.email,
+      token,
+      role: user.role,
+      userImage: user.profilePic,
+      name: name,
+    });
   } catch (err) {
     next(err);
   }

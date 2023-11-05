@@ -1,7 +1,13 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./AcceptedDeliveryProducts.css";
-const AcceptedDeliveryProducts = ({ name, customer, address }) => {
+const AcceptedDeliveryProducts = ({
+  name,
+  customer,
+  address,
+  price,
+  quantity,
+}) => {
   return (
     <div style={{ marginBottom: "5px" }} className="boxMiddle">
       <div
@@ -48,6 +54,40 @@ const AcceptedDeliveryProducts = ({ name, customer, address }) => {
             textAlign: "center",
             marginTop: "15px",
           }}>
+          <h3>Price</h3>
+          <div
+            style={{
+              fontSize: "16px",
+              fontWeight: "10",
+              marginTop: "5px",
+              fontFamily: "-moz-initial",
+            }}>
+            {price}
+          </div>
+        </div>
+
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "15px",
+          }}>
+          <h3>Quantity</h3>
+          <div
+            style={{
+              fontSize: "16px",
+              fontWeight: "10",
+              marginTop: "5px",
+              fontFamily: "-moz-initial",
+            }}>
+            {quantity}
+          </div>
+        </div>
+
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "15px",
+          }}>
           <h3>Address</h3>
           <div
             style={{
@@ -59,6 +99,7 @@ const AcceptedDeliveryProducts = ({ name, customer, address }) => {
             {address}
           </div>
         </div>
+
         <div style={{ display: "flex" }}>
           <div style={{ marginTop: "24px", marginLeft: "20px" }}>
             <Button type={"button-blue"} text="Pickup" />

@@ -86,3 +86,11 @@ transform: rotate(45deg) translate(-6px, -5px);
 .nav__item :hover{
 color: aqua;
 }
+.navNameContainer:hover{
+color: aqua;
+cursor: pointer; 
+}
+
+.navNameContainer{
+    user-select: none;
+}

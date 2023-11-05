@@ -10,19 +10,24 @@ const items = [
   {
     name: "Asus laptop",
     customer: "Nalaka Sampath ",
+    price: "5",
+    quantity: "23",
     address: "ipsum dolor sit amet consectetur, adipisicing elit",
   },
   {
     name: "Asus laptop",
     customer: "Nalaka Sampath ",
+    price: "5",
+    quantity: "23",
     address: "ipsum dolor sit amet consectetur, adipisicing elit",
   },
   {
     name: "Asus laptop",
     customer: "Nalaka Sampath ",
+    price: "5",
+    quantity: "23",
     address: "ipsum dolor sit amet consectetur, adipisicing elit",
   },
-
 ];
 
 const DeliveryAccepted = () => {
@@ -43,17 +48,19 @@ const DeliveryAccepted = () => {
             key={index}
             name={item.name}
             customer={item.customer}
+            price={item.price}
+            quantity={item.quantity}
             address={item.address}
           />
         );
       })}
 
-      <div className="boxEnd">
+      {/* <div className="boxEnd">
         <div style={{ marginRight: "15%", marginTop: "10px" }}>
           <Button type={"button-black"} text="Accepted Orders" />
           <Button type={"button-black"} text="Pickup Orders" />
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

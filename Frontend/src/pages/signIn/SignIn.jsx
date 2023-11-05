@@ -24,11 +24,11 @@ const SignIn = () => {
       });
       localStorage.setItem("userData", JSON.stringify(res.data));
       if (res.data.role === "Customer") {
-        navigate("/Inventory");
+        navigate("/products");
       } else if (res.data.role === "Delivery Man") {
-        // navigate("/ordersToAccept");
+        navigate("/AvailableProductDelivery");
       } else {
-        // navigate("/inventory");
+        navigate("/inventory");
       }
 
       window.alert("Login success");

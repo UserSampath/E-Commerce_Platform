@@ -43,11 +43,11 @@ const SignUp = () => {
       if (res.status == 200) {
         localStorage.setItem("userData", JSON.stringify(res.data));
         if (res.data.role === "Customer") {
-          navgate("/ProductView");
+          navgate("/products");
         } else if (res.data.role === "Delivery Man") {
-          // navigate("/ordersToAccept");
+          navgate("/AvailableProductDelivery");
         } else {
-          // navigate("/inventory");
+          navgate("/inventory");
         }
 
         window.alert("Successfully registered");
@@ -68,7 +68,7 @@ const SignUp = () => {
   };
 
   const navigateToLogin = () => {
-    navgate("/signin");
+    navgate("/");
   };
 
   const cancellSignup = () => {
@@ -152,8 +152,7 @@ const SignUp = () => {
                       borderRadius: "5px",
                     }}
                     value={selectedRole}
-                    onChange={handleRoleChange}
-                  >
+                    onChange={handleRoleChange}>
                     <option value="Customer">Customer</option>
                     <option value="Delivery Man">Delivery Man</option>
                     <option value="Inventory Keeper">Inventory Keeper</option>
