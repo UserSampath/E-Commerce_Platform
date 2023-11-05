@@ -20,70 +20,98 @@ import { ProductCard } from '../../components/Product list/ProductCard';
 
 const ProductList = () => {
   document.title = "Awakaza E- Commerce | Products"
-    const [products,setProducts] = useState([
+    const [products, setProducts] = useState([
       {
-        productid:123,
-        image:"https://rb.gy/q1dm7",
-        productname:"iphone",
-        price:23
+        productid: 123,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone",
+        price: 23,
       },
       {
-        productid:124,
-        image:"https://rb.gy/q1dm7",
-        productname:"iphone new",
-        price:234
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
       },
       {
-        productid:124,
-        image:"https://rb.gy/q1dm7",
-        productname:"iphone new",
-        price:234
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
       },
       {
-        productid:124,
-        image:"https://rb.gy/q1dm7",
-        productname:"iphone new",
-        price:234
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
       },
       {
-        productid:124,
-        image:"https://rb.gy/q1dm7",
-        productname:"iphone new",
-        price:234
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
       },
       {
-        productid:124,
-        image:"https://rb.gy/q1dm7",
-        productname:"iphone new",
-        price:234
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
       },
       {
-        productid:124,
-        image:"https://rb.gy/q1dm7",
-        productname:"iphone new",
-        price:234
-      },{
-        productid:124,
-        image:"https://rb.gy/q1dm7",
-        productname:"iphone new",
-        price:234
-      },{
-        productid:124,
-        image:"https://rb.gy/q1dm7",
-        productname:"iphone new",
-        price:234
-      },{
-        productid:124,
-        image:"https://rb.gy/q1dm7",
-        productname:"iphone new",
-        price:234
-      },{
-        productid:124,
-        image:"https://rb.gy/q1dm7",
-        productname:"iphone new",
-        price:234
-      }
-      ]);
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+    ]);
     const[search,setSearch] = useState()
     const navigate = useNavigate()
     // useEffect(() =>{
@@ -105,32 +133,36 @@ const ProductList = () => {
     console.log(products)
   return (
     <>
-    <React.Fragment>
-    <Container fluid>
-        <Row>
-          <Nav />
-        </Row>
-        
-        <Row  style={{ display:"flex",flexWrap:"wrap", width:"calc(100%)",marginTop:"30px" }}>
-          {products.map((data, key) => (
-            <Col style={{marginLeft:"30px", marginTop:"60px"}} key={key}>
-              <Link key={key} to={`/products/view/${data.productid}`}>
-                <ProductCard
-                  image={data.image}
-                  productname={data.productname}
-                  price={data.price}
-                />
-              </Link>
-             </Col> 
-          ))}
-       </Row>
-      
-      </Container>
-      
-    </React.Fragment>
-    </>
+      <React.Fragment>
+        {/* <Nav category="customer" /> */}
+        <Container fluid>
+          <Row>
+            <Nav category="customer" />
+          </Row>
 
-  )
+          <Row
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              width: "calc(100%)",
+              marginTop: "30px",
+            }}>
+            {products.map((data, key) => (
+              <Col style={{ marginLeft: "30px", marginTop: "60px" }} key={key}>
+                <Link key={key} to={`/products/productView/${data.productid}`}>
+                  <ProductCard
+                    image={data.image}
+                    productname={data.productname}
+                    price={data.price}
+                  />
+                </Link>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </React.Fragment>
+    </>
+  );
 }
 
 export default ProductList

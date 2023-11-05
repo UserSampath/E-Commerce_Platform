@@ -107,6 +107,10 @@ a {
   align-items: end;
 }
 
+.boxFlex {
+  display: flex;
+
+}
 
 /* ---------scrollbar----------- */
 

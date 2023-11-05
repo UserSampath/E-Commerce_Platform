@@ -38,14 +38,15 @@ function App() {
         <Route path="/register" element={<SignUp />}></Route>
         <Route path="/Geshan" element={<Geshan />}></Route>
         <Route path="/DeliveryAccepted" element={<DeliveryAccepted />}></Route>
-        <Route path="/ProductView" element={<ProductView />}></Route>
+        <Route
+          path="/products/productView/:id"
+          element={<ProductView />}></Route>
         <Route path="/DeliveryPickup" element={<DeliveryPickup />}></Route>
         <Route path="/confirmCheckout" element={<ConfirmCheckout />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
         <Route
           path="/AvailableProductDelivery"
-          element={<AvailableProductDelivery />}
-        ></Route>
+          element={<AvailableProductDelivery />}></Route>
       </Routes>
     </BrowserRouter>
   );
