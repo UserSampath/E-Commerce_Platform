@@ -1,7 +1,7 @@
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
 const createToken = (_id) => {
@@ -15,7 +15,7 @@ const register = async (req, res, next) => {
   try {
     user = await User.findOne({ email: email });
 
-    //if (user) return next(createError(409, "User already exists"));
+    if (user) return res.status(409).json({ error: "User already exists" });
 
     const hashedPassword = bcrypt.hashSync(password, 12);
     const newUser = new User({
@@ -25,9 +25,9 @@ const register = async (req, res, next) => {
 
     await newUser.save();
     const token = createToken(newUser._id);
-    res.status(200).json({ email,  token,role: newUser.role,_id:newUser._id});
-   
-   
+    res
+      .status(200)
+      .json({ email, token, role: newUser.role, _id: newUser._id });
   } catch (err) {
     console.log(err);
     next(err);
@@ -41,7 +41,7 @@ const login = async (req, res, next) => {
     // try to find the user in the clients collection
     let user = await User.findOne({ email: email });
 
-    if (!user) return next(createError(404, "User Not found"));
+    if (!user) return res.status(404).json({ error: "User Not Found" });
 
     const isPasswordValid = await bcrypt.compare(
       req.body.password,
@@ -49,9 +49,9 @@ const login = async (req, res, next) => {
     );
 
     if (!isPasswordValid)
-      return next(
-        createError(400, "Wrong password or username.Please try again!")
-      );
+      return res
+        .status(400)
+        .json({ error: "Wrong password or username.Please try again!" });
 
     // to prevent send password to the user.send details without password
     const { password, ...info } = user._doc;
@@ -60,7 +60,6 @@ const login = async (req, res, next) => {
     next(err);
   }
 };
-
 
 const authUser = async (req, res) => {
   const { authorization } = req.headers;
@@ -85,7 +84,6 @@ const authUser = async (req, res) => {
   }
 };
 
-
 const getUserDetails = async (req, res) => {
   const { authorization } = req.headers;
 
@@ -95,7 +93,7 @@ const getUserDetails = async (req, res) => {
   const token = authorization.split(" ")[1];
   try {
     const { _id } = jwt.verify(token, process.env.SECRET);
-    const user = await User.findOne({ _id })
+    const user = await User.findOne({ _id });
     return res.json(user);
   } catch (error) {
     // console.log(error);
