@@ -1,4 +1,4 @@
-const Order = require("../Model/CartModel");
+const Cart = require("../Model/CartModel");
 const express = require("express");
 const app = express();
 app.use(express.json());
@@ -37,12 +37,6 @@ const getUserDetails = async (authorization) => {
 
 
 
-
-
-
-
-
-
 const createCart = async (req, res) => {
     const { ProductId} = req.body;
     try {
@@ -52,7 +46,7 @@ const createCart = async (req, res) => {
             console.log("your not customer")
         }
         console.log("sasas", userData)
-        const Cart = await Cart.create({
+        const cart = await Cart.create({
             ProductId,
             CustomerId: userData._id,
             
@@ -60,8 +54,8 @@ const createCart = async (req, res) => {
 
         // sendMail(userData.email, "Your new order placed", "Your new order placed successfully , thank you for your order");
         res.status(200).json({
-            ProductId: Cart.ProductId,
-            CustomerId: Cart.CustomerId,
+            ProductId: cart.ProductId,
+            CustomerId: cart.CustomerId,
             
         });
 
@@ -70,26 +64,48 @@ const createCart = async (req, res) => {
     }
 }
 
-// const deleteOrder = async (req, res) => {
-//     const { id } = req.params;
+const deleteCart = async (req, res) => {
+    const { id } = req.params;
 
-//     try {
-//         const { authorization } = req.headers;
-//         const userData = await getUserDetails(authorization);
+    try {
+        const { authorization } = req.headers;
+        const userData = await getUserDetails(authorization);
+        if (userData.role != "Customer") {
+            console.log("your not customer");
+        }
+        const cart = await Cart.findOneAndDelete({ _id: id });
+        console.log(cart);
+        if (!cart) {
+            return res.status(404).json({ error: "cart not found" });
+        }
+        
 
-//         const order = await Order.findOneAndDelete({ _id: id });
-//         if (!order) {
-//             return res.status(404).json({ error: "order not found" });
-//         }
+        return res.json({ cart });
+    } catch (error) {
+        console.error(error);
+        res.status(404).json({ error: "Internal Server error" });
 
-//         return res.json({ order });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(404).json({ error: "Internal Server error" });
+    }
 
-//     }
+};
 
-// };
+const getAllCartsForCustomer = async (req, res) => {
+    try {
+        const { authorization } = req.headers;
+        const userData = await getUserDetails(authorization);
+        if (userData.role !== "Customer") {
+            console.log("You're not a customer");
+            return res.status(403).json({ error: "Forbidden" });
+        }
+
+        const customerCarts = await Cart.find({ CustomerId: userData._id });
+        res.status(200).json({ carts: customerCarts });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
+
 
 // const getOrder = async (req, res) => {
 //     const { id } = req.params;
@@ -126,4 +142,4 @@ const createCart = async (req, res) => {
 //     }
 // }
 
-module.exports = { createCart };
+module.exports = { createCart ,deleteCart,getAllCartsForCustomer};

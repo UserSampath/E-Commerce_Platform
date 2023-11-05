@@ -35,7 +35,11 @@ const clientSchema = new Schema(
     address: {
       type: String,
     },
+    profilePic: {
+      type: String,
+    },
   },
+
   { timestamps: true }
 );
 

@@ -23,7 +23,6 @@
   display: inline-block;
   font-weight: 600;
   transition: all 0.3s;
-
 }
 
 .button-red {
@@ -38,7 +37,19 @@
   display: inline-block;
   font-weight: 600;
   transition: all 0.3s;
-
+}
+.button-green {
+  color: rgb(255, 255, 255);
+  height: 40px;
+  border: 1px solid black;
+  padding: 8px 12px;
+  background-color: rgb(77, 205, 9);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  display: inline-block;
+  font-weight: 600;
+  transition: all 0.3s;
 }
 
 .button-blue:hover {
@@ -47,19 +58,19 @@
   cursor: pointer;
 }
 
-.button-black:hover{
+.button-black:hover {
   background-color: white;
   color: var(--primary);
   cursor: pointer;
 }
 
-.button-red:hover{
+.button-red:hover {
   background-color: white;
   color: var(--primary);
   cursor: pointer;
 }
 
-.button-rose{
+.button-rose {
   color: rgb(255, 255, 255);
   padding: 8px 12px;
   background-color: rgb(255, 0, 208);
@@ -75,7 +86,12 @@
   border: 1px solid rgb(0, 0, 0);
 }
 
-.button-rose:hover{
+.button-rose:hover {
+  background-color: white;
+  color: var(--primary);
+  cursor: pointer;
+}
+.button-green:hover {
   background-color: white;
   color: var(--primary);
   cursor: pointer;
