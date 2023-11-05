@@ -74,12 +74,12 @@
     .Orderrow{
       display: flex;
       flex-direction:row ;
-      gap:115px;
       background-color: aliceblue;
       color:black;
       border-radius: 5px;
       height: 55px;
-      font-size:16px;
+      font-size:12px;
+      padding: 10px;
       margin-right: 155px;
       margin-left: 125px;
       width: 1050px;
@@ -98,7 +98,7 @@
   margin-top: 20px;
     }
     .qty{
-      margin-left: 80px;
+      margin-left: 170px;
     }
     .icons{
       font-size:35px;
@@ -119,4 +119,7 @@
     .navicon {
       display: flex;
       margin-top: 50px; /* Optional: You can use flex properties if you want to control the alignment within the navicon */
+    }
+    .deliver{
+      margin-left: 125px;
     }

@@ -5,8 +5,11 @@ import Button from "../../components/Button/Button";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import {BsArrowLeftSquareFill} from "react-icons/bs"
 import {BsArrowRightSquareFill} from "react-icons/bs"
+import {Link, useNavigate} from "react-router-dom"
+
 const items = [
   {
+    OrderId:123,
     name: "Asus laptop",
     description:
       "8GB RAM, 1TB ROMr",
@@ -17,6 +20,7 @@ const items = [
     deliverExpectedby:"24th December 2023"
   },
   {
+    OrderId:124,
     name: "Asus laptop",
     description:
       "8GB RAM, 1TB ROM,  .",
@@ -27,6 +31,7 @@ const items = [
     deliverExpectedby:"24th December 2023"
   },
   {
+    OrderId:125,
     name: "Asus laptop",
     description:
       "8GB RAM, 1TB ROM. .",
@@ -37,6 +42,7 @@ const items = [
     deliverExpectedby:"24th December 2023"
   },
   {
+    OrderId:126,
     name: "Asus laptop",
     description:
       "8GB RAM, 1TB ROM, .",
@@ -49,6 +55,7 @@ const items = [
 
 ];
 
+
 const MyOrder = () => {
     return (
       <>
@@ -56,9 +63,9 @@ const MyOrder = () => {
         <br/>
         <br/>
         <div className="mainHeading">
-          <h1>
+          <h2>
             My Orders
-          </h1>
+          </h2>
           </div>
         <div className="boxMiddle">
           
@@ -66,24 +73,22 @@ const MyOrder = () => {
             <h1 className="item">Item</h1>
             <h1 className="qty">Qty</h1>
            
-            <h1>Status</h1>
-            <h1>Deliver Expected by</h1>
+            <h1 >Status</h1>
+            <h1 className="deliver">Deliver Expected by</h1>
           </div>
         </div>
         {items.map((item,index) => {
           return (
-            <ProductItem key={index} name={item.name} description={item.description} price={item.price}quantity={item.quantity}  status={item.status} deliverExpectedby={item.deliverExpectedby}/>
+
+            <Link key={index} to={`/MyOrder/OrdDeatils/${item.OrderId}`}>
+
+            <ProductItem  name={item.name} description={item.description} price={item.price}quantity={item.quantity}  status={item.status} deliverExpectedby={item.deliverExpectedby}/>
+          
+          </Link>
           )
         })}
         <div className="container">
-    <div className="navicon">
-      <button className="icon-button">
-        <BsArrowLeftSquareFill className="icons" />
-      </button>
-      <button className="icon-button">
-        <BsArrowRightSquareFill className="icons" />
-      </button>
-    </div>
+    
     </div>
       </>
     );
