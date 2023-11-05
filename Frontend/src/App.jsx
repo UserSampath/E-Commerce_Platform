@@ -4,6 +4,9 @@ import SignIn from "./pages/signIn/SignIn";
 import SignUp from "./pages/signUp/SignUp";
 import Inventory from "./pages/Inventory/Inventory";
 import About from "./pages/About/About"; 
+
+import UploadAvatr from './UploadPhoto'
+
 import Cart from "./pages/Cart/Cart"
 import ProductList from "./pages/Product/ProductList";
 import MyOrder from "./pages/myorderPage/MyOrder"
@@ -15,6 +18,7 @@ import Geshan from "./pages/Geshan/Geshan"
 import DeliveryAccepted from "./pages/DeliveryAccepted/DeliveryAccepted"
 import DeliveryPickup from "./pages/DeliveryPickup/DeliveryPickup";
 // import PickupItems from "./pages/PickupItems/PickupItems";
+
 
 
 
