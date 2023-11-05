@@ -18,7 +18,6 @@ function App() {
         <Route path="/products" element={<ProductList/>}></Route>
         <Route path = "/MyOrder" element={<MyOrder/>}></Route>
         <Route path = "/OrdDetails" element={<OrdDetails/>}></Route>
-    
       </Routes>
     </BrowserRouter>
   );
