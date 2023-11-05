@@ -1,18 +1,25 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { Nav } from "../../components/Nav/Nav";
 import "./ProductView.css";
 import Button from "../../components/Button/Button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const ProductView = () => {
+      const location = useLocation();
   const navigate = useNavigate();
-  const product = {
-    name: "Brand new Asus i3 Lap Top",
-    description:
-      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typefaceIn publishing and graphic design, Lorem ipsum is a placeholder text commonly used to",
-    price: "Price 100000 /=",
-    discount: "Discount 10% off",
-    imageUrl: "../../image/lap.jpg",
-  };
+  const [product,setProduct]=useState({})
+
+    useEffect(() => {
+      const productData = location.state ? location.state : null;
+      console.log(productData);
+      setProduct({
+        name: productData.name,
+        description:
+          "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typefaceIn publishing and graphic design, Lorem ipsum is a placeholder text commonly used to",
+        price: `Price ${productData.price} /=`,
+        discount: "Discount 10% off",
+        imageUrl: "../../image/lap.jpg",
+      });
+    }, []);
   return (
     <>
       <Nav category="customer" />

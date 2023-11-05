@@ -17,7 +17,6 @@ export const Nav = (props) => {
       const a = await getLocalData();
       if (a) {
         setUserData(JSON.parse(a));
-        console.log(userData);
       }
     };
 
