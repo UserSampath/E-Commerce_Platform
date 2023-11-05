@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./PickupItems.css";
-const PickupItems = ({ name, customer, address }) => {
+const PickupItems = ({ name, customer, address,price,quantity }) => {
   return (
     <div style={{ marginBottom: "5px" }} className="boxMiddle">
       <div
@@ -40,6 +40,40 @@ const PickupItems = ({ name, customer, address }) => {
                 {customer}
               </div>
             </div>
+          </div>
+        </div>
+
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "15px",
+          }}>
+          <h3>Price</h3>
+          <div
+            style={{
+              fontSize: "16px",
+              fontWeight: "10",
+              marginTop: "5px",
+              fontFamily: "-moz-initial",
+            }}>
+            {price}
+          </div>
+        </div>
+
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "15px",
+          }}>
+          <h3>Quantity</h3>
+          <div
+            style={{
+              fontSize: "16px",
+              fontWeight: "10",
+              marginTop: "5px",
+              fontFamily: "-moz-initial",
+            }}>
+            {quantity}
           </div>
         </div>
 
