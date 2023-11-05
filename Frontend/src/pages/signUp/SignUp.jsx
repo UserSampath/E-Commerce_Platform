@@ -43,11 +43,11 @@ const SignUp = () => {
       if (res.status == 200) {
         localStorage.setItem("userData", JSON.stringify(res.data));
         if (res.data.role === "Customer") {
-          navgate("/ProductView");
+          navgate("/products");
         } else if (res.data.role === "Delivery Man") {
-          // navigate("/ordersToAccept");
+          navgate("/AvailableProductDelivery");
         } else {
-          // navigate("/inventory");
+          navgate("/inventory");
         }
 
         window.alert("Successfully registered");

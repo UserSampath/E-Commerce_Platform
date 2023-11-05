@@ -37,7 +37,7 @@ const items = [
 const Inventory = () => {
   return (
     <>
-      <Nav category="customer" />
+      <Nav category="inventory" />
       <div className="boxMiddle">
         <h1
           className="mainHeading"

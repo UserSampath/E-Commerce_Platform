@@ -61,6 +61,16 @@ export const Nav = (props) => {
       name: "Pickup products",
       category: "deliver",
     },
+    {
+      path: "/inventory",
+      name: "Inventory",
+      category: "inventory",
+    },
+    {
+      path: "/inventory",
+      name: "Inventory",
+      category: "inventory",
+    },
   ];
   const navToggle = () => {
     active === "nav__menu"
