@@ -20,7 +20,8 @@ const OrderSchema = new Schema(
             enum:[
                 "ORDER READY",
                 "ORDER PICKUP",
-                "DELIVERED ORDER"
+                "DELIVERED ORDER",
+                "NOT DELIVERED"
             ]
         },
         Quantity:{
@@ -43,7 +44,6 @@ const OrderSchema = new Schema(
     },
 {timestamps:true}
 );
-const Orders =mongoose.model("Order",OrderSchema
-);
+const Orders =mongoose.model("Order",OrderSchema);
 
 module.exports = Orders

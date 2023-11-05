@@ -1,0 +1,159 @@
+/* Confirm checkout styles */
+
+.checkout-container {
+  margin-top: 10%;
+  width: 80%;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.left-side {
+  width: 70%;
+}
+
+.right-side {
+  height: 30%;
+}
+
+.c-title {
+  box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.row-1 {
+  width: 45%;
+}
+.input-field {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+}
+
+.ckt-btn {
+  width: 350px;
+  height: 40px;
+  background-color: #0b0d29;
+}
+
+.confirm {
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+.cancell:hover {
+  border: 2px solid #ff0101;
+  color: #ff0101;
+}
+.confirm:hover {
+  border: 2px solid rgb(7, 243, 7);
+  color: rgb(7, 243, 7);
+}
+
+.cancell {
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+/*Checkout styles */
+.checkout-container-component {
+  width: 60%;
+  margin-left: 20%;
+  border: 1px solid white;
+  margin-top: 15%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.left-checkout {
+  width: 50%;
+  border-right: 2px solid white;
+}
+.right-checkout {
+  width: 50%;
+}
+
+.left-div-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.product {
+  width: 50%;
+  border-left: 2px solid rgb(233, 253, 10);
+  text-align: left;
+  align-items: center;
+  padding: 5px;
+}
+.qty {
+  width: 20%;
+}
+
+.price {
+  width: 20%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.delivery-fee {
+  width: 50%;
+  text-align: left;
+  align-items: center;
+  padding: 5px;
+  margin-top: 10px;
+}
+.delivery-fee-2 {
+  width: 20%;
+}
+
+.delivary-fee-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.ckout-btn-container {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 30px;
+  margin-top: 50px;
+}
+
+.continue-shopping {
+  width: 200px;
+  height: 40px;
+  background-color: #0b0d29;
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.checkout-btn {
+  width: 100px;
+  height: 40px;
+  background-color: #0b0d29;
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+}
+.continue-shopping:hover {
+  color: rgb(1, 248, 1);
+  border: 1px solid rgb(1, 248, 1);
+}
+
+.checkout-btn:hover {
+  color: rgb(229, 6, 218);
+  border: 1px solid rgb(229, 6, 218);
+}
+
+/* right-checkout */
+.right-checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

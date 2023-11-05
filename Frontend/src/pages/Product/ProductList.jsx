@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
+
 import Card from 'react-bootstrap/Card';
+import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import{
     Col,
     Row,
@@ -14,17 +16,102 @@ import{
   import {Link, useNavigate} from "react-router-dom"
   import  Axios  from 'axios';
 import { Nav } from '../../components/Nav/Nav';
+import { ProductCard } from '../../components/Product list/ProductCard';
 
 const ProductList = () => {
   document.title = "Awakaza E- Commerce | Products"
-    const [products,setProducts] = useState([{
-        productid:123,
-        images:"https://rb.gy/q1dm7",
-        productname:"iphone",
-        price:234
-
-
-    }]);
+    const [products, setProducts] = useState([
+      {
+        productid: 123,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone",
+        price: 23,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+      {
+        productid: 124,
+        image: "https://rb.gy/q1dm7",
+        productname: "iphone new",
+        price: 234,
+      },
+    ]);
     const[search,setSearch] = useState()
     const navigate = useNavigate()
     // useEffect(() =>{
@@ -45,54 +132,37 @@ const ProductList = () => {
     }
     console.log(products)
   return (
-    <React.Fragment>
-        
-        <div>
-            
+    <>
+      <React.Fragment>
+        {/* <Nav category="customer" /> */}
         <Container fluid>
-        {/* <Nav/> */}
-            {// search functionality kept it here if needed
-            /* <Row style={{alignSelf:"center"}}>
-            <Col sm={4} >
-            <form className="app-search d-none d-lg-block"onSubmit={searchProduct}>
-              <div className="position-relative">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search..."
-                  onChange={(e) =>{setSearch(e.target.value)}}
-                />
-                <span className="bx bx-search-alt" />
-              </div>
-            </form>
-             </Col>
-             <Col  >
-             <Button color="primary" className="btn-rounded" style={{marginTop:"17px"}} onClick={searchProduct} >
-                            Search
-            </Button>
-             </Col>
-            </Row> */}
+          <Row>
+            <Nav category="customer" />
+          </Row>
 
-            <Row>
-                {
-                  products.map((data,key)=>{
-                    return(
-                        <Col mg={6} xl={3} key={key} >
-              
-              <Link to={`/products/view/${data.productid}`}>
-                
+          <Row
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              width: "calc(100%)",
+              marginTop: "30px",
+            }}>
+            {products.map((data, key) => (
+              <Col style={{ marginLeft: "30px", marginTop: "60px" }} key={key}>
+                <Link key={key} to={`/products/productView/${data.productid}`}>
+                  <ProductCard
+                    image={data.image}
+                    productname={data.productname}
+                    price={data.price}
+                  />
                 </Link>
-             
-            </Col>
-                    )
-                  })
-                }
-            </Row>
-            </Container>
-        </div>
-       
-    </React.Fragment>
-  )
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </React.Fragment>
+    </>
+  );
 }
 
 export default ProductList

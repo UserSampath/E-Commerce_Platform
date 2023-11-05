@@ -1,6 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css";
-// import { Nav } from "../../components/Nav/Nav";
+import { Nav } from "../../components/Nav/Nav";
 import Button from "../../components/Button/Button";
 import CartCard from "../../components/CartCard/CartCard";
 
@@ -33,9 +34,10 @@ const items = [
 ];
 
 const Home = () => {
+    const navigate = useNavigate();
   return (
     <>
-      {/* <Nav category="customer" /> */}
+      <Nav category="customer" />
       <div className="boxMiddle">
         <h1
           className="mainHeading"

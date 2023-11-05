@@ -3,10 +3,14 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const routers = require('./routers/deliveryRoutes')
+const bodyparser = require('body-parser');
 require('dotenv').config();
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
+
 
 app.use('/api/delivery',routers)
 

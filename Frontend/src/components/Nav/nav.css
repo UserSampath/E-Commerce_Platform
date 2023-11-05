@@ -14,6 +14,7 @@ a{
     background: rgb(7, 8, 28);
     position:fixed;
     width: 100%; /* Make it full-width if needed */
+    z-index: 100;
 
 }
 
@@ -80,4 +81,16 @@ transform: rotate(-45deg) translate(-6px, 5px);
 .toggle .line3{
 transform: rotate(45deg) translate(-6px, -5px);
     
+}
+
+.nav__item :hover{
+color: aqua;
+}
+.navNameContainer:hover{
+color: aqua;
+cursor: pointer; 
+}
+
+.navNameContainer{
+    user-select: none;
 }
