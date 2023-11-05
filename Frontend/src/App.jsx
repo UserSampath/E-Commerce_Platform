@@ -4,7 +4,7 @@ import SignIn from "./pages/signIn/SignIn";
 import SignUp from "./pages/signUp/SignUp";
 import Inventory from "./pages/Inventory/Inventory";
 import About from "./pages/About/About";
-import Home from "./pages/home/Home";
+
 import ConfirmCheckout from "./components/Checkout/ConfirmCheckout";
 import Checkout from "./components/Checkout/Checkout";
 

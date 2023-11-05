@@ -25,9 +25,7 @@ const register = async (req, res, next) => {
 
     await newUser.save();
     const token = createToken(newUser._id);
-    res
-      .status(200)
-      .json({ email, token, role: newUser.role, _id: newUser._id });
+    res.status(200).json({ email, token, role: newUser.role });
   } catch (err) {
     console.log(err);
     next(err);
@@ -54,8 +52,8 @@ const login = async (req, res, next) => {
         .json({ error: "Wrong password or username.Please try again!" });
 
     // to prevent send password to the user.send details without password
-    const { password, ...info } = user._doc;
-    res.status(200).send(info);
+    const token = createToken(user._id);
+    res.status(200).json({ email, token, role: user.role });
   } catch (err) {
     next(err);
   }
