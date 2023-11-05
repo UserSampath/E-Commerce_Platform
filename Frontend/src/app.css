@@ -100,3 +100,35 @@ a {
   justify-content: center;
   align-items: center;
 }
+
+.boxEnd {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+
+/* ---------scrollbar----------- */
+
+::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #07081c; /* Change the color of the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color:#0c0f46; /* Change the color on hover */
+}
+
+::-webkit-scrollbar-track {
+  background-color:#18dcff; /* Change the color of the scrollbar track */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin; /* "auto" may also be used */
+  scrollbar-color:#07081c #18dcff; /* Change the scrollbar thumb and track colors */
+}
+

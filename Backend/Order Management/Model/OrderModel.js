@@ -20,15 +20,23 @@ const OrderSchema = new Schema(
             enum:[
                 OngoingStatus.OrderReady,
                 OngoingStatus.OrderPickup,
-                OngoingStatus.DeliveredOrder
+                OngoingStatus.DeliveredOrder,
+                OngoingStatus.Ordered
             ]
         },
         Quantity:{
             type:String,
             required : true,
         },
+        ShippingAddress: {
+            type: String,
+            required: true,
+        },
         deliverId:{
             type:String,
+        },
+        orderedDate: {
+            type: Date,
         },
         deliveryAcceptedDate: {
             type: Date,

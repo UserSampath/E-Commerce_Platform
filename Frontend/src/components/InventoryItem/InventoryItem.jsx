@@ -18,7 +18,6 @@ const InventoryItem = ({name,description,quantity}) => {
         
         }}>
         <div
-          className="itemImage"
           style={{ marginLeft: "20px", marginTop: "7px" }}>
           <img
             src="../../../image/lap.jpg"
