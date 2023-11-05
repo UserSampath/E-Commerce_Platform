@@ -41,7 +41,14 @@ const SignUp = () => {
       });
 
       if (res.status == 200) {
-        console.log(res.data);
+        localStorage.setItem("userData", JSON.stringify(res.data));
+        if (res.data.role === "Customer") {
+          // navigate("/ProductView");
+        } else if (res.data.role === "Delivery Man") {
+          // navigate("/ordersToAccept");
+        } else {
+          // navigate("/inventory");
+        }
 
         window.alert("Successfully registered");
         navgate("/signin");
