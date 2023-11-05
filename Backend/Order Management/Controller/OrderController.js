@@ -6,6 +6,33 @@ app.use(express.urlencoded({ extended: false }));
 const axios = require('axios');
 var nodemailer = require("nodemailer");
 
+const getUserDetails = async (authorization) => {
+    if (!authorization) {
+        return res.status(401).json({ error: "Authorization token required" });
+    }
+    const token = authorization.split(" ")[1];
+
+    try {
+        const response = await axios.post("http://localhost:5000/api/auth/getUserDetails", {}, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const userData = response.data;
+        if (!userData) {
+            console.log("User not found");
+            return null;
+        }
+        else {
+            return userData;
+        }
+    } catch (error) {
+        console.error("Error while fetching user details:", error);
+        return null;
+    }
+}
+
+
 
 
 
@@ -49,7 +76,9 @@ const deleteOrder = async (req, res) => {
     try {
         const { authorization } = req.headers;
         const userData = await getUserDetails(authorization);
-
+        if (userData.role != "Customer") {
+            console.log("your not customer")
+        }
         const order = await Order.findOneAndDelete({ _id: id });
         if (!order) {
             return res.status(404).json({ error: "order not found" });
@@ -69,7 +98,9 @@ const getOrder = async (req, res) => {
 
     const { authorization } = req.headers;
     const userData = await getUserDetails(authorization);
-
+    if (userData.role != "Customer") {
+        console.log("your not customer")
+    }
     try {
         const order = await Order.findOne({ id: id })
             .populate("OrderId");
@@ -87,42 +118,24 @@ const getOrder = async (req, res) => {
 }
 const getAllOrders = async (req, res) => {
     try {
-
         const { authorization } = req.headers;
         const userData = await getUserDetails(authorization);
-        const orders = await Order.find().populate("OrderId"); // Assuming "items" is the field you want to populate
+        if (userData.role != "Customer") {
+            console.log("you're not a customer");
+        }
 
+        const orders = await Order.find().populate("_id"); // Assuming "items" is the field you want to populate
+        
         return res.json({ orders });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
     }
 }
-const getUserDetails = async (authorization) => {
-    if (!authorization) {
-        return res.status(401).json({ error: "Authorization token required" });
-    }
-    const token = authorization.split(" ")[1];
 
-    try {
-        const response = await axios.post("http://localhost:5000/api/auth/getUserDetails", {}, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        const userData = response.data;
-        if (!userData) {
-            console.log("User not found");
-            return null;
-        }
-        else {
-            return userData;
-        }
-    } catch (error) {
-        console.error("Error while fetching user details:", error);
-        return null;
-    }
-}
+
+
+
 
 const transporter = nodemailer.createTransport({
     service: "gmail",

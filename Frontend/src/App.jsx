@@ -5,7 +5,7 @@ import SignUp from "./pages/signUp/SignUp";
 import Inventory from "./pages/Inventory/Inventory";
 import About from "./pages/About/About"; 
 
-import UploadAvatr from './UploadPhoto'
+//import UploadAvatr from './UploadPhoto'
 
 import Cart from "./pages/Cart/Cart"
 import ProductList from "./pages/Product/ProductList";
