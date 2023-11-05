@@ -1,8 +1,8 @@
 import React from "react";
 import "./button.css";
-const Button = ({ type, text, func = () => {} }) => {
+const Button = ({ type, text, func = () => {} }, buttonType = "") => {
   return (
-    <div className={type} onClick={func}>
+    <div className={type} onClick={func} type={buttonType}>
       {text}
     </div>
   );

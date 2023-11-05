@@ -23,8 +23,14 @@ const SignIn = () => {
         password: password,
       });
       localStorage.setItem("userData", JSON.stringify(res.data));
+      if (res.data.role === "Customer") {
+        // navigate("/ProductView");
+      } else if (res.data.role === "Delivery Man") {
+        // navigate("/ordersToAccept");
+      } else {
+        // navigate("/inventory");
+      }
 
-      console.log(res.data);
       window.alert("Login success");
     } catch (error) {
       window.alert(error);
