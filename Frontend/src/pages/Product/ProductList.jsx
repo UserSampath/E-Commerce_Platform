@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
+
 import Card from 'react-bootstrap/Card';
+import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import{
     Col,
     Row,
@@ -54,6 +56,32 @@ const ProductList = () => {
         image:"https://rb.gy/q1dm7",
         productname:"iphone new",
         price:234
+      },
+      {
+        productid:124,
+        image:"https://rb.gy/q1dm7",
+        productname:"iphone new",
+        price:234
+      },{
+        productid:124,
+        image:"https://rb.gy/q1dm7",
+        productname:"iphone new",
+        price:234
+      },{
+        productid:124,
+        image:"https://rb.gy/q1dm7",
+        productname:"iphone new",
+        price:234
+      },{
+        productid:124,
+        image:"https://rb.gy/q1dm7",
+        productname:"iphone new",
+        price:234
+      },{
+        productid:124,
+        image:"https://rb.gy/q1dm7",
+        productname:"iphone new",
+        price:234
       }
       ]);
     const[search,setSearch] = useState()
@@ -76,31 +104,32 @@ const ProductList = () => {
     }
     console.log(products)
   return (
+    <>
     <React.Fragment>
+    <Container fluid>
+        <Row>
+          <Nav />
+        </Row>
         
-        <>
-            
-        <Container fluid>
-        {/* <Nav/> */}
-            
-
-            <Row>
-                {
-                  products.map((data,key)=>{
-                    return(    
-              <Col md={6}>
-              <Link to={`/products/view/${data.productid}`}>
-                <ProductCard image={data.image} productname={data.productname} price={data.price}   />
-                </Link>
-                </Col>
-            
-             )})}
-             </Row>
-  
-            </Container>
-        </>
-       
+        <Row  style={{ display:"flex",flexWrap:"wrap", width:"calc(100%)",marginTop:"30px" }}>
+          {products.map((data, key) => (
+            <Col style={{marginLeft:"30px", marginTop:"60px"}} key={key}>
+              <Link key={key} to={`/products/view/${data.productid}`}>
+                <ProductCard
+                  image={data.image}
+                  productname={data.productname}
+                  price={data.price}
+                />
+              </Link>
+             </Col> 
+          ))}
+       </Row>
+      
+      </Container>
+      
     </React.Fragment>
+    </>
+
   )
 }
 

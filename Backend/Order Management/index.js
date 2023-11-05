@@ -7,6 +7,7 @@ require('dotenv').config();
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
+
 app.use(
     cors({
         origin: "*",
@@ -14,8 +15,10 @@ app.use(
 );
 app.use(express.json());
 const OrderRouter = require("./routes/OrderRoute");
+const Cart = require("./routes/CartRoute");
 
 app.use("/api/order", OrderRouter);
+app.use("/api/cart",Cart);
 
 mongoose.set("strictQuery", true);
 

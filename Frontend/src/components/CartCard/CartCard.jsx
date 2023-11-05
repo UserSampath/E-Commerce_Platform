@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Button/Button";
-import "./InventoryItem.css"
-const InventoryItem = ({name,description,quantity}) => {
+import "./CartCard.css"
+const CartCard = ({name,description,unitPrice}) => {
   return (
     <div style={{marginBottom:"5px"}} className="boxMiddle">
       <div
@@ -18,6 +18,7 @@ const InventoryItem = ({name,description,quantity}) => {
         
         }}>
         <div
+          // className="itemImage"
           style={{ marginLeft: "20px", marginTop: "7px" }}>
           <img
             src="../../../image/lap.jpg"
@@ -38,13 +39,23 @@ const InventoryItem = ({name,description,quantity}) => {
           </div>
         </div>
 
-        <div
+        {/* <div
           style={{
             textAlign: "center",
             marginTop: "15px",
           }}>
           <h3>Quantity</h3>
                   <h2>{quantity}</h2>
+        </div> */}
+
+
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "15px",
+          }}>
+          <h3>Unit Price</h3>
+                  <h2>{unitPrice}</h2>
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ marginTop: "24px" }}>
@@ -52,7 +63,7 @@ const InventoryItem = ({name,description,quantity}) => {
           </div>
 
           <div style={{ marginTop: "24px", marginLeft: "20px" }}>
-            <Button type={"button-blue"} text="Update" />
+            <Button type={"button-blue"} text="Buy" />
           </div>
         </div>
       </div>
@@ -60,4 +71,4 @@ const InventoryItem = ({name,description,quantity}) => {
   );
 };
 
-export default InventoryItem;
+export default CartCard;

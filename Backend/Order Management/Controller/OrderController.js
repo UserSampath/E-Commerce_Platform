@@ -9,9 +9,6 @@ var nodemailer = require("nodemailer");
 
 
 
-
-
-
 const createOrder = async (req, res) => {
     const { ProductId, Status, Quantity } = req.body;
     try {
