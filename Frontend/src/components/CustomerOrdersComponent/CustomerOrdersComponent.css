@@ -1,0 +1,8 @@
+.nameAndDescriptionContainer{
+    width: 300px;
+    margin: 5px;
+    margin-left: 15px;
+    height: 73px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

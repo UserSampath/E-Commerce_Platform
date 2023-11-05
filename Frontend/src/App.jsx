@@ -20,6 +20,7 @@ import AvailableProductDelivery from "./pages/AvailableProductDelivery/Available
 import DeliveryAccepted from "./pages/DeliveryAccepted/DeliveryAccepted";
 import DeliveryPickup from "./pages/DeliveryPickup/DeliveryPickup";
 // import PickupItems from "./pages/PickupItems/PickupItems";
+import CustomerOrders from './pages/CustomerOrders/CustomerOrders'
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route
           path="/AvailableProductDelivery"
           element={<AvailableProductDelivery />}></Route>
+          <Route path="/CustomerOrders" element={<CustomerOrders />}></Route>
       </Routes>
     </BrowserRouter>
   );
