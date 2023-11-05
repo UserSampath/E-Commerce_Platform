@@ -68,7 +68,7 @@ const SignUp = () => {
   };
 
   const navigateToLogin = () => {
-    navgate("/signin");
+    navgate("/");
   };
 
   const cancellSignup = () => {
@@ -152,8 +152,7 @@ const SignUp = () => {
                       borderRadius: "5px",
                     }}
                     value={selectedRole}
-                    onChange={handleRoleChange}
-                  >
+                    onChange={handleRoleChange}>
                     <option value="Customer">Customer</option>
                     <option value="Delivery Man">Delivery Man</option>
                     <option value="Inventory Keeper">Inventory Keeper</option>

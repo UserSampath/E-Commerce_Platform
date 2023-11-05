@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./nav.css";
+import LogOutButton from "../LogOutButton/LogOutButton";
 export const Nav = (props) => {
   const [active, setActive] = useState("nav__menu");
   const [toggleIcon, setToggleIcon] = useState("nav__toggler");
+  const [showLogOut,setShowLogOut] = useState(false);
+
   const navItems = [
     {
       path: "/products",
@@ -53,6 +56,8 @@ export const Nav = (props) => {
 
   return (
     <nav className="nav">
+      {showLogOut === true ? <LogOutButton/>:null}
+      
       <a href="#" className="nav__brand">
         Shop Fusion
       </a>
@@ -72,7 +77,7 @@ export const Nav = (props) => {
       <div className="a" style={{ position: "absolute", right: "3%" }}>
         <div className="boxMiddle">
           
-          <div>nalaka sampath</div>
+          <div className="navNameContainer" onClick={()=>setShowLogOut(!showLogOut)}>nalaka sampath</div>
           <img src="../../../image/lap.jpg" alt="" width={"40px"}  style={{borderRadius:"50px", marginLeft:"10px"}}/>
         </div>
       </div>
