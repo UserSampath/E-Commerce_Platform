@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./nav.css";
 import LogOutButton from "../LogOutButton/LogOutButton";
 export const Nav = (props) => {
   const [active, setActive] = useState("nav__menu");
   const [toggleIcon, setToggleIcon] = useState("nav__toggler");
-  const [showLogOut,setShowLogOut] = useState(false);
+  const [showLogOut, setShowLogOut] = useState(false);
+
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const getLocalData = async () => {
+      return localStorage.getItem("userData");
+    };
+
+    const fetchData = async () => {
+      const a = await getLocalData();
+      if (a) {
+        setUserData(JSON.parse(a));
+        console.log(userData);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const navItems = [
     {
@@ -56,11 +74,9 @@ export const Nav = (props) => {
 
   return (
     <nav className="nav">
-      {showLogOut === true ? <LogOutButton/>:null}
-      
-      <a href="#" className="nav__brand">
-        Shop Fusion
-      </a>
+      {showLogOut === true ? <LogOutButton /> : null}
+
+      <div className="nav__brand">Shop Fusion</div>
       <ul className={active}>
         {navItems
           .filter((navItem) => navItem.category === props.category)
@@ -76,9 +92,17 @@ export const Nav = (props) => {
       </ul>
       <div className="a" style={{ position: "absolute", right: "3%" }}>
         <div className="boxMiddle">
-          
-          <div className="navNameContainer" onClick={()=>setShowLogOut(!showLogOut)}>nalaka sampath</div>
-          <img src="../../../image/lap.jpg" alt="" width={"40px"}  style={{borderRadius:"50px", marginLeft:"10px"}}/>
+          <div
+            className="navNameContainer"
+            onClick={() => setShowLogOut(!showLogOut)}>
+            {userData && userData.name &&  userData.name}
+          </div>
+          <img
+            src={userData && userData.userImage &&  userData.userImage}
+            alt=""
+            width={"40px"}
+            style={{ borderRadius: "50px", marginLeft: "10px" }}
+          />
         </div>
       </div>
       <div onClick={navToggle} className={toggleIcon}>

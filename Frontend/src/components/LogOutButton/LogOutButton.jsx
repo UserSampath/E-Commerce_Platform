@@ -12,7 +12,7 @@ const LogOutButton = () => {
       <div
         style={{
           backgroundColor: "gray",
-          width: "200px",
+          width: "170px",
           height: "60px",
           position: "absolute",
           right: "60px",
