@@ -1,9 +1,11 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./CartCard.css"
-const CartCard = ({name,description,unitPrice}) => {
+import { useNavigate } from "react-router-dom";
+const CartCard = ({ name, description, unitPrice }) => {
+    const navigate = useNavigate();
   return (
-    <div style={{marginBottom:"5px"}} className="boxMiddle">
+    <div style={{ marginBottom: "5px" }} className="boxMiddle">
       <div
         className="itemContainer"
         style={{
@@ -14,8 +16,7 @@ const CartCard = ({name,description,unitPrice}) => {
           borderRadius: "7px",
           display: "flex",
           justifyContent: "space-between",
-            paddingRight: "10px",
-        
+          paddingRight: "10px",
         }}>
         <div
           // className="itemImage"
@@ -28,7 +29,7 @@ const CartCard = ({name,description,unitPrice}) => {
           />
         </div>
         <div className="nameAndDescriptionContainer">
-                  <h3>{name}</h3>
+          <h3>{name}</h3>
           <div
             style={{
               fontSize: "14px",
@@ -48,14 +49,13 @@ const CartCard = ({name,description,unitPrice}) => {
                   <h2>{quantity}</h2>
         </div> */}
 
-
         <div
           style={{
             textAlign: "center",
             marginTop: "15px",
           }}>
           <h3>Unit Price</h3>
-                  <h2>{unitPrice}</h2>
+          <h2>{unitPrice}</h2>
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ marginTop: "24px" }}>
@@ -63,7 +63,11 @@ const CartCard = ({name,description,unitPrice}) => {
           </div>
 
           <div style={{ marginTop: "24px", marginLeft: "20px" }}>
-            <Button type={"button-blue"} text="Buy" />
+            <Button
+              type={"button-blue"}
+              text="Buy"
+              func={() => navigate("/confirmCheckout")}
+            />
           </div>
         </div>
       </div>

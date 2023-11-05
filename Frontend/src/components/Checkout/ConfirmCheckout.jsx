@@ -46,8 +46,7 @@ const ConfirmCheckout = () => {
             xs={24}
             lg={24}
             md={24}
-            style={{ marginBottom: "10px", border: "none" }}
-          >
+            style={{ marginBottom: "10px", border: "none" }}>
             <h3>Cash on delivery only</h3>
           </Row>
           <Row
@@ -59,8 +58,7 @@ const ConfirmCheckout = () => {
               border: "none",
               display: "flex",
               justifyContent: "space-between",
-            }}
-          >
+            }}>
             <FormGroup className="row-1" style={{ marginRight: "10%" }}>
               <input
                 type="text"
@@ -88,8 +86,7 @@ const ConfirmCheckout = () => {
             xs={24}
             sm={24}
             lg={24}
-            style={{ marginBottom: "10px", border: "none" }}
-          >
+            style={{ marginBottom: "10px", border: "none" }}>
             <FormGroup style={{ width: "100%" }}>
               <input
                 type="number"
@@ -106,8 +103,7 @@ const ConfirmCheckout = () => {
             xs={24}
             sm={24}
             lg={24}
-            style={{ marginBottom: "10px", border: "none" }}
-          >
+            style={{ marginBottom: "10px", border: "none" }}>
             <FormGroup style={{ width: "100%" }}>
               <textarea
                 style={{ width: "100%", padding: "10px", borderRadius: "5px" }}
@@ -129,9 +125,10 @@ const ConfirmCheckout = () => {
               border: "none",
               display: "flex",
               justifyContent: "space-between",
-            }}
-          >
-            <Button className="ckt-btn cancell" onClick={() => navigate("/")}>
+            }}>
+            <Button
+              className="ckt-btn cancell"
+              onClick={() => navigate("/products/productView/f")}>
               Cancel
             </Button>
 

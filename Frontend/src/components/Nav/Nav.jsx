@@ -5,8 +5,18 @@ export const Nav = (props) => {
   const [toggleIcon, setToggleIcon] = useState("nav__toggler");
   const navItems = [
     {
-      path: "/Inventory",
-      name: "Inventory",
+      path: "/products",
+      name: "products",
+      category: "customer",
+    },
+    {
+      path: "/MyOrder",
+      name: "MyOrders",
+      category: "customer",
+    },
+    {
+      path: "/Cart",
+      name: "Cart",
       category: "customer",
     },
     {
@@ -14,26 +24,7 @@ export const Nav = (props) => {
       name: "About",
       category: "customer",
     },
-    {
-      path: "/signUp",
-      name: "signUp",
-      category: "customer",
-    },
-    {
-      path: "/products",
-      name: "products",
-      category: "customer",
-    },
-    {
-      path: "/MyOrder",
-      name: "MyOrder",
-      category: "customer",
-    },
-    {
-      path: "/OrdDetails",
-      name: "OrdDetails",
-      category: "customer",
-    },
+
     {
       path: "/AvailableProductDelivery",
       name: "Available products",

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 // import { Nav } from "../../components/Nav/Nav";
 import Button from "../../components/Button/Button";
@@ -33,6 +34,7 @@ const items = [
 ];
 
 const Home = () => {
+    const navigate = useNavigate();
   return (
     <>
       {/* <Nav category="customer" /> */}
