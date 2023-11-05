@@ -15,14 +15,18 @@
     align-items: center; /* Center the elements vertically */
   }
   
-  .quty,
-  
-  .status
+  .quty
+
   {
     /* Remove any default margin */
     padding: 10px;
     margin-right: 0px;
-    margin-left: 95px; /* Add padding for horizontal spacing */
+    margin-left: 50px; /* Add padding for horizontal spacing */
+  }
+  .status{
+    padding: 10px;
+    margin-right: 0px;
+    margin-left: 140px; /
   }
   .description{
     font-size: 10px;
