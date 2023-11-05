@@ -24,7 +24,7 @@ const SignIn = () => {
       });
       localStorage.setItem("userData", JSON.stringify(res.data));
       if (res.data.role === "Customer") {
-        navigate("/Inventory");
+        navigate("/products");
       } else if (res.data.role === "Delivery Man") {
         // navigate("/ordersToAccept");
       } else {
