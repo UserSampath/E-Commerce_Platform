@@ -1,22 +1,31 @@
 import React from "react";
-import "./AvailableProductDelivery.css";
+import "./DeliveryAccepted.css";
 import { Nav } from "../../components/Nav/Nav";
 // import "./home.css";
 // import Button from "../../components/Button/Button";
-import InventoryItem from "../../components/AvailableProduct/AvailableProduct";
+import AcceptedDeliveryProducts from "../../components/AcceptedDeliveryProducts/AcceptedDeliveryProducts";
 import Button from "../../components/Button/Button";
 
 const items = [
   {
     name: "Asus laptop",
-    customer:
-      "Nalaka Sampath ",
+    customer: "Nalaka Sampath ",
     address: "ipsum dolor sit amet consectetur, adipisicing elit",
   },
-  
+  {
+    name: "Asus laptop",
+    customer: "Nalaka Sampath ",
+    address: "ipsum dolor sit amet consectetur, adipisicing elit",
+  },
+  {
+    name: "Asus laptop",
+    customer: "Nalaka Sampath ",
+    address: "ipsum dolor sit amet consectetur, adipisicing elit",
+  },
+
 ];
 
-const AvailableProductDelivery = () => {
+const DeliveryAccepted = () => {
   return (
     <>
       <Nav category="deliver" />
@@ -24,13 +33,13 @@ const AvailableProductDelivery = () => {
         <h1
           className="mainHeading"
           style={{ marginTop: "70px", marginBottom: "20px" }}>
-          Available Products
+          Accepted products
         </h1>
       </div>
 
       {items.map((item, index) => {
         return (
-          <InventoryItem
+          <AcceptedDeliveryProducts
             key={index}
             name={item.name}
             customer={item.customer}
@@ -49,4 +58,4 @@ const AvailableProductDelivery = () => {
   );
 };
 
-export default AvailableProductDelivery;
+export default DeliveryAccepted;

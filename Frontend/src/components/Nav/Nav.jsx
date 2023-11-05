@@ -35,19 +35,19 @@ export const Nav = (props) => {
       category: "customer",
     },
     {
-      path: "/",
-      name: "name5",
-      category: "2",
+      path: "/AvailableProductDelivery",
+      name: "Available products",
+      category: "deliver",
     },
     {
-      path: "/",
-      name: "name6",
-      category: "3",
+      path: "/DeliveryAccepted",
+      name: "Accepted products",
+      category: "deliver",
     },
     {
-      path: "/",
-      name: "name7",
-      category: "3",
+      path: "/DeliveryPickup",
+      name: "Pickup products",
+      category: "deliver",
     },
   ];
   const navToggle = () => {
