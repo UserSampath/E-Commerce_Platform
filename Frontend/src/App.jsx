@@ -7,6 +7,7 @@ import About from "./pages/About/About";
 
 import ConfirmCheckout from "./components/Checkout/ConfirmCheckout";
 import Checkout from "./components/Checkout/Checkout";
+import AddProduct from "./components/AddProduct/AddProduct";
 
 //import UploadAvatr from './UploadPhoto'
 
@@ -47,6 +48,7 @@ function App() {
         <Route path="/DeliveryPickup" element={<DeliveryPickup />}></Route>
         <Route path="/confirmCheckout" element={<ConfirmCheckout />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
+        <Route path="/addproduct" element={<AddProduct />}></Route>
         <Route
           path="/AvailableProductDelivery"
           element={<AvailableProductDelivery />}></Route>
