@@ -45,7 +45,7 @@ const AddProduct = () => {
     <div className="container">
       <div className="row">
         <div className="left-side">
-          <div>Appe E - Commerce</div>
+          <div>ShopFusion</div>
           <Image
             style={{ width: "50%" }}
             src={product.image !== "" ? product.image : img}
