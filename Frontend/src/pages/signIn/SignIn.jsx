@@ -26,9 +26,9 @@ const SignIn = () => {
       if (res.data.role === "Customer") {
         navigate("/products");
       } else if (res.data.role === "Delivery Man") {
-        // navigate("/ordersToAccept");
+        navigate("/AvailableProductDelivery");
       } else {
-        // navigate("/inventory");
+        navigate("/inventory");
       }
 
       window.alert("Login success");

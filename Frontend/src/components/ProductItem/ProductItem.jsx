@@ -7,7 +7,7 @@ const ProductItem = ({name,description,quantity,address,status,deliverExpectedby
       <div
         className="itemContainer"
         style={{
-          width: "1100px",
+          width: "1050px",
           height: "90px",
           background: "rgba(171, 205, 239, 0.1)",
           border: "1px solid black",
@@ -15,7 +15,8 @@ const ProductItem = ({name,description,quantity,address,status,deliverExpectedby
           display: "flex",
           justifyContent: "space-between",
             paddingRight: "10px",
-        
+          marginRight:"40px",
+          boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.3)',
         }}>
         <div
           className="itemImage"

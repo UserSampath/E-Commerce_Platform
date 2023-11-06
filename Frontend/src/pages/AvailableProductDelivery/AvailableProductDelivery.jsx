@@ -10,6 +10,8 @@ import axios from "axios";
 const items = [
   {
     name: "Asus laptop",
+    price: "23",
+    quantity:23,
     customer:
       "Nalaka Sampath ",
     address: "ipsum dolor sit amet consectetur, adipisicing elit",
@@ -59,16 +61,18 @@ const AvailableProductDelivery = () => {
             name={item.ProductId}
             customer={item.CustomerId}
             address={item.address}
+            price={item.price}
+            quantity={item.quantity}
           />
         );
       })}
 
-      <div className="boxEnd">
+      {/* <div className="boxEnd">
         <div style={{ marginRight: "15%", marginTop: "10px" }}>
           <Button type={"button-black"} text="Accepted Orders" />
           <Button type={"button-black"} text="Pickup Orders" />
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

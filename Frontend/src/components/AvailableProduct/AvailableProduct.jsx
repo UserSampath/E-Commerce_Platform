@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./AvailableProduct.css";
-const AvailableProduct = ({ name, customer, address }) => {
+const AvailableProduct = ({ name, customer, address, price, quantity }) => {
   return (
     <div style={{ marginBottom: "5px" }} className="boxMiddle">
       <div
@@ -27,7 +27,7 @@ const AvailableProduct = ({ name, customer, address }) => {
         <div className="nameAndDescriptionContainer">
           <div style={{ marginTop: "12px" }}>
             <h2>{name}</h2>
-            <div style={{ display: "flex" ,marginRight:"0px"}}>
+            <div style={{ display: "flex", marginRight: "0px" }}>
               <h3>Customer:</h3>
               <div
                 style={{
@@ -40,6 +40,39 @@ const AvailableProduct = ({ name, customer, address }) => {
                 {customer}
               </div>
             </div>
+          </div>
+        </div>
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "15px",
+          }}>
+          <h3>Price</h3>
+          <div
+            style={{
+              fontSize: "16px",
+              fontWeight: "10",
+              marginTop: "5px",
+              fontFamily: "-moz-initial",
+            }}>
+            {price}
+          </div>
+        </div>
+
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "15px",
+          }}>
+          <h3>Quantity</h3>
+          <div
+            style={{
+              fontSize: "16px",
+              fontWeight: "10",
+              marginTop: "5px",
+              fontFamily: "-moz-initial",
+            }}>
+            {quantity}
           </div>
         </div>
 
@@ -60,8 +93,6 @@ const AvailableProduct = ({ name, customer, address }) => {
           </div>
         </div>
         <div style={{ display: "flex" }}>
-         
-
           <div style={{ marginTop: "24px", marginLeft: "20px" }}>
             <Button type={"button-blue"} text="Accept" />
           </div>
