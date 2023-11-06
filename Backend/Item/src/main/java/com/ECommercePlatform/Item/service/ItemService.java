@@ -37,8 +37,21 @@ public class ItemService {
         return true;
     }
 
-    public ItemDTO getItemByID(String ID){
+   /* public ItemDTO getItemByID(String ID){
         Item item=itemRepository.getItemByID(ID);
         return modelMapper.map(item,ItemDTO.class);
+    }*/
+
+    public Item processImageUpload(byte[] imageData) {
+        try {
+            Item item = new Item();
+            item.setImage(imageData);
+
+            itemRepository.save(item);
+
+            return item;
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to process and save the image: " + e.getMessage());
+        }
     }
 }
