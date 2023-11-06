@@ -28,6 +28,10 @@ const OrderSchema = new Schema(
             type:String,
             required : true,
         },
+        ShippingAddress: {
+            type: String,
+            required: true,
+        },
         deliverId:{
             type:String,
         },

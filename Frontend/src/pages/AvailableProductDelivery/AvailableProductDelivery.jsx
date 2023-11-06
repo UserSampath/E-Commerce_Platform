@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./AvailableProductDelivery.css";
 import { Nav } from "../../components/Nav/Nav";
 // import "./home.css";
 // import Button from "../../components/Button/Button";
 import InventoryItem from "../../components/AvailableProduct/AvailableProduct";
 import Button from "../../components/Button/Button";
+import axios from "axios";
 
 const items = [
   {
@@ -17,6 +18,28 @@ const items = [
 ];
 
 const AvailableProductDelivery = () => {
+
+  const[orderData,setOrderData] =useState();
+  const token = JSON.parse(localStorage.getItem("userData"));
+  console.log(token);
+  useEffect(() =>{
+        // get order data from backend
+        axios.get("http://localhost:4000/api/order/getAllOrders",{
+          headers:{
+             Authorization: `Bearer ${token.token}`
+          }
+        })
+    .then(
+      (response) => {
+        
+         setOrderData(response.data.orders)
+        
+      }
+    ).catch((error) =>{
+      console.log(error)
+    })
+    },[])
+    console.log(orderData)
   return (
     <>
       <Nav category="deliver" />
@@ -28,12 +51,13 @@ const AvailableProductDelivery = () => {
         </h1>
       </div>
 
-      {items.map((item, index) => {
+      {orderData.map((item, index) => {
+        if(item.status === "")
         return (
           <InventoryItem
             key={index}
-            name={item.name}
-            customer={item.customer}
+            name={item.ProductId}
+            customer={item.CustomerId}
             address={item.address}
           />
         );
