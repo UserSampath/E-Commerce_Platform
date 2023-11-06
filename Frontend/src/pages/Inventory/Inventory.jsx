@@ -1,40 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Inventory.css";
 import { Nav } from "../../components/Nav/Nav";
 // import "./home.css";
 // import Button from "../../components/Button/Button";
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
 import Button from "../../components/Button/Button";
+import axios from "axios"
+import { Link } from "react-router-dom";
 
-const items = [
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-    quantity: 24,
-  },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-    quantity: 24,
-  },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-    quantity: 24,
-  },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-    quantity: 24,
-  },
-
-];
 
 const Inventory = () => {
+
+const[products,setProducts] = useState([]);
+
+  useEffect(() =>{
+    // get order data from backend
+     axios.get("http://localhost:8080/api/Item/get"
+      )
+.then(
+  (response) => {
+    console.log(response)
+     setProducts(response.data)
+    
+  }
+).catch((error) =>{
+  console.log(error)
+})
+},[])
+
   return (
     <>
       <Nav category="inventory" />
@@ -45,15 +38,15 @@ const Inventory = () => {
           Inventory
         </h1>
         <div style={{ marginTop: "55px", marginLeft: "100px" }}>
-          <Button type={"button-blue"} text="Add new item" />
+          <Link to={}><Button type={"button-blue"} text="Add new item" /></Link>
         </div>
       </div>
-      {items.map((item, index) => {
+      {products.map((item, index) => {
         return (
           <InventoryItem
             key={index}
             name={item.name}
-            description={item.description}
+            description={item.price}
             quantity={item.quantity}
           />
         );

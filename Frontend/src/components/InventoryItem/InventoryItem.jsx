@@ -34,7 +34,7 @@ const InventoryItem = ({name,description,quantity}) => {
               fontWeight: "10",
               fontFamily: "-moz-initial",
             }}>
-            {description}
+            Price: Rs.{description}
           </div>
         </div>
 
