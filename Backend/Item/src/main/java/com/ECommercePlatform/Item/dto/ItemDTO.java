@@ -1,8 +1,5 @@
 package com.ECommercePlatform.Item.dto;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +10,7 @@ import lombok.extern.java.Log;
 @Data
 
 public class ItemDTO {
-    private int id;
+    private long id;
     private String name;
     private double price;
     private int quantity;

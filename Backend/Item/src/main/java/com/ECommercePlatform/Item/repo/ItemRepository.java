@@ -2,7 +2,13 @@ package com.ECommercePlatform.Item.repo;
 
 import com.ECommercePlatform.Item.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-public interface ItemRepository extends JpaRepository<Item,Integer> {
+import java.util.Optional;
+@Repository
+public interface ItemRepository extends JpaRepository<Item, Long> {
+    Optional<Item> findById(long id);
+    //Optional<Item> findById(long id);
+
+    //void deleteById(long id);
 }
