@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins="http;//localhost:4200")
 @Service
 public class ItemController {
 
@@ -21,6 +22,24 @@ public class ItemController {
     ItemRepository itemRepository;
 
 
+    @GetMapping("/item")
+    public ResponseEntity<List<Item>> getAllItem(@RequestParam(required = false) String name)
+    {
+        try{
+            List<Item> items = new ArrayList<Item>();
+            if(name ==null)
+                itemRepository.findAll().forEach(items::add);
+            else
+                itemRepository.findByName(name).forEach(items::add);
+            if(items.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(items,HttpStatus.OK);
+        }catch (Exception e)
+        {
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     @GetMapping("/item/{id}")
     public ResponseEntity<Item> getItemById(@PathVariable("id") long id){
         Optional<Item> itemData = itemRepository.findById(id);

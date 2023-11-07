@@ -1,11 +1,7 @@
 package com.ECommercePlatform.Item.service;
 
-import com.ECommercePlatform.Item.dto.ItemDTO;
 import com.ECommercePlatform.Item.entity.Item;
 import com.ECommercePlatform.Item.repo.ItemRepository;
-import jakarta.transaction.Transactional;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
