@@ -1,0 +1,69 @@
+.maincontainner{
+    background-color: aliceblue;
+    width: 950px;
+    height: 500px;
+    flex-direction: column; /* Stack the children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+
+}
+.pagecontainner{
+    margin-top: 85px;
+    display: flex;
+    flex-direction: column; /* Stack the children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center;
+}
+
+.itemImage{
+    margin-left: 50px;
+    margin-top: 70px;
+    position: absolute;
+
+}
+.detailcontainner{
+    
+    color: black;
+    margin-left: 450px;
+    margin-top: 70px;
+
+     /* Add margin for spacing between image and details */
+
+}
+.brand{
+    font-weight: bold;
+    font-size: 25px;
+}
+.productdetails{
+    font-size: 15px;
+    margin-left: 10px;
+    display: flex;
+}
+
+.right-column{
+    display: flex;
+    margin-left: 50px;
+    flex-direction: end;
+}
+.right{
+    margin-left: 5px;
+}
+.trackingDetails{    
+    display: flex;
+    font-size: 15px;
+    
+}
+.trackOrd{
+    font-weight: bold;
+    font-size: 25px;
+}
+.rightData{
+    display: flex;
+   
+    
+}
+.rightDate{
+    margin-left: 15px;
+}

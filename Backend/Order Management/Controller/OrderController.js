@@ -6,7 +6,6 @@ app.use(express.urlencoded({ extended: false }));
 const axios = require('axios');
 var nodemailer = require("nodemailer");
 
-
 const getUserDetails = async (authorization) => {
     if (!authorization) {
         return res.status(401).json({ error: "Authorization token required" });
@@ -33,41 +32,6 @@ const getUserDetails = async (authorization) => {
     }
 }
 
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: "lenzzhasthiyit@gmail.com",
-        pass: "mfmpeqgzbjbxkcja",
-    },
-});
-
-
-
-
-const sendMail = async (mail,subject,text) => {
-    const mailOptions = {
-        from: "lenzzhasthiyit@gmail.com",
-        to: mail ,
-        subject: subject ,
-        text: text,
-    };
-    try {
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log("error", error);
-                res.status(201).json({ status: 201, message: "Email not send" });
-            } else {
-                console.log("Email sent", info.response);
-                res
-                    .status(201)
-                    .json({ status: 201, message: "Email sent successfully " });
-            }
-        });
-    } catch (err) {
-
-    }
-
-}
 
 
 
@@ -86,7 +50,12 @@ const createOrder = async (req, res) => {
             CustomerId: userData._id,
             Status,
             Quantity,
+            
         });
+
+        // check the inventory with quantity
+        // pass itemId and quantity to check  inventory and quantity if avawalable that product reduce the quantity return item details
+
 
         sendMail(userData.email, "Your new order placed", "Your new order placed successfully , thank you for your order");
         res.status(200).json({
@@ -107,7 +76,9 @@ const deleteOrder = async (req, res) => {
     try {
         const { authorization } = req.headers;
         const userData = await getUserDetails(authorization);
-
+        if (userData.role != "Customer") {
+            console.log("your not customer")
+        }
         const order = await Order.findOneAndDelete({ _id: id });
         if (!order) {
             return res.status(404).json({ error: "order not found" });
@@ -127,7 +98,9 @@ const getOrder = async (req, res) => {
 
     const { authorization } = req.headers;
     const userData = await getUserDetails(authorization);
-
+    if (userData.role != "Customer") {
+        console.log("your not customer")
+    }
     try {
         const order = await Order.findOne({ id: id })
             .populate("OrderId");
@@ -145,16 +118,60 @@ const getOrder = async (req, res) => {
 }
 const getAllOrders = async (req, res) => {
     try {
-
         const { authorization } = req.headers;
         const userData = await getUserDetails(authorization);
-        const orders = await Order.find().populate("OrderId"); // Assuming "items" is the field you want to populate
+        if (userData.role != "Customer") {
+            console.log("you're not a customer");
+        }
 
+        const orders = await Order.find().populate("_id"); // Assuming "items" is the field you want to populate
+        
         return res.json({ orders });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
     }
 }
+
+
+
+
+
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "lenzzhasthiyit@gmail.com",
+        pass: "mfmpeqgzbjbxkcja",
+    },
+});
+
+
+
+
+const sendMail = async (mail, subject, text) => {
+    const mailOptions = {
+        from: "lenzzhasthiyit@gmail.com",
+        to: mail,
+        subject: subject,
+        text: text,
+    };
+    try {
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log("error", error);
+                res.status(201).json({ status: 201, message: "Email not send" });
+            } else {
+                console.log("Email sent", info.response);
+                res
+                    .status(201)
+                    .json({ status: 201, message: "Email sent successfully " });
+            }
+        });
+    } catch (err) {
+
+    }
+
+}
+
 
 module.exports = { createOrder, deleteOrder, getOrder, getAllOrders };

@@ -9,14 +9,21 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Optional;
 
 @Service
+=======
+
+@Service
+@Transactional
+>>>>>>> main
 public class ItemService {
 
     @Autowired
     private ItemRepository itemRepository;
 
+<<<<<<< HEAD
     public Optional<Item>  getItemById(long id ){
         return itemRepository.findById(id);
     }
@@ -43,4 +50,30 @@ public class ItemService {
         itemRepository.deleteById(id);
     }
    
+=======
+    @Autowired
+    private ModelMapper modelMapper;
+
+    public ItemDTO save(ItemDTO itemDTO){
+        itemRepository.save(modelMapper.map(itemDTO, Item.class));
+        return itemDTO;
+    }
+    public List<ItemDTO> getAllItems(){
+        List<Item>itemList=itemRepository.findAll();
+        return modelMapper.map(itemList,new TypeToken<List<ItemDTO>>(){}.getType());
+    }
+    public ItemDTO update(ItemDTO itemDTO){
+        itemRepository.save(modelMapper.map(itemDTO,Item.class));
+        return itemDTO;
+    }
+    public boolean delete(ItemDTO itemDTO){
+        itemRepository.delete(modelMapper.map(itemDTO,Item.class));
+        return true;
+    }
+
+    public ItemDTO getItemByID(String ID){
+        Item item=itemRepository.getItemByID(ID);
+        return modelMapper.map(item,ItemDTO.class);
+    }
+>>>>>>> main
 }

@@ -1,7 +1,12 @@
 package com.ECommercePlatform.Item.entity;
 
 
+<<<<<<< HEAD
 import jakarta.persistence.*;
+=======
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+>>>>>>> main
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Item {
     @Id
+<<<<<<< HEAD
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
@@ -70,4 +76,12 @@ public class Item {
     public void setImage(byte[] image) {
         this.image = image;
     }
+=======
+    private int id;
+    private String name;
+    private double price;
+    private int quantity;
+    private byte[] image;
+
+>>>>>>> main
 }

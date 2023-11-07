@@ -1,43 +1,75 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./nav.css";
+import LogOutButton from "../LogOutButton/LogOutButton";
 export const Nav = (props) => {
   const [active, setActive] = useState("nav__menu");
   const [toggleIcon, setToggleIcon] = useState("nav__toggler");
+  const [showLogOut, setShowLogOut] = useState(false);
+
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const getLocalData = async () => {
+      return localStorage.getItem("userData");
+    };
+
+    const fetchData = async () => {
+      const a = await getLocalData();
+      if (a) {
+        setUserData(JSON.parse(a));
+        console.log(userData);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const navItems = [
     {
-      path: "/",
-      name: "name1",
+      path: "/products",
+      name: "products",
       category: "customer",
     },
     {
-      path: "/",
-      name: "name2",
+      path: "/MyOrder",
+      name: "MyOrders",
       category: "customer",
     },
     {
-      path: "/",
-      name: "name3",
+      path: "/Cart",
+      name: "Cart",
       category: "customer",
     },
     {
-      path: "/",
-      name: "name4",
-      category: "2",
+      path: "/About",
+      name: "About",
+      category: "customer",
+    },
+
+    {
+      path: "/AvailableProductDelivery",
+      name: "Available products",
+      category: "deliver",
     },
     {
-      path: "/",
-      name: "name5",
-      category: "2",
+      path: "/DeliveryAccepted",
+      name: "Accepted products",
+      category: "deliver",
     },
     {
-      path: "/",
-      name: "name6",
-      category: "3",
+      path: "/DeliveryPickup",
+      name: "Pickup products",
+      category: "deliver",
     },
     {
-      path: "/",
-      name: "name7",
-      category: "3",
+      path: "/inventory",
+      name: "Inventory",
+      category: "inventory",
+    },
+    {
+      path: "/inventory",
+      name: "Inventory",
+      category: "inventory",
     },
   ];
   const navToggle = () => {
@@ -52,9 +84,9 @@ export const Nav = (props) => {
 
   return (
     <nav className="nav">
-      <a href="#" className="nav__brand">
-        Track 9
-      </a>
+      {showLogOut === true ? <LogOutButton /> : null}
+
+      <div className="nav__brand">Shop Fusion</div>
       <ul className={active}>
         {navItems
           .filter((navItem) => navItem.category === props.category)
@@ -68,6 +100,21 @@ export const Nav = (props) => {
             );
           })}
       </ul>
+      <div className="a" style={{ position: "absolute", right: "3%" }}>
+        <div className="boxMiddle">
+          <div
+            className="navNameContainer"
+            onClick={() => setShowLogOut(!showLogOut)}>
+            {userData && userData.name &&  userData.name}
+          </div>
+          <img
+            src={userData && userData.userImage &&  userData.userImage}
+            alt=""
+            width={"40px"}
+            style={{ borderRadius: "50px", marginLeft: "10px" }}
+          />
+        </div>
+      </div>
       <div onClick={navToggle} className={toggleIcon}>
         <div className="line1"></div>
         <div className="line2"></div>
