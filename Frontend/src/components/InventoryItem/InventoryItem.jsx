@@ -1,7 +1,29 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./InventoryItem.css"
-const InventoryItem = ({name,description,quantity}) => {
+import axios from "axios"
+import { Link } from "react-router-dom";
+const InventoryItem = ({name,description,quantity,id,reload}) => {
+
+  const deleteItem = () => {
+    axios.delete("http://localhost:8080/api/Item/delete",{
+      data: { id: id }
+    }
+      ).then((response) =>{
+        console.log(response);
+       
+        if(response.data === true){
+          alert("Item deleted successfully")
+        }
+        
+          
+      }).catch((err) =>{
+          console.log(err);
+      alert(err);
+      })
+      reload();
+  }
+
   return (
     <div style={{marginBottom:"5px"}} className="boxMiddle">
       <div
@@ -48,14 +70,14 @@ const InventoryItem = ({name,description,quantity}) => {
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ marginTop: "24px" }}>
-            <Button type={"button-red"} text="Delete" />
+            <Button func={deleteItem} type={"button-red"} text="Delete"  />
           </div>
 
           <div style={{ marginTop: "24px", marginLeft: "20px" }}>
-            <Button type={"button-blue"} text="Update" />
+            <Link to={""}><Button type={"button-blue"} text="Update" /></Link>
           </div>
         </div>
-      </div>
+      </div>""
     </div>
   );
 };

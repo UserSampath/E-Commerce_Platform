@@ -12,6 +12,11 @@ import { Link } from "react-router-dom";
 const Inventory = () => {
 
 const[products,setProducts] = useState([]);
+const[count,setCount] = useState(0);
+
+const changeCount = () =>{
+  setCount(count+1);
+}
 
   useEffect(() =>{
     // get order data from backend
@@ -26,7 +31,7 @@ const[products,setProducts] = useState([]);
 ).catch((error) =>{
   console.log(error)
 })
-},[])
+},[count])
 
   return (
     <>
@@ -38,7 +43,7 @@ const[products,setProducts] = useState([]);
           Inventory
         </h1>
         <div style={{ marginTop: "55px", marginLeft: "100px" }}>
-          <Link to={}><Button type={"button-blue"} text="Add new item" /></Link>
+          <Link to={"/addproduct"}><Button type={"button-blue"} text="Add new item" /></Link>
         </div>
       </div>
       {products.map((item, index) => {
@@ -48,6 +53,8 @@ const[products,setProducts] = useState([]);
             name={item.name}
             description={item.price}
             quantity={item.quantity}
+            id={item.id}
+            reload ={changeCount}
           />
         );
       })}
