@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./InventoryItem.css"
-const InventoryItem = ({name,description,quantity}) => {
+const InventoryItem = ({name,description,quantity,image}) => {
   return (
     <div style={{marginBottom:"5px"}} className="boxMiddle">
       <div
@@ -20,7 +20,7 @@ const InventoryItem = ({name,description,quantity}) => {
         <div
           style={{ marginLeft: "20px", marginTop: "7px" }}>
           <img
-            src="../../../image/lap.jpg"
+            src={image}
             width={"75px"}
             style={{ borderRadius: "10px" }}
             alt=""
