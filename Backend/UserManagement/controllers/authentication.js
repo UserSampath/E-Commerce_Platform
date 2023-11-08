@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const createToken = (_id) => {
+  console.log(_id)
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: 259200 });
 };
 

@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Nav } from "../../components/Nav/Nav";
 import "./ProductView.css";
 import Button from "../../components/Button/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const ProductView = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+const [productData,setProductData]=useState(location.state ? location.state.data : null)
+
+  // const productData = location.state ? location.state.data : null;
+  
+  useState(() => {
+    console.log(productData, "productData");
+  }, [productData]);
+
   const product = {
     name: "Brand new Asus i3 Lap Top",
     description:
@@ -13,6 +22,19 @@ const ProductView = () => {
     discount: "Discount 10% off",
     imageUrl: "../../image/lap.jpg",
   };
+
+  // const addToCartPress = () => {
+  //   window.alert("Add to Cart Successful!");
+  //   // navigate("")
+  // }
+
+  const confirmCheckoutButtonPress = () => {
+    window.alert("Add to Cart Successful!");
+    navigate("/confirmCheckout", {
+      state: { productData },
+    });
+   }
+
   return (
     <>
       <Nav category="customer" />
@@ -32,23 +54,27 @@ const ProductView = () => {
                 height: "100%",
               }}>
               <div style={{ textAlign: "center" }}>
-                <h1 className="product-name">{product.name}</h1>
-                <p className="product-description">{product.description}</p>
-                <p className="product-price">{product.price}</p>
+                <h1 className="product-name">
+                  {productData.name ? productData.name : ""}
+                </h1>
+                <p className="product-description">
+                  {productData.description ? productData.description : ""}
+                </p>
+                <p className="product-price">{productData.price ? productData.price:""}</p>
                 <p className="product-discount">{product.discount}</p>
                 <div className="boxEnd">
                   <div className="buttonsContainer">
                     <Button
                       type={"button-rose"}
                       text="Buy Now"
-                      func={() => navigate("/confirmCheckout")}
+                      func={()=>confirmCheckoutButtonPress()}
                     />
                   </div>
                   <div className="buttonsContainer">
                     <Button
                       type={"button-black"}
                       text="Add to Cart"
-                      func={() => window.alert("Add to Cart Successful!")}
+                      // func={() => addToCartPress()}
                     />
                   </div>
                 </div>

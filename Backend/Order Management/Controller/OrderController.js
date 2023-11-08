@@ -37,7 +37,7 @@ const getUserDetails = async (authorization) => {
 
 
 const createOrder = async (req, res) => {
-    const { ProductId, Status, Quantity } = req.body;
+    const { ProductId, Status, Quantity, ShippingAddress } = req.body;
     try {
         const { authorization } = req.headers;
         const userData = await getUserDetails(authorization);
@@ -50,6 +50,7 @@ const createOrder = async (req, res) => {
             CustomerId: userData._id,
             Status,
             Quantity,
+            ShippingAddress
             
         });
 
@@ -63,6 +64,7 @@ const createOrder = async (req, res) => {
             CustomerId: order.CustomerId,
             Status: order.Status,
             Quantity: order.Quantity,
+            ShippingAddress: ShippingAddress
         });
 
     } catch (error) {
