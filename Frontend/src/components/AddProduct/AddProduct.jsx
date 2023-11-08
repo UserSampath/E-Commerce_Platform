@@ -54,7 +54,7 @@ const AddProduct = () => {
           <div>ShopFusion</div>
           <Image
             style={{ width: "50%" }}
-            src={product.image !== "" ? product.image : img}
+            src="./image.png"
             rounded
           />
         </div>

@@ -22,6 +22,19 @@ const [productData,setProductData]=useState(location.state ? location.state.data
     discount: "Discount 10% off",
     imageUrl: "../../image/lap.jpg",
   };
+
+  // const addToCartPress = () => {
+  //   window.alert("Add to Cart Successful!");
+  //   // navigate("")
+  // }
+
+  const confirmCheckoutButtonPress = () => {
+    window.alert("Add to Cart Successful!");
+    navigate("/confirmCheckout", {
+      state: { productData },
+    });
+   }
+
   return (
     <>
       <Nav category="customer" />
@@ -54,14 +67,14 @@ const [productData,setProductData]=useState(location.state ? location.state.data
                     <Button
                       type={"button-rose"}
                       text="Buy Now"
-                      func={() => navigate("/confirmCheckout")}
+                      func={()=>confirmCheckoutButtonPress()}
                     />
                   </div>
                   <div className="buttonsContainer">
                     <Button
                       type={"button-black"}
                       text="Add to Cart"
-                      func={() => window.alert("Add to Cart Successful!")}
+                      // func={() => addToCartPress()}
                     />
                   </div>
                 </div>
