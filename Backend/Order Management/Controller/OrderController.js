@@ -135,7 +135,22 @@ const getAllOrders = async (req, res) => {
     }
 }
 
+const getAllOrderForCustomer = async (req,res)=>{
+    try {
+        const { authorization } = req.headers;
+        const userData = await getUserDetails(authorization);
+        if (userData.role !== "Customer") {
+            console.log("You're not a customer");
+            return res.status(403).json({ error: "Forbidden" });
+        }
 
+        const orders = await Order.find({ CustomerId: userData._id });
+        res.status(200).json({ customerOrder: orders });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
 
 
 
@@ -176,4 +191,4 @@ const sendMail = async (mail, subject, text) => {
 }
 
 
-module.exports = { createOrder, deleteOrder, getOrder, getAllOrders };
+module.exports = { getAllOrderForCustomer,createOrder, deleteOrder, getOrder, getAllOrders };

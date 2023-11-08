@@ -5,8 +5,10 @@ import { Nav } from "../../components/Nav/Nav";
 // import Button from "../../components/Button/Button";
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
 import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 const items = [
+  
   {
     name: "Asus laptop",
     description:
@@ -35,6 +37,11 @@ const items = [
 ];
 
 const Inventory = () => {
+
+  const navigate = useNavigate();
+  const navigateToInv = () => {
+    navigate("/addproduct");
+  };
   return (
     <>
       <Nav category="inventory" />
@@ -45,7 +52,7 @@ const Inventory = () => {
           Inventory
         </h1>
         <div style={{ marginTop: "55px", marginLeft: "100px" }}>
-          <Button type={"button-blue"} text="Add new item" />
+          <Button type={"button-blue"} text="Add new item"  func={navigateToInv}/>
         </div>
       </div>
       {items.map((item, index) => {

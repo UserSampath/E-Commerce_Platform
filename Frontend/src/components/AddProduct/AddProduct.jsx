@@ -5,7 +5,8 @@ import Image from "react-bootstrap/Image";
 import FileBase64 from "react-file-base64";
 import img from "./image.png";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 const AddProduct = () => {
   const [product, setProduct] = useState({
     image: "",
@@ -14,6 +15,8 @@ const AddProduct = () => {
     quantity: 0,
     price: 0,
   });
+  const navigate = useNavigate();
+ 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -26,20 +29,26 @@ const AddProduct = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // const res = axios.post("/user", {
-    //   product,
-    // });
-    // if (product.quantity === 0 && product.price === 0) {
-    //   alert("Quantity and price cannot be 0.");
-    //   return;
-    // }
-
-    // console.log(product,"1111111111111");
-
     axios.post("http://localhost:8080/api/item",  product)
        .then((response) => {
          
          console.log(response.data, "product");
+         if(response.status=201){
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your product is added",
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+              title: 'blue-alert-title', // Define a custom CSS class for the title
+              popup: 'blue-alert-popup', // Define a custom CSS class for the popup
+            }
+          });
+          
+          console.log("sucees");
+          navigate("/Inventory")
+         }
        })
        .catch((error) => {
          console.log(error);
@@ -52,15 +61,18 @@ const AddProduct = () => {
       <div className="row">
         <div className="left-side">
           <div>ShopFusion</div>
-          <Image
-            style={{ width: "50%" }}
-            src="./image.png"
-            rounded
-          />
+          <div style={{ width: "400px",  height: "100%", marginLeft: "40px", marginRight: "25px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+  <Image
+    style={{ width: "70%" }}
+    src={product.image}
+    rounded
+ ></Image>
+ 
+</div>
         </div>
         <div className="col-md-6">
           <Form onSubmit={handleSubmit}>
-            <FormGroup>
+            {/* <FormGroup>
               <label>Product Image</label>
               <FileBase64
                 type="file"
@@ -72,7 +84,22 @@ const AddProduct = () => {
                   });
                 }}
               />
+            </FormGroup> */}
+
+<FormGroup>
+              <label>ÚRL</label>
+              <input
+                type="text"
+                className="form-control"
+                name="image"
+                placeholder="Product image"
+                value={product.image}
+                onChange={handleChange}
+                
+              />
             </FormGroup>
+
+
             <FormGroup>
               <label>Product Name</label>
               <input

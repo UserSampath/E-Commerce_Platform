@@ -5,6 +5,11 @@
   margin: 0 auto;
   margin-top: 50px;
 }
+.imagecontainner{
+  width: 500px;
+  height: 500px;
+  
+}
 
 .row {
   display: flex;
@@ -54,4 +59,12 @@ select {
 }
 .text-area {
   width: 100%;
+}
+/* CSS for the blue alert */
+.blue-alert-title {
+  color: #0b0e36;; /* Change the title color to blue */
+}
+
+.blue-alert-popup {
+  background-color: rgb(255, 255, 255); /* Change the background color to light blue */
 }
