@@ -26,19 +26,25 @@ const AddProduct = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // const res = axios.post("/user", {
+    //   product,
+    // });
+    // if (product.quantity === 0 && product.price === 0) {
+    //   alert("Quantity and price cannot be 0.");
+    //   return;
+    // }
 
-    const res = axios.post("/user", {
-      product,
-    });
+    // console.log(product,"1111111111111");
 
-    if (product.quantity === 0 && product.price === 0) {
-      alert("Quantity and price cannot be 0.");
-      return;
-    }
+    axios.post("http://localhost:8080/api/item",  product)
+       .then((response) => {
+         
+         console.log(response.data, "product");
+       })
+       .catch((error) => {
+         console.log(error);
+       });
 
-    console.log(product);
-
-    // You can send the product data to the server here
   };
 
   return (

@@ -43,7 +43,7 @@ function App() {
         <Route path="/DeliveryPickup" element={<DeliveryPickup />}></Route>
         <Route path="/confirmCheckout" element={<ConfirmCheckout />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
-        <Route path="/addproduct" element={<AddProduct />}></Route>
+        <Route path="/addProduct" element={<AddProduct />}></Route>
         <Route
           path="/AvailableProductDelivery"
           element={<AvailableProductDelivery />}></Route>
