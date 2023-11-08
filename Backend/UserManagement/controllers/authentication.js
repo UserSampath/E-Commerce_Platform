@@ -115,5 +115,24 @@ const getUserDetails = async (req, res) => {
       res.status(401).json({ error: "Request is not authorized" });
     }
   }
+
 };
-export { register, login, authUser, getUserDetails };
+
+const getUser = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Use the correct field name for the user's ID from your database schema
+    const user = await User.findOne({ _id: id });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.json({ user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+export { register, login, authUser, getUserDetails ,getUser};

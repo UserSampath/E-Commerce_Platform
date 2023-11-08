@@ -29,7 +29,7 @@ public class Item {
 
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
-    private byte[] image;
+    private String image;
 
     public String getName() {
         return name;
@@ -55,7 +55,7 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -67,7 +67,7 @@ public class Item {
         this.description = description;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
