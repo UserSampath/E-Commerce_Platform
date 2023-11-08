@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Inventory.css";
 import { Nav } from "../../components/Nav/Nav";
 // import "./home.css";
@@ -6,42 +6,34 @@ import { Nav } from "../../components/Nav/Nav";
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
+import Axios from "axios";
 
-const items = [
-  
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-    quantity: 24,
-  },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-    quantity: 24,
-  },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-    quantity: 24,
-  },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-    quantity: 24,
-  },
 
-];
+
 
 const Inventory = () => {
+  const [items, setItems] = useState([]);
 
   const navigate = useNavigate();
   const navigateToInv = () => {
     navigate("/addproduct");
   };
+
+  useEffect(() => {
+    const getProducts = async () => {
+      Axios.get("http://localhost:8080/api/item")
+        .then((response) => {
+          setItems(response.data);
+          console.log(response.data, "product");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  
+    getProducts();
+  }, []);
+  
   return (
     <>
       <Nav category="inventory" />
@@ -59,6 +51,7 @@ const Inventory = () => {
         return (
           <InventoryItem
             key={index}
+            image={item.image}
             name={item.name}
             description={item.description}
             quantity={item.quantity}
