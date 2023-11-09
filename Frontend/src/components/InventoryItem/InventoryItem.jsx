@@ -1,7 +1,62 @@
-import React from "react";
+import React, {  useState } from "react";
 import Button from "../Button/Button";
-import "./InventoryItem.css"
-const InventoryItem = ({name,description,quantity,image}) => {
+import "./InventoryItem.css";
+import Axios from "axios";
+import Swal from 'sweetalert2';
+
+const InventoryItem = ({name,description,quantity,image,id,refresh,setRefresh}) => {
+ const [products, setProducts] = useState([
+    {
+      productid: 123,
+      image: "https://rb.gy/q1dm7",
+      productname: "iphone",
+      price: 23,
+    },
+    {
+      productid: 124,
+      image: "https://rb.gy/q1dm7",
+      productname: "iphone new",
+      price: 234,
+    },
+  ]);
+ 
+    const deleteProducts = async () => {
+      Axios.delete(`http://localhost:8080/api/item/${id}`)
+        .then((response) => {
+          setProducts(response.data);
+          console.log(response);
+          
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    const deleteAlert = ()=>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProducts();
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        }).then(()=>{
+          setRefresh(!refresh);
+        })
+        
+      }
+    });
+  }
+   
+  
+
   return (
     <div style={{marginBottom:"5px"}} className="boxMiddle">
       <div
@@ -48,7 +103,7 @@ const InventoryItem = ({name,description,quantity,image}) => {
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ marginTop: "24px" }}>
-            <Button type={"button-red"} text="Delete" />
+            <Button type={"button-red"} text="Delete" func={deleteAlert}/>
           </div>
 
           <div style={{ marginTop: "24px", marginLeft: "20px" }}>
