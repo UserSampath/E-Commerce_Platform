@@ -12,6 +12,7 @@ import Axios from "axios";
 
 
 const Inventory = () => {
+  const [toggle,setToggle] =  useState(true);
   const [items, setItems] = useState([]);
 
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Inventory = () => {
     };
   
     getProducts();
-  }, []);
+  }, [toggle]);
   
   return (
     <>
@@ -50,6 +51,9 @@ const Inventory = () => {
       {items.map((item, index) => {
         return (
           <InventoryItem
+          refresh={toggle}
+          setRefresh={setToggle}
+          id={item.id}
             key={index}
             image={item.image}
             name={item.name}

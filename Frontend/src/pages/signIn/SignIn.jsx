@@ -86,7 +86,7 @@ const SignIn = () => {
           <div>
             <div className="imgContainerText">
               <h2>Welcome to</h2>
-              <h1>APPE System</h1>
+              <h1> SHOP FUSION</h1>
               <p>Log in to access your account. </p>
             </div>
             <img className="signInImage" src="../../image/pic1.png" alt="" />
