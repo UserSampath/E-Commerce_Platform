@@ -37,47 +37,45 @@ const getUserDetails = async (authorization) => {
 
 
 const createOrder = async (req, res) => {
-    const {  Status, orderQuantity,productQuantity ,ShippingAddress,name,price,description,image } = req.body;
+    const { Status, orderQuantity, productQuantity, ShippingAddress, name, price, description, image } = req.body;
     try {
         const { authorization } = req.headers;
         const userData = await getUserDetails(authorization);
         if (userData.role != "Customer") {
             console.log("your not customer")
         }
-        if(productQuantity < orderQuantity){
-             return res.status(400).json({ error: " product Quantity is less than order quantity" });
+        if (productQuantity < orderQuantity) {
+            return res.status(400).json({ error: ` product Quantity is less than order quantity` });
         }
-       else{
-         const Quantity = productQuantity - orderQuantity;
-        const order = await Order.create({
-            ProductId:req.body.ProductId,
-            CustomerId: userData._id,
-            Status,
-            Quantity:orderQuantity,
-            ShippingAddress
-        })
-        console.log(order);
-        console.log(Quantity);
-        if(order){
-          const response =  await axios.put(`http://localhost:8080/api/item/${req.body.ProductId}`,{quantity:Quantity,name,price,description,image})
-            
+        else {
+            const Quantity = productQuantity - orderQuantity;
+            const order = await Order.create({
+                ProductId: req.body.ProductId,
+                CustomerId: userData._id,
+                Status,
+                Quantity: orderQuantity,
+                ShippingAddress
+            })
+            console.log(order);
+            console.log(Quantity);
+            if (order) {
+                const response = await axios.put(`http://localhost:8080/api/item/${req.body.ProductId}`, { quantity: Quantity, name, price, description, image })
+
                 console.log(response.data);
                 sendMail(userData.email, "Your new order placed", "Your new order placed successfully , thank you for your order");
-                    res.status(200).json({
-                        ProductId: order.ProductId,
-                        CustomerId: order.CustomerId,
-                        Status: order.Status,
-                        quantity: order.Quantity,
-                        ShippingAddress: ShippingAddress
-                    })
-
-           
-        }else{
-            return res.status(400).json({
-                message:"could not add order"
-            })
+                res.status(200).json({
+                    ProductId: order.ProductId,
+                    CustomerId: order.CustomerId,
+                    Status: order.Status,
+                    quantity: order.Quantity,
+                    ShippingAddress: ShippingAddress
+                })
+            } else {
+                return res.status(400).json({
+                    message: "could not add order"
+                })
+            }
         }
-    }
 
         // check the inventory with quantity
         // pass itemId and quantity to check  inventory and quantity if avawalable that product reduce the quantity return item details
@@ -142,7 +140,7 @@ const getAllOrders = async (req, res) => {
         }
 
         const orders = await Order.find().populate("_id"); // Assuming "items" is the field you want to populate
-        
+
         return res.json({ orders });
     } catch (error) {
         console.error(error);
@@ -151,7 +149,7 @@ const getAllOrders = async (req, res) => {
 }
 // Myorder part
 // depend on the customer Id retrive customers order details
-const getAllOrderForCustomer = async (req,res)=>{
+const getAllOrderForCustomer = async (req, res) => {
     try {
         const { authorization } = req.headers;
         const userData = await getUserDetails(authorization);
@@ -206,4 +204,7 @@ const sendMail = async (mail, subject, text) => {
 }
 
 
-module.exports = { getAllOrderForCustomer,createOrder, deleteOrder, getOrder, getAllOrders };
+module.exports = { getAllOrderForCustomer, createOrder, deleteOrder, getOrder, getAllOrders };
+
+
+
