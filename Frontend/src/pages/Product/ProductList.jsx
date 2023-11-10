@@ -85,6 +85,7 @@ const ProductList = () => {
                       image={data.image}
                       productname={data.name}
                       price={data.price}
+                  
                     />
                   </div>
                 {/* </Link> */}

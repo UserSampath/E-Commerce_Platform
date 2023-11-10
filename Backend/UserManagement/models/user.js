@@ -37,7 +37,8 @@ const clientSchema = new Schema(
     },
     profilePic: {
       type: String,
-    },
+    }
+   
   },
 
   { timestamps: true }
