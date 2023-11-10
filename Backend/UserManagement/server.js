@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import cors from "cors";
 
 import authRoutes from "./routes/authRoutes.js";
-
 const server = express();
 
 server.use(bodyParser.json({ limit: "32mb", extended: true }));

@@ -4,6 +4,9 @@ import "./CartCard.css"
 import { useNavigate } from "react-router-dom";
 const CartCard = ({ name, description, unitPrice }) => {
     const navigate = useNavigate();
+
+
+
   return (
     <div style={{ marginBottom: "5px" }} className="boxMiddle">
       <div
