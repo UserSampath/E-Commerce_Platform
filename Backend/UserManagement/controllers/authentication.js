@@ -68,6 +68,7 @@ const login = async (req, res, next) => {
       role: user.role,
       userImage: user.profilePic,
       name: name,
+      id:user._id
     });
   } catch (err) {
     next(err);
