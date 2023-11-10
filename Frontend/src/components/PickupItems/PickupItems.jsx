@@ -1,7 +1,37 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./PickupItems.css";
-const PickupItems = ({ name, customer, address,price,quantity }) => {
+import axios from "axios"
+const PickupItems = ({
+  name,
+  customer,
+  address,
+  price,
+  quantity,
+  image,
+  id,
+  refresh,
+  setrefresh,}) => {
+  
+  const token = JSON.parse(localStorage.getItem("userData"));
+  const delveredOrder =() =>{
+    axios.patch("http://localhost:8000/api/delivery/markAsDelivered",{
+      id:id
+    },{
+      headers:{
+        authorization: `Bearer ${token.token}`
+     }
+    }).then((response) =>{
+      if(response.status === 200){
+        console.log(response);
+        alert("Order picked up successfully");
+        setrefresh(!refresh)
+      }
+    }).catch((error) =>{
+      console.log(error);
+      alert(response.data.error);
+    })
+  }
   return (
     <div style={{ marginBottom: "5px" }} className="boxMiddle">
       <div
@@ -18,7 +48,7 @@ const PickupItems = ({ name, customer, address,price,quantity }) => {
         }}>
         <div style={{ marginLeft: "20px", marginTop: "7px" }}>
           <img
-            src="../../../image/lap.jpg"
+            src={image}
             width={"75px"}
             style={{ borderRadius: "10px" }}
             alt=""
@@ -56,7 +86,7 @@ const PickupItems = ({ name, customer, address,price,quantity }) => {
               marginTop: "5px",
               fontFamily: "-moz-initial",
             }}>
-            {price}
+            {price*parseInt(quantity)}
           </div>
         </div>
 
@@ -95,7 +125,7 @@ const PickupItems = ({ name, customer, address,price,quantity }) => {
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ marginTop: "24px", marginLeft: "20px" }}>
-            <Button type={"button-blue"} text="Delivered" />
+            <Button type={"button-blue"} text="Delivered" func={delveredOrder} />
           </div>
         </div>
       </div>

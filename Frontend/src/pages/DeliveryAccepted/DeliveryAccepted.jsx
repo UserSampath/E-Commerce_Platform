@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./DeliveryAccepted.css";
 import { Nav } from "../../components/Nav/Nav";
 // import "./home.css";
 // import Button from "../../components/Button/Button";
 import AcceptedDeliveryProducts from "../../components/AcceptedDeliveryProducts/AcceptedDeliveryProducts";
 import Button from "../../components/Button/Button";
+import axios from "axios";
 
 const items = [
   {
@@ -31,6 +32,29 @@ const items = [
 ];
 
 const DeliveryAccepted = () => {
+  const[orderData,setOrderData] =useState();
+  const token = JSON.parse(localStorage.getItem("userData"));
+  const [refresh,setrefresh] =useState(true);
+
+  useEffect(() =>{
+    // get order data from backend
+    axios.get("http://localhost:8000/api/delivery/combinedOrders",{
+      headers:{
+         Authorization: `Bearer ${token.token}`
+      }
+    })
+.then(
+  (response) => {
+    
+     setOrderData(response.data)
+    
+  }
+).catch((error) =>{
+  console.log(error)
+})
+},[refresh])
+console.log(orderData)
+
   return (
     <>
       <Nav category="deliver" />
@@ -42,17 +66,26 @@ const DeliveryAccepted = () => {
         </h1>
       </div>
 
-      {items.map((item, index) => {
-        return (
-          <AcceptedDeliveryProducts
+      {Array.isArray(orderData)&&orderData
+      .filter((item) => item.order.Status === "DELIVERY ACCEPTED" )
+      .map((item, index) => {
+  
+          return (
+            <AcceptedDeliveryProducts
             key={index}
-            name={item.name}
-            customer={item.customer}
-            price={item.price}
-            quantity={item.quantity}
-            address={item.address}
-          />
-        );
+            name={item.product.name}
+            customer={item.order.CustomerId}
+            address={item.order.ShippingAddress}
+            quantity={item.order.Quantity}
+            price ={item.product.price}
+            image= {item.product.image}
+            id = {item.order._id}
+            refresh ={refresh}
+            setrefresh = {setrefresh}
+            />
+          );
+        
+        
       })}
 
       {/* <div className="boxEnd">
