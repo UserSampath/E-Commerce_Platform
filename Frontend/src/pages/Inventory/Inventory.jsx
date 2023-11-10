@@ -20,7 +20,8 @@ const changeCount = () =>{
 
   useEffect(() =>{
     // get order data from backend
-     axios.get("http://localhost:8080/api/item",{})
+     axios.get("http://localhost:8080/api/item"
+      )
 .then(
   (response) => {
     console.log(response)
