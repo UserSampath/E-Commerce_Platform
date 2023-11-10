@@ -211,14 +211,12 @@ const combinedData = async (req, res) => {
     const{authorization} = req.headers
     try {
     
-      const response1 = await axios.get('http://localhost:4000/api/order/getAllOrders',{
-        headers:{
-            Authorization: `Bearer ${authorization}`
-         }
-      });
+      const response1 = await Order.find().populate("_id");
+      console.log("orderrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+      console.log(response1)
       const response2 = await axios.get('http://localhost:8080/api/item');
     
-      const combinedData = matchAndCombineData(response1.data.orders, response2.data);
+      const combinedData = matchAndCombineData(response1, response2.data);
   
       res.json(combinedData);
     } catch (error) {
@@ -257,7 +255,7 @@ const matchAndCombineData = (dataFromDB1, dataFromDB2) => {
            order:item,
         };
         combinedData.push(combinedItem);
-        console.log(combinedData)
+        // console.log(combinedData)
       }
     });
   
