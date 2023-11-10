@@ -29,7 +29,7 @@ const ConfirmCheckout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Details:", address, quantity);
+    // console.log("Form Details:", address, quantity);
     const data = {
       ProductId: ProductData.id,
       Status: "ORDERED",
@@ -55,7 +55,8 @@ const ConfirmCheckout = () => {
         },
       })
       .then((response) => {
-        console.log(response.data, "response");
+        console.log("response", response.data);
+        navigate("/products");
       })
       .catch((err) => {
         console.log(err);
