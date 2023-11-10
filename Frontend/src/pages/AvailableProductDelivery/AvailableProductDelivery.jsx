@@ -19,28 +19,30 @@ const items = [
   
 ];
 
-const AvailableProductDelivery = () => {
 
+
+const AvailableProductDelivery = () => {
+  const [refresh,setrefresh] =useState(true);
   const[orderData,setOrderData] =useState();
   const token = JSON.parse(localStorage.getItem("userData"));
   console.log(token);
   useEffect(() =>{
         // get order data from backend
-        axios.get("http://localhost:4000/api/order/getAllOrders",{
+        axios.get("http://localhost:8000/api/delivery/combinedOrders",{
           headers:{
              Authorization: `Bearer ${token.token}`
           }
         })
     .then(
       (response) => {
-        
-         setOrderData(response.data.orders)
+        console.log(response)
+         setOrderData(response.data)
         
       }
     ).catch((error) =>{
       console.log(error)
     })
-    },[])
+    },[refresh])
     console.log(orderData)
   return (
     <>
@@ -54,19 +56,23 @@ const AvailableProductDelivery = () => {
       </div>
 
       {Array.isArray(orderData)&&orderData
-     .filter((item) => item.Status === "ORDER READY" && !item.deliverId )
+     .filter((item) => item.order.Status === "ORDER READY" && !item.order.deliverId )
       .map((item, index) => {
-        console.log(item.Status)
+       
           // const user = await axios.get("")
           // const itemdata = await axios.get("")
           return (
           <InventoryItem
             key={index}
-            name={item.ProductId}
-            customer={item.CustomerId}
-            address={item.ShippingAddress}
-            price={item.price}
-            quantity={item.Quantity}
+            name={item.product.name}
+            customer={item.order.CustomerId}
+            address={item.order.ShippingAddress}
+            quantity={item.order.Quantity}
+            price ={item.product.price}
+            image= {item.product.image}
+            id = {item.order._id}
+            refresh ={refresh}
+            setrefresh = {setrefresh}
           />
         ) 
         

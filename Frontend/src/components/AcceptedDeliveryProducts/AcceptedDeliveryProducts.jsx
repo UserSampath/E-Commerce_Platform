@@ -1,13 +1,40 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./AcceptedDeliveryProducts.css";
+import axios from "axios"
+import { Link } from "react-router-dom";
 const AcceptedDeliveryProducts = ({
   name,
   customer,
   address,
   price,
   quantity,
+  image,
+  id,
+  refresh,
+  setrefresh,
 }) => {
+  const value = price*parseInt(quantity)
+  const token = JSON.parse(localStorage.getItem("userData"));
+  const pickOrder =() =>{
+    axios.patch("http://localhost:8000/api/delivery/markaspicked",{
+      id:id
+    },{
+      headers:{
+        authorization: `Bearer ${token.token}`
+     }
+    }).then((response) =>{
+      if(response.status === 200){
+        console.log(response);
+        alert("Order picked up successfully");
+        setrefresh(!refresh)
+      }
+    }).catch((error) =>{
+      console.log(error);
+      alert(response.data.error);
+    })
+  }
+  console.log(image)
   return (
     <div style={{ marginBottom: "5px" }} className="boxMiddle">
       <div
@@ -23,8 +50,9 @@ const AcceptedDeliveryProducts = ({
           paddingRight: "10px",
         }}>
         <div style={{ marginLeft: "20px", marginTop: "7px" }}>
+          
           <img
-            src="../../../image/lap.jpg"
+            src={image}
             width={"75px"}
             style={{ borderRadius: "10px" }}
             alt=""
@@ -62,7 +90,7 @@ const AcceptedDeliveryProducts = ({
               marginTop: "5px",
               fontFamily: "-moz-initial",
             }}>
-            {price}
+            {value}
           </div>
         </div>
 
@@ -102,7 +130,9 @@ const AcceptedDeliveryProducts = ({
 
         <div style={{ display: "flex" }}>
           <div style={{ marginTop: "24px", marginLeft: "20px" }}>
-            <Button type={"button-blue"} text="Pickup" />
+            
+            <Button type={"button-blue"} text="Pickup" func={pickOrder} />
+            
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./DeliveryAccepted.css";
 import { Nav } from "../../components/Nav/Nav";
 // import "./home.css";
@@ -34,10 +34,11 @@ const items = [
 const DeliveryAccepted = () => {
   const[orderData,setOrderData] =useState();
   const token = JSON.parse(localStorage.getItem("userData"));
+  const [refresh,setrefresh] =useState(true);
 
   useEffect(() =>{
     // get order data from backend
-    axios.get("http://localhost:8000/api/delivery/orderByDID",{
+    axios.get("http://localhost:8000/api/delivery/combinedOrders",{
       headers:{
          Authorization: `Bearer ${token.token}`
       }
@@ -45,13 +46,13 @@ const DeliveryAccepted = () => {
 .then(
   (response) => {
     
-     setOrderData(response.data.orders)
+     setOrderData(response.data)
     
   }
 ).catch((error) =>{
   console.log(error)
 })
-},[])
+},[refresh])
 console.log(orderData)
 
   return (
@@ -65,21 +66,25 @@ console.log(orderData)
         </h1>
       </div>
 
-      {Array.isArray(orderData).orderData.map(async (item, index) => {
-        if(item.status === "ORDER READY"){
-          const user = await axios.get("")
-          const itemdata = await axios.get("")
+      {Array.isArray(orderData)&&orderData
+      .filter((item) => item.order.Status === "DELIVERY ACCEPTED" )
+      .map((item, index) => {
+  
           return (
             <AcceptedDeliveryProducts
-              key={index}
-              name={item.name}
-              customer={item.customer}
-              price={item.price}
-              quantity={item.quantity}
-              address={item.address}
+            key={index}
+            name={item.product.name}
+            customer={item.order.CustomerId}
+            address={item.order.ShippingAddress}
+            quantity={item.order.Quantity}
+            price ={item.product.price}
+            image= {item.product.image}
+            id = {item.order._id}
+            refresh ={refresh}
+            setrefresh = {setrefresh}
             />
           );
-        }
+        
         
       })}
 
