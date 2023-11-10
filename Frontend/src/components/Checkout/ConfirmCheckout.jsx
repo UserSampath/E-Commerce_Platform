@@ -33,9 +33,15 @@ const ConfirmCheckout = () => {
     const data = {
       ProductId: ProductData.id,
       Status: "ORDERED",
-      Quantity: quantity,
+      // Quantity: quantity,
       ShippingAddress: address,
       orderedDate: Date.now(),
+      productQuantity: ProductData.quantity,
+      orderQuantity:quantity,
+      name: ProductData.name,
+      price: ProductData.price,
+      description: ProductData.description,
+      image: ProductData.image,
     };
 
     const userDataString = localStorage.getItem("userData");
@@ -51,7 +57,9 @@ const ConfirmCheckout = () => {
       .then((response) => {
         console.log(response.data, "response");
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleAddressChange = (e) => {
@@ -133,7 +141,7 @@ const ConfirmCheckout = () => {
               }}>
               <Button
                 className="ckt-btn cancell"
-                onClick={() => navigate("/products/productView/f")}>
+                onClick={() => navigate("/products")}>
                 Cancel
               </Button>
 

@@ -19,20 +19,7 @@ import { ProductCard } from "../../components/Product list/ProductCard";
 
 const ProductList = () => {
   document.title = "Awakaza E- Commerce | Products";
-  const [products, setProducts] = useState([
-    {
-      productid: 123,
-      image: "https://rb.gy/q1dm7",
-      productname: "iphone",
-      price: 23,
-    },
-    {
-      productid: 124,
-      image: "https://rb.gy/q1dm7",
-      productname: "iphone new",
-      price: 234,
-    },
-  ]);
+  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState();
   const navigate = useNavigate();
   useEffect(() => {
