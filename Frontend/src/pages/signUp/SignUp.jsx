@@ -117,7 +117,7 @@ const SignUp = () => {
                 <div className="buttonsContainer">
                   <Button
                     type={"button-red"}
-                    text="Cancell"
+                    text="Cancel"
                     func={cancellSignup}
                   />
                   <Button type={"button-green"} text="Next" func={nextStep} />
@@ -267,3 +267,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
