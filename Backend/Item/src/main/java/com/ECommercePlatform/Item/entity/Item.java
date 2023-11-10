@@ -27,8 +27,7 @@ public class Item {
     @Column(name = "Description")
     private String description;
 
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
+    @Column(name = "Image")
     private String image;
 
     public String getName() {
