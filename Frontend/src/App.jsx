@@ -20,6 +20,7 @@ import ProductView from "./pages/ProductView/ProductView";
 import AvailableProductDelivery from "./pages/AvailableProductDelivery/AvailableProductDelivery";
 import DeliveryAccepted from "./pages/DeliveryAccepted/DeliveryAccepted";
 import DeliveryPickup from "./pages/DeliveryPickup/DeliveryPickup";
+import InventoryStatus from "./pages/InventoryStatus/InventoryStatus";
 // import PickupItems from "./pages/PickupItems/PickupItems";
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route
           path="/AvailableProductDelivery"
           element={<AvailableProductDelivery />}></Route>
+          <Route path="/InventoryStatusUpdate" element ={<InventoryStatus/>}/>
       </Routes>
     </BrowserRouter>
   );

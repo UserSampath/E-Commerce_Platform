@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./AvailableProductDelivery.css";
+import "./InventoryStatus.css";
 import { Nav } from "../../components/Nav/Nav";
-// import "./home.css";
-// import Button from "../../components/Button/Button";
-import InventoryItem from "../../components/AvailableProduct/AvailableProduct";
-import Button from "../../components/Button/Button";
 import axios from "axios";
+import InventoryStatusCard from "../../components/InventoryStatusCard/InventoryStatusCard";
 
 const items = [
   {
@@ -21,7 +18,7 @@ const items = [
 
 
 
-const AvailableProductDelivery = () => {
+const InventoryStatus = () => {
   const [refresh,setrefresh] =useState(true);
   const[orderData,setOrderData] =useState();
   const token = JSON.parse(localStorage.getItem("userData"));
@@ -51,16 +48,17 @@ const AvailableProductDelivery = () => {
         <h1
           className="mainHeading"
           style={{ marginTop: "70px", marginBottom: "20px" }}>
-          Available Products
+          Recieved Orders
         </h1>
       </div>
 
       {Array.isArray(orderData)&&orderData
-     .filter((item) => item.order.Status === "ORDER READY" && !item.order.deliverId )
+     .filter((item) => item.order.Status === "ORDERED" )
       .map((item, index) => {
-      
+       
+          
           return (
-          <InventoryItem
+          <InventoryStatusCard
             key={index}
             name={item.product.name}
             customer={item.order.CustomerId}
@@ -77,14 +75,9 @@ const AvailableProductDelivery = () => {
         
       })}
 
-      {/* <div className="boxEnd">
-        <div style={{ marginRight: "15%", marginTop: "10px" }}>
-          <Button type={"button-black"} text="Accepted Orders" />
-          <Button type={"button-black"} text="Pickup Orders" />
-        </div>
-      </div> */}
+      
     </>
   );
 };
 
-export default AvailableProductDelivery;
+export default InventoryStatus;
