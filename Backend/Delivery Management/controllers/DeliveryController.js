@@ -96,6 +96,7 @@ const acceptOrder = async(req, res) => {
     const update = [{
         $set:{
         deliverId:user._id,
+        Status:"DELIVERY ACCEPTED",
         deliveryAcceptedDate:date
     }
      }]
@@ -205,9 +206,66 @@ const orderNotDelivered = async(req, res) => {
 
 }
 
+//combines data from order and inventory databases
+const combinedData = async (req, res) => {
+    const{authorization} = req.headers
+    try {
+    
+      const response1 = await Order.find().populate("_id");
+      console.log("orderrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+      console.log(response1)
+      const response2 = await axios.get('http://localhost:8080/api/item');
+    
+      const combinedData = matchAndCombineData(response1, response2.data);
+  
+      res.json(combinedData);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to retrieve and match data.' });
+    }
+  }
+  
+  
+  
+  
+  
+  
+
+const matchAndCombineData = (dataFromDB1, dataFromDB2) => {
+    const dataMap = new Map();
+  
+    dataFromDB2.forEach((item) => {
+      dataMap.set(item.id, item);
+    });
+  console.log(dataMap);
+    const combinedData = [];
+  
+    dataFromDB1.forEach((item) => {
+       
+        const id = parseInt(item.ProductId)
+        console.log(id);
+      const matchingItem = dataMap.get(id);
+      console.log(matchingItem);
+      
+      console.log(matchingItem);
+      if (matchingItem) {
+
+        const combinedItem = {
+           product:matchingItem,
+           order:item,
+        };
+        combinedData.push(combinedItem);
+        // console.log(combinedData)
+      }
+    });
+  
+    return combinedData;
+  };
+  
 
 
 
 
-module.exports = {acceptOrder,pickedUpOrder,orderDelivered,getOrderByDID,orderNotDelivered}
+
+module.exports = {acceptOrder,pickedUpOrder,orderDelivered,getOrderByDID,orderNotDelivered,combinedData}
 

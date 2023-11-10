@@ -18,6 +18,7 @@ const OrderSchema = new Schema(
         Status:{
             type: String,
             enum:[
+                "DELIVERY ACCEPTED",
                 "ORDER READY",
                 "ORDER PICKUP",
                 "DELIVERED ORDER",
@@ -27,6 +28,10 @@ const OrderSchema = new Schema(
         Quantity:{
             type:String,
             required : true,
+        },
+        ShippingAddress: {
+            type: String,
+            required: true,
         },
         deliverId:{
             type:String,

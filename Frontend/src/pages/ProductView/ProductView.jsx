@@ -4,7 +4,7 @@ import "./ProductView.css";
 import Button from "../../components/Button/Button";
 import { useNavigate, useLocation } from "react-router-dom";
 import Axios from "axios";
-
+import Swal from "sweetalert2";
 const ProductView = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,7 +24,16 @@ const [productData,setProductData]=useState(location.state ? location.state.data
   // }
 
   const confirmCheckoutButtonPress = () => {
-    window.alert("Add to Checkout Successful!");
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Your Order is added to checkout process !",
+      showConfirmButton: false,
+      timer: 2000,
+            customClass: {
+                popup: 'custom-popup-class'
+            }
+    });
     navigate("/confirmCheckout", {
       state: { productData },
     });
@@ -44,6 +53,19 @@ const [productData,setProductData]=useState(location.state ? location.state.data
         )
         setProductData(response.data.cart);
         console.log(response);
+        if(response.status == 200){
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your Order is added to your cart!",
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+                popup: 'custom-popup-class'
+            }
+        });
+        
+        }
     } catch (error) {
         console.log(error);
     }
