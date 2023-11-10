@@ -1,29 +1,61 @@
-import React from "react";
+import React, {  useState } from "react";
 import Button from "../Button/Button";
-import "./InventoryItem.css"
-import axios from "axios"
-import { Link } from "react-router-dom";
-const InventoryItem = ({name,description,quantity,id,reload}) => {
+import "./InventoryItem.css";
+import Axios from "axios";
+import Swal from 'sweetalert2';
 
-  const deleteItem = () => {
-    axios.delete(`http://localhost:8080/api/item/${id}`,{
-    
-    }
-      ).then((response) =>{
-        console.log(response);
-       
-        if(response.status === 204){
-          reload();
-          alert("Item deleted successfully")
-        }
-        
+const InventoryItem = ({name,description,quantity,image,id,refresh,setRefresh}) => {
+ const [products, setProducts] = useState([
+    {
+      productid: 123,
+      image: "https://rb.gy/q1dm7",
+      productname: "iphone",
+      price: 23,
+    },
+    {
+      productid: 124,
+      image: "https://rb.gy/q1dm7",
+      productname: "iphone new",
+      price: 234,
+    },
+  ]);
+ 
+    const deleteProducts = async () => {
+      Axios.delete(`http://localhost:8080/api/item/${id}`)
+        .then((response) => {
+          setProducts(response.data);
+          console.log(response);
           
-      }).catch((err) =>{
-          console.log(err);
-      alert(err);
-      })
-      reload();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    const deleteAlert = ()=>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProducts();
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        }).then(()=>{
+          setRefresh(!refresh);
+        })
+        
+      }
+    });
   }
+   
+  
 
   return (
     <div style={{marginBottom:"5px"}} className="boxMiddle">
@@ -43,7 +75,7 @@ const InventoryItem = ({name,description,quantity,id,reload}) => {
         <div
           style={{ marginLeft: "20px", marginTop: "7px" }}>
           <img
-            src="../../../image/lap.jpg"
+            src={image}
             width={"75px"}
             style={{ borderRadius: "10px" }}
             alt=""
@@ -57,7 +89,7 @@ const InventoryItem = ({name,description,quantity,id,reload}) => {
               fontWeight: "10",
               fontFamily: "-moz-initial",
             }}>
-            Price: Rs.{description}
+            {description}
           </div>
         </div>
 
@@ -71,14 +103,14 @@ const InventoryItem = ({name,description,quantity,id,reload}) => {
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ marginTop: "24px" }}>
-            <Button func={deleteItem} type={"button-red"} text="Delete"  />
+            <Button type={"button-red"} text="Delete" func={deleteAlert}/>
           </div>
 
           <div style={{ marginTop: "24px", marginLeft: "20px" }}>
-            <Link to={""}><Button type={"button-blue"} text="Update" /></Link>
+            <Button type={"button-blue"} text="Update" />
           </div>
         </div>
-      </div>""
+      </div>
     </div>
   );
 };

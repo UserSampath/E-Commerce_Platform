@@ -5,35 +5,36 @@ import { Nav } from "../../components/Nav/Nav";
 // import Button from "../../components/Button/Button";
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
 import Button from "../../components/Button/Button";
-import axios from "axios"
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Axios from "axios";
+
+
 
 
 const Inventory = () => {
+  const [toggle,setToggle] =  useState(true);
+  const [items, setItems] = useState([]);
 
-const[products,setProducts] = useState([]);
-const[count,setCount] = useState(0);
+  const navigate = useNavigate();
+  const navigateToInv = () => {
+    navigate("/addproduct");
+  };
 
-const changeCount = () =>{
-  setCount(count+1);
-}
-
-  useEffect(() =>{
-    // get order data from backend
-     axios.get("http://localhost:8080/api/item"
-      )
-.then(
-  (response) => {
-    console.log(response)
-     setProducts(response.data)
-    
-  }
-).catch((error) =>{
-  console.log(error)
-})
-},[count])
-console.log(count);
-
+  useEffect(() => {
+    const getProducts = async () => {
+      Axios.get("http://localhost:8080/api/item")
+        .then((response) => {
+          setItems(response.data);
+          console.log(response.data, "product");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  
+    getProducts();
+  }, [toggle]);
+  
   return (
     <>
       <Nav category="inventory" />
@@ -44,18 +45,20 @@ console.log(count);
           Inventory
         </h1>
         <div style={{ marginTop: "55px", marginLeft: "100px" }}>
-          <Link to={"/addproduct"}><Button type={"button-blue"} text="Add new item" /></Link>
+          <Button type={"button-blue"} text="Add new item"  func={navigateToInv}/>
         </div>
       </div>
-      {Array.isArray(products)&&products.map((item, index) => {
+      {items.map((item, index) => {
         return (
           <InventoryItem
+          refresh={toggle}
+          setRefresh={setToggle}
+          id={item.id}
             key={index}
+            image={item.image}
             name={item.name}
-            description={item.price}
+            description={item.description}
             quantity={item.quantity}
-            id={item.id}
-            reload ={changeCount}
           />
         );
       })}
