@@ -4,6 +4,7 @@ import {
   login,
   authUser,
   getUserDetails,
+  getUser
 } from "../controllers/authentication.js";
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.post("/authUser", authUser);
 
 router.post("/getUserDetails", getUserDetails);
 
+router.get("/getUserId/:id",getUser);
 // router.post("/password-reset/:id/:token", Auth.resetPwd);
 export default router;

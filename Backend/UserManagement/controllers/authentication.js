@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const createToken = (_id) => {
+  console.log(_id)
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: 259200 });
 };
 
@@ -75,19 +76,15 @@ const login = async (req, res, next) => {
 
 const authUser = async (req, res) => {
   const { authorization } = req.headers;
-
   if (!authorization) {
     return res.status(401).json({ error: "Authorization token required" });
   }
-
   const token = authorization.split(" ")[1];
-
   try {
     const { _id } = jwt.verify(token, process.env.SECRET);
     const userID = await User.findOne({ _id }).select("_id role ");
     return res.json(userID);
   } catch (error) {
-    // console.log(error);
     if (error.name === "TokenExpiredError") {
       res.status(401).json({ error: "user token is expired" });
     } else {
@@ -115,5 +112,24 @@ const getUserDetails = async (req, res) => {
       res.status(401).json({ error: "Request is not authorized" });
     }
   }
+
 };
-export { register, login, authUser, getUserDetails };
+
+const getUser = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Use the correct field name for the user's ID from your database schema
+    const user = await User.findOne({ _id: id });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.json({ user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+export { register, login, authUser, getUserDetails ,getUser};

@@ -3,6 +3,8 @@ import { Nav } from "../../components/Nav/Nav";
 import "./ProductView.css";
 import Button from "../../components/Button/Button";
 import { useNavigate, useLocation } from "react-router-dom";
+import Axios from "axios";
+
 const ProductView = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,14 +16,38 @@ const [productData,setProductData]=useState(location.state ? location.state.data
     console.log(productData, "productData");
   }, [productData]);
 
-  const product = {
-    name: "Brand new Asus i3 Lap Top",
-    description:
-      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typefaceIn publishing and graphic design, Lorem ipsum is a placeholder text commonly used to",
-    price: "Price 100000 /=",
-    discount: "Discount 10% off",
-    imageUrl: "../../image/lap.jpg",
-  };
+ 
+
+  // const addToCartPress = () => {
+  //   window.alert("Add to Cart Successful!");
+  //   // navigate("")
+  // }
+
+  const confirmCheckoutButtonPress = () => {
+    window.alert("Add to Checkout Successful!");
+    navigate("/confirmCheckout", {
+      state: { productData },
+    });
+   }
+
+   const userDataString = localStorage.getItem("userData");
+    const userData = JSON.parse(userDataString);    
+
+
+   const addCart = async () => {
+  
+    try {
+        const response = await Axios.post("http://localhost:4000/api/cart/createCart/",{ProductId:productData.id},{
+        headers: {
+          Authorization: `Bearer ${userData.token}`
+        }}
+        )
+        setProductData(response.data.cart);
+        console.log(response);
+    } catch (error) {
+        console.log(error);
+    }
+};
   return (
     <>
       <Nav category="customer" />
@@ -30,7 +56,7 @@ const [productData,setProductData]=useState(location.state ? location.state.data
       <div className="boxMiddle">
         <div className="product-view-container">
           <div className="product-image">
-            <img src={product.imageUrl} alt={product.name} />
+            <img src={ productData.image ? productData.image : ""} alt={productData&&productData.name} />
           </div>
           <div className="product-details">
             <div
@@ -48,20 +74,20 @@ const [productData,setProductData]=useState(location.state ? location.state.data
                   {productData.description ? productData.description : ""}
                 </p>
                 <p className="product-price">{productData.price ? productData.price:""}</p>
-                <p className="product-discount">{product.discount}</p>
+                <p className="product-discount">{productData.discount}</p>
                 <div className="boxEnd">
                   <div className="buttonsContainer">
                     <Button
                       type={"button-rose"}
                       text="Buy Now"
-                      func={() => navigate("/confirmCheckout")}
+                      func={()=>confirmCheckoutButtonPress()}
                     />
                   </div>
                   <div className="buttonsContainer">
                     <Button
                       type={"button-black"}
                       text="Add to Cart"
-                      func={() => window.alert("Add to Cart Successful!")}
+                      func={() => addCart()}
                     />
                   </div>
                 </div>

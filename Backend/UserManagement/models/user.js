@@ -28,6 +28,7 @@ const clientSchema = new Schema(
       type: String,
       required: true,
       enum: ["Customer", "Delivery Man", "Inventory Keeper"],
+      default: "Customer",
     },
     vehicleNo: {
       type: String,
@@ -37,7 +38,8 @@ const clientSchema = new Schema(
     },
     profilePic: {
       type: String,
-    },
+    }
+   
   },
 
   { timestamps: true }

@@ -6,14 +6,10 @@ const Schema = mongoose.Schema;
 const CartSchema = new Schema(
 
     {
-        ProductId:{
-            type: String,
+        ProductIds:{
+            type: [String],
             required : true,
-        },
-        CustomerId:{
-            type: String,
-            required : true,
-        },        
+        }     
     },
 {timestamps:true}
 );
