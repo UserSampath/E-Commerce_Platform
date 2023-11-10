@@ -37,35 +37,50 @@ const getUserDetails = async (authorization) => {
 
 
 const createOrder = async (req, res) => {
-    const { ProductId, Status, Quantity, ShippingAddress } = req.body;
+    const {  Status, orderQuantity,productQuantity ,ShippingAddress,name,price,description,image } = req.body;
     try {
         const { authorization } = req.headers;
         const userData = await getUserDetails(authorization);
         if (userData.role != "Customer") {
             console.log("your not customer")
         }
-        console.log("sasas", userData)
+        if(productQuantity < orderQuantity){
+             return res.status(400).json({ error: " product Quantity is less than order quantity" });
+        }
+       else{
+         const Quantity = productQuantity - orderQuantity;
         const order = await Order.create({
-            ProductId,
+            ProductId:req.body.ProductId,
             CustomerId: userData._id,
             Status,
-            Quantity,
+            Quantity:orderQuantity,
             ShippingAddress
+        })
+        console.log(order);
+        console.log(Quantity);
+        if(order){
+          const response =  await axios.put(`http://localhost:8080/api/item/${req.body.ProductId}`,{quantity:Quantity,name,price,description,image})
             
-        });
+                console.log(response.data);
+                sendMail(userData.email, "Your new order placed", "Your new order placed successfully , thank you for your order");
+                    res.status(200).json({
+                        ProductId: order.ProductId,
+                        CustomerId: order.CustomerId,
+                        Status: order.Status,
+                        quantity: order.Quantity,
+                        ShippingAddress: ShippingAddress
+                    })
+
+           
+        }else{
+            return res.status(400).json({
+                message:"could not add order"
+            })
+        }
+    }
 
         // check the inventory with quantity
         // pass itemId and quantity to check  inventory and quantity if avawalable that product reduce the quantity return item details
-
-
-        sendMail(userData.email, "Your new order placed", "Your new order placed successfully , thank you for your order");
-        res.status(200).json({
-            ProductId: order.ProductId,
-            CustomerId: order.CustomerId,
-            Status: order.Status,
-            Quantity: order.Quantity,
-            ShippingAddress: ShippingAddress
-        });
 
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -134,7 +149,8 @@ const getAllOrders = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 }
-
+// Myorder part
+// depend on the customer Id retrive customers order details
 const getAllOrderForCustomer = async (req,res)=>{
     try {
         const { authorization } = req.headers;
@@ -143,7 +159,6 @@ const getAllOrderForCustomer = async (req,res)=>{
             console.log("You're not a customer");
             return res.status(403).json({ error: "Forbidden" });
         }
-
         const orders = await Order.find({ CustomerId: userData._id });
         res.status(200).json({ customerOrder: orders });
     } catch (error) {

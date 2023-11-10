@@ -59,25 +59,26 @@ public class ItemController {
         }
     }
     @PutMapping("/item/{id}")
-    public ResponseEntity<Item> update(@PathVariable("id") long id,@RequestBody Item item)
-    {
+    public ResponseEntity<Item> update(@PathVariable("id") long id, @RequestBody Item newItem) {
         Optional<Item> itemData = itemRepository.findById(id);
 
-        if(itemData.isPresent())
-        {
-            Item _item = itemData.get();
+        if (itemData.isPresent()) {
+            Item existingItem = itemData.get();
 
-            _item.setId(item.getId());
-            _item.setName(item.getName());
-            _item.setPrice(item.getPrice());
-            _item.setQuantity(item.getQuantity());
-            _item.setDescription(item.getDescription());
-            _item.setImage(item.getImage());
-        return new ResponseEntity<>(itemRepository.save(_item),HttpStatus.OK);
-        }else {
+            // Update fields with the new values from the request body
+            existingItem.setName(newItem.getName());
+            existingItem.setPrice(newItem.getPrice());
+            existingItem.setQuantity(newItem.getQuantity());
+            existingItem.setDescription(newItem.getDescription());
+            existingItem.setImage(newItem.getImage());
+
+            // Save the updated item using the repository
+            return new ResponseEntity<>(itemRepository.save(existingItem), HttpStatus.OK);
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 
     @DeleteMapping("/item/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") long id) {
