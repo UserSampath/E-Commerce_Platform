@@ -67,7 +67,7 @@ console.log(orderData)
       </div>
 
       {Array.isArray(orderData)&&orderData
-      .filter((item) => item.order.Status === "DELIVERY ACCEPTED" )
+      .filter((item) => item.order.Status === "DELIVERY ACCEPTED" && item.order.deliverId === token.id )
       .map((item, index) => {
   
           return (
