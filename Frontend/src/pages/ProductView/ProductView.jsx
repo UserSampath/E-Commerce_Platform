@@ -78,7 +78,10 @@ const [productData,setProductData]=useState(location.state ? location.state.data
       <div className="boxMiddle">
         <div className="product-view-container">
           <div className="product-image">
-            <img src={ productData.image ? productData.image : ""} alt={productData&&productData.name} />
+            <img
+              src={productData.image ? productData.image : ""}
+              alt={productData && productData.name}
+            />
           </div>
           <div className="product-details">
             <div
@@ -95,14 +98,16 @@ const [productData,setProductData]=useState(location.state ? location.state.data
                 <p className="product-description">
                   {productData.description ? productData.description : ""}
                 </p>
-                <p className="product-price">{productData.price ? productData.price:""}</p>
+                <p className="product-price">
+                  {productData.price ? productData.price : ""}
+                </p>
                 <p className="product-discount">{productData.discount}</p>
                 <div className="boxEnd">
                   <div className="buttonsContainer">
                     <Button
                       type={"button-rose"}
                       text="Buy Now"
-                      func={()=>confirmCheckoutButtonPress()}
+                      func={() => confirmCheckoutButtonPress()}
                     />
                   </div>
                   <div className="buttonsContainer">
@@ -110,6 +115,14 @@ const [productData,setProductData]=useState(location.state ? location.state.data
                       type={"button-black"}
                       text="Add to Cart"
                       func={() => addCart()}
+                    />
+                  </div>
+
+                  <div className="buttonsContainer">
+                    <Button
+                      type={"button-red"}
+                      text="Cancel"
+                      func={() => navigate("/products")}
                     />
                   </div>
                 </div>
