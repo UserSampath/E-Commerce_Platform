@@ -6,13 +6,14 @@ import { Link } from "react-router-dom";
 const InventoryItem = ({name,description,quantity,id,reload}) => {
 
   const deleteItem = () => {
-    axios.delete("http://localhost:8080/api/Item/delete",{
-      data: { id: id }
+    axios.delete(`http://localhost:8080/api/item/${id}`,{
+    
     }
       ).then((response) =>{
         console.log(response);
        
-        if(response.data === true){
+        if(response.status === 204){
+          reload();
           alert("Item deleted successfully")
         }
         

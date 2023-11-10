@@ -120,9 +120,9 @@ const getAllOrders = async (req, res) => {
     try {
         const { authorization } = req.headers;
         const userData = await getUserDetails(authorization);
-        if (userData.role != "Customer") {
-            console.log("you're not a customer");
-        }
+        // if (userData.role != "Customer") {
+        //     console.log("you're not a customer");
+        // }
 
         const orders = await Order.find().populate("_id"); // Assuming "items" is the field you want to populate
         

@@ -5,6 +5,7 @@ import { Nav } from "../../components/Nav/Nav";
 // import Button from "../../components/Button/Button";
 import PickupItems from "../../components/PickupItems/PickupItems";
 import Button from "../../components/Button/Button";
+import axios from "axios";
 
 const items = [
   {
@@ -45,6 +46,28 @@ const items = [
 ];
 
 const DeliveryPickup = () => {
+
+  const[orderData,setOrderData] =useState();
+  const token = JSON.parse(localStorage.getItem("userData"));
+
+  useEffect(() =>{
+    // get order data from backend
+    axios.get("http://localhost:8000/api/delivery/orderByDID",{
+      headers:{
+         Authorization: `Bearer ${token.token}`
+      }
+    })
+.then(
+  (response) => {
+    
+     setOrderData(response.data.orders)
+    
+  }
+).catch((error) =>{
+  console.log(error)
+})
+},[])
+console.log(orderData)
   return (
     <>
       <Nav category="deliver" />
@@ -56,17 +79,23 @@ const DeliveryPickup = () => {
         </h1>
       </div>
 
-      {items.map((item, index) => {
-        return (
-          <PickupItems
-            key={index}
-            name={item.name}
-            customer={item.customer}
-            address={item.address}
-            price={item.price}
-            quantity={item.quantity}
-          />
-        );
+      {Array.isArray(orderData)&&orderData.map(async(item, index) => {
+        if(item.status === "ORDER PICKUP"){
+          const user = await axios.get("");
+          const itemdata = await axios.get("")
+          return (
+          
+            <PickupItems
+              key={index}
+              name={item.name}
+              customer={item.customer}
+              address={item.address}
+              price={item.price}
+              quantity={item.quantity}
+            />
+          )
+        }
+        ;
       })}
 
       {/* <div className="boxEnd">

@@ -20,8 +20,7 @@ const changeCount = () =>{
 
   useEffect(() =>{
     // get order data from backend
-     axios.get("http://localhost:8080/api/Item/get"
-      )
+     axios.get("http://localhost:8080/api/item",{})
 .then(
   (response) => {
     console.log(response)
@@ -32,6 +31,7 @@ const changeCount = () =>{
   console.log(error)
 })
 },[count])
+console.log(count);
 
   return (
     <>
@@ -46,7 +46,7 @@ const changeCount = () =>{
           <Link to={"/addproduct"}><Button type={"button-blue"} text="Add new item" /></Link>
         </div>
       </div>
-      {products.map((item, index) => {
+      {Array.isArray(products)&&products.map((item, index) => {
         return (
           <InventoryItem
             key={index}

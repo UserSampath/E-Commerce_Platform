@@ -53,18 +53,24 @@ const AvailableProductDelivery = () => {
         </h1>
       </div>
 
-      {orderData.map((item, index) => {
-        if(item.status === "")
-        return (
+      {Array.isArray(orderData)&&orderData
+     .filter((item) => item.Status === "ORDER READY" && !item.deliverId )
+      .map((item, index) => {
+        console.log(item.Status)
+          // const user = await axios.get("")
+          // const itemdata = await axios.get("")
+          return (
           <InventoryItem
             key={index}
             name={item.ProductId}
             customer={item.CustomerId}
-            address={item.address}
+            address={item.ShippingAddress}
             price={item.price}
-            quantity={item.quantity}
+            quantity={item.Quantity}
           />
-        );
+        ) 
+        
+        
       })}
 
       {/* <div className="boxEnd">
