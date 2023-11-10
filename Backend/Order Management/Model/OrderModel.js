@@ -38,6 +38,9 @@ const OrderSchema = new Schema(
         orderedDate: {
             type: Date,
         },
+        preparedDate: {
+            type: Date,
+        },
         deliveryAcceptedDate: {
             type: Date,
         },

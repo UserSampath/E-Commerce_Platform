@@ -4,13 +4,6 @@ const express = require("express");
 const app = express();
 
 const cors = require("cors");
-const allowedOrigin = "http://127.0.0.1:5173";
-
-app.use(
-    cors({
-        origin: allowedOrigin,
-    })
-);
 
 
 const bodyParser = require("body-parser");
@@ -18,12 +11,11 @@ require('dotenv').config();
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
-
-// app.use(
-//     cors({
-//         origin: "*",
-//     })
-// );
+app.use(
+    cors({
+        origin: "*",
+    })
+);
 app.use(express.json());
 const OrderRouter = require("./routes/OrderRoute");
 const Cart = require("./routes/CartRoute");

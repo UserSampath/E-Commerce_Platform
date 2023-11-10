@@ -268,21 +268,3 @@ const SignUp = () => {
 
 export default SignUp;
 
-
-import FileBase64 from "react-file-base64";
-//...
-
- <div className="user-image-container">
-  <FileBase64
-    type="file"
-    multiple={false}
-    onDone={(e) => {
-      setImage(e.base64);
-    }}
-  />
-</div>;
-
-//send image to server
-
-//display image
-<img className="signInImage" src={Image} alt="profile Picture" />; 

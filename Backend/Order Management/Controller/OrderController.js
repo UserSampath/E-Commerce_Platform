@@ -8,7 +8,7 @@ var nodemailer = require("nodemailer");
 
 const getUserDetails = async (authorization) => {
     if (!authorization) {
-        return res.status(401).json({ error: "Authorization token required" });
+        return { error: "Authorization token required" };
     }
     const token = authorization.split(" ")[1];
 
@@ -21,14 +21,13 @@ const getUserDetails = async (authorization) => {
         const userData = response.data;
         if (!userData) {
             console.log("User not found");
-            return null;
+            return { error: "User not found" };
         }
         else {
             return userData;
         }
     } catch (error) {
-        console.error("Error while fetching user details:", error);
-        return null;
+        return { error: "Error while fetching user details" };
     }
 }
 
@@ -37,10 +36,19 @@ const getUserDetails = async (authorization) => {
 
 
 const createOrder = async (req, res) => {
-    const { Status, orderQuantity, productQuantity, ShippingAddress, name, price, description, image } = req.body;
+    const { Status, orderQuantity, productQuantity, ShippingAddress, name, price, description, image, deliverId, preparedDate, deliveryAcceptedDate, PickedUpDate, orderDeliveredDate
+    } = req.body;
     try {
         const { authorization } = req.headers;
-        const userData = await getUserDetails(authorization);
+        const result = await getUserDetails(authorization);
+
+        if (result.error) {
+            // Handle the error response
+            console.log("Error:", result.error);
+            return res.status(500).json({ error: result.error });
+        }
+
+        const userData = result;
         if (userData.role != "Customer") {
             console.log("your not customer")
         }
@@ -54,7 +62,13 @@ const createOrder = async (req, res) => {
                 CustomerId: userData._id,
                 Status,
                 Quantity: orderQuantity,
-                ShippingAddress
+                ShippingAddress,
+                deliverId,
+                orderedDate: Date.now(),
+                preparedDate,
+                deliveryAcceptedDate,
+                PickedUpDate,
+                orderDeliveredDate
             })
             console.log(order);
             console.log(Quantity);
@@ -63,13 +77,7 @@ const createOrder = async (req, res) => {
 
                 console.log(response.data);
                 sendMail(userData.email, "Your new order placed", "Your new order placed successfully , thank you for your order");
-                res.status(200).json({
-                    ProductId: order.ProductId,
-                    CustomerId: order.CustomerId,
-                    Status: order.Status,
-                    quantity: order.Quantity,
-                    ShippingAddress: ShippingAddress
-                })
+                res.status(200).json(order)
             } else {
                 return res.status(400).json({
                     message: "could not add order"
@@ -90,7 +98,15 @@ const deleteOrder = async (req, res) => {
 
     try {
         const { authorization } = req.headers;
-        const userData = await getUserDetails(authorization);
+        const result = await getUserDetails(authorization);
+
+        if (result.error) {
+            // Handle the error response
+            console.log("Error:", result.error);
+            return res.status(500).json({ error: result.error });
+        }
+
+        const userData = result;
         if (userData.role != "Customer") {
             console.log("your not customer")
         }
@@ -112,7 +128,15 @@ const getOrder = async (req, res) => {
     const { id } = req.params;
 
     const { authorization } = req.headers;
-    const userData = await getUserDetails(authorization);
+    const result = await getUserDetails(authorization);
+
+    if (result.error) {
+        // Handle the error response
+        console.log("Error:", result.error);
+        return res.status(500).json({ error: result.error });
+    }
+
+    const userData = result;
     if (userData.role != "Customer") {
         console.log("your not customer")
     }
@@ -134,7 +158,15 @@ const getOrder = async (req, res) => {
 const getAllOrders = async (req, res) => {
     try {
         const { authorization } = req.headers;
-        const userData = await getUserDetails(authorization);
+        const result = await getUserDetails(authorization);
+
+        if (result.error) {
+            // Handle the error response
+            console.log("Error:", result.error);
+            return res.status(500).json({ error: result.error });
+        }
+
+        const userData = result;
         if (userData.role != "Customer") {
             console.log("you're not a customer");
         }
@@ -148,24 +180,64 @@ const getAllOrders = async (req, res) => {
     }
 }
 // Myorder part
-// depend on the customer Id retrive customers order details
+
 const getAllOrderForCustomer = async (req, res) => {
     try {
         const { authorization } = req.headers;
-        const userData = await getUserDetails(authorization);
+        const result = await getUserDetails(authorization);
+
+        if (result.error) {
+            console.log("Error:", result.error);
+            return res.status(500).json({ error: result.error });
+        }
+
+        const userData = result;
         if (userData.role !== "Customer") {
             console.log("You're not a customer");
             return res.status(403).json({ error: "Forbidden" });
         }
+
         const orders = await Order.find({ CustomerId: userData._id });
-        res.status(200).json({ customerOrder: orders });
+
+        //get products
+
+        try {
+            const response = await axios.get("http://localhost:8080/api/item");
+            const products = response.data;
+            let ordersWithProductData = [];
+            for (let i = 0; i < orders.length; i++) {
+                let { _id, ProductId, CustomerId, Status, Quantity, ShippingAddress, createdAt, updatedAt, deliverId, orderedDate, deliveryAcceptedDate, PickedUpDate, orderDeliveredDate } = orders[i]._doc;
+                let orderWithProduct = {
+                    _id,
+                    ProductId,
+                    CustomerId,
+                    Status,
+                    Quantity,
+                    ShippingAddress,
+                    createdAt,
+                    updatedAt,
+                    deliverId, orderedDate, deliveryAcceptedDate, PickedUpDate, orderDeliveredDate
+                }
+                for (let j = 0; j < products.length; j++) {
+                    if (products[j].id === parseInt(orderWithProduct.ProductId)) {
+                        orderWithProduct.productData = { ...products[j] };
+                        break;
+                    }
+                }
+                ordersWithProductData.push(orderWithProduct);
+            }
+            res.status(200).json({ ordersWithProductData });
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Products not found" });
+        }
+
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
     }
 }
-
-
 
 const transporter = nodemailer.createTransport({
     service: "gmail",

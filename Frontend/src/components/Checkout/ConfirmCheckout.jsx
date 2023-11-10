@@ -28,32 +28,30 @@ const ConfirmCheckout = () => {
   const [quantity, setQuantity] = useState(1);
 
   const handleSubmit = (e) => {
-    
-      e.preventDefault();
-      console.log("Form Details:", address, quantity);
-      const data = {
-        ProductId: ProductData.id,
-        Status: "ORDERED",
-        Quantity: quantity,
-        ShippingAddress: address,
-        orderedDate:Date.now()
-      };
-   
+    e.preventDefault();
+    console.log("Form Details:", address, quantity);
+    const data = {
+      ProductId: ProductData.id,
+      Status: "ORDERED",
+      Quantity: quantity,
+      ShippingAddress: address,
+      orderedDate: Date.now(),
+    };
+
     const userDataString = localStorage.getItem("userData");
     const userData = JSON.parse(userDataString);
     console.log("s", data, " console", userData.token);
-    
+
     axios
       .post("http://localhost:4000/api/order/createOrder", data, {
         headers: {
-          Authorization: `Bearer ${userData.token}`
-        }
+          Authorization: `Bearer ${userData.token}`,
+        },
       })
       .then((response) => {
         console.log(response.data, "response");
       })
       .catch((err) => {});
-    
   };
 
   const handleAddressChange = (e) => {
