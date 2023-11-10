@@ -71,7 +71,6 @@ const deliveryUpdate =async(data, callback) =>{
 
              const newupdate= await Order.findByIdAndUpdate(id,update)
              if(!newupdate){
-                console.log();
                 const error = {error:"order not found"}
                 return callback(error);
             }else{
@@ -120,7 +119,6 @@ const acceptOrder = async(req, res) => {
 //mark order as picked up
 const pickedUpOrder = async(req, res) => {
     const date = new Date();
-    const{authorization} = req.headers;
  try{
     const update = [{
         $set:{
@@ -150,7 +148,7 @@ const pickedUpOrder = async(req, res) => {
 //mark orders as delivered
 const orderDelivered = async(req, res) => {
     const date = new Date();
-    const{authorization} = req.headers;
+
  try{
     const update = [{
         $set:{
@@ -178,7 +176,7 @@ const orderDelivered = async(req, res) => {
 
 //mark orders as delivered
 const orderNotDelivered = async(req, res) => {
-    const{authorization} = req.headers;
+    
  try{
     const update = [{
         $set:{
@@ -208,12 +206,11 @@ const orderNotDelivered = async(req, res) => {
 
 //combines data from order and inventory databases
 const combinedData = async (req, res) => {
-    const{authorization} = req.headers
+    
     try {
     
       const response1 = await Order.find().populate("_id");
-      console.log("orderrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
-      console.log(response1)
+      
       const response2 = await axios.get('http://localhost:8080/api/item');
     
       const combinedData = matchAndCombineData(response1, response2.data);
@@ -262,10 +259,37 @@ const matchAndCombineData = (dataFromDB1, dataFromDB2) => {
     return combinedData;
   };
   
+  const inventoryStatusUpdate =async(req, res) =>{
+    const {authorization} = req.headers;
+    const{id} = req.body; ;
+    try{
+        const date = new Date();
+        const user= await getUser(authorization);
+        console.log(user);
+        if(user.error || user.role != "Inventory Keeper"){
+            const userError= user.error;
+            const error = {error:"User authentication failed",userError}
+                return res.status(400).json({error});
+        }else{
+
+             const newupdate= await Order.findByIdAndUpdate(id,{Status:"ORDER READY",preparedDate:date})
+             if(newupdate.length==0){
+                console.log();
+                const error = {error:"order not found"}
+                return res.status(400).json({error});
+            }else{
+                return res.status(200).json({message:"Order updated successfully",newupdate});
+            }
+            
+        }
+       
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({err});
+    }
+  }
 
 
 
-
-
-module.exports = {acceptOrder,pickedUpOrder,orderDelivered,getOrderByDID,orderNotDelivered,combinedData}
+module.exports = {acceptOrder,pickedUpOrder,orderDelivered,getOrderByDID,orderNotDelivered,combinedData,inventoryStatusUpdate}
 
