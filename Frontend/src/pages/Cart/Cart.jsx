@@ -7,30 +7,11 @@ import CartCard from "../../components/CartCard/CartCard";
 
 const items = [
   {
-    name: "Asus laptop",
+    name: "LG Gram 17",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-    unitPrice: 24,
+      "The LG Gram 17 is an ultra-lightweight laptop with a large 17-inch display. Despite its size, it remains remarkably light, making it an excellent choice for users who prioritize portability",
+    unitPrice: "$1,499",
   },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-      unitPrice: 24,
-  },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-      unitPrice: 24,
-  },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-      unitPrice: 24,
-  },
-
 ];
 
 const Home = () => {

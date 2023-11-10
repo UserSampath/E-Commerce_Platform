@@ -24,16 +24,7 @@ const [productData,setProductData]=useState(location.state ? location.state.data
   // }
 
   const confirmCheckoutButtonPress = () => {
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Your Order is added to checkout process !",
-      showConfirmButton: false,
-      timer: 2000,
-            customClass: {
-                popup: 'custom-popup-class'
-            }
-    });
+  
     navigate("/confirmCheckout", {
       state: { productData },
     });
@@ -51,8 +42,7 @@ const [productData,setProductData]=useState(location.state ? location.state.data
           Authorization: `Bearer ${userData.token}`
         }}
         )
-        setProductData(response.data.cart);
-        console.log(response);
+        console.log(response.data,"sss");
         if(response.status == 200){
           Swal.fire({
             position: "center",

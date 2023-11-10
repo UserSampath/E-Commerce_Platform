@@ -13,6 +13,7 @@ import "./styles.css"; // Import your custom CSS for styling
 import { useNavigate, useLocation } from "react-router-dom";
 import { Nav } from "../Nav/Nav";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ConfirmCheckout = () => {
   const navigate = useNavigate();
@@ -56,6 +57,16 @@ const ConfirmCheckout = () => {
       })
       .then((response) => {
         console.log("response", response.data);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Order Placed!",
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+              popup: "custom-popup-class",
+            },
+          });
         navigate("/products");
       })
       .catch((err) => {

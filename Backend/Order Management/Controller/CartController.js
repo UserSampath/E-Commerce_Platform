@@ -45,19 +45,14 @@ const createCart = async (req, res) => {
         if (userData.role != "Customer") {
             console.log("your not customer")
         }
-        console.log("sasas", userData)
+        // console.log("sasas", userData)
         const cart = await Cart.create({
             ProductId,
             CustomerId: userData._id,
             
         });
 
-        // sendMail(userData.email, "Your new order placed", "Your new order placed successfully , thank you for your order");
-        res.status(200).json({
-            ProductId: cart.ProductId,
-            CustomerId: cart.CustomerId,
-            
-        });
+        res.status(200).json(cart);
 
     } catch (error) {
         res.status(400).json({ error: error.message });
