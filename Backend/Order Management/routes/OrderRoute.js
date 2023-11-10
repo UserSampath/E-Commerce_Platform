@@ -12,5 +12,5 @@ router.post("/createOrder",createOrder);
 router.delete("/deleteOrder/:id",deleteOrder);
 router.get("/getOrder/:id",getOrder);
 router.get("/getAllOrders",getAllOrders);
-router.get("/getAllCustomerOrder",getAllOrderForCustomer)
+router.post("/getAllCustomerOrder",getAllOrderForCustomer)
 module.exports = router;
