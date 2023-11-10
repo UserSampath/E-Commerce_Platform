@@ -129,7 +129,7 @@ const ConfirmCheckout = () => {
                 />
               </FormGroup>
             </Row>
-            <Row
+            <div
               xs={24}
               md={24}
               lg={24}
@@ -145,16 +145,16 @@ const ConfirmCheckout = () => {
                 Cancel
               </Button>
 
-              <Button className="ckt-btn confirm" type="submit">
+              <Button className="ckt-btn confirm" type="submit" func={handleSubmit}>
                 Confirm
               </Button>
-            </Row>
+            </div>
           </Form>
         </div>
         <div className="right-side">
           <Card className="mb-3">
-            <CardTitle className="text-center">IN YOUR BAG</CardTitle>
-            <CardBody>
+            <CardTitle className="text-center">In Your Bag</CardTitle>
+            <CardBody className="productCheckout">
               <CardText>
                 Subtotal:{" "}
                 <span className="float-end">
