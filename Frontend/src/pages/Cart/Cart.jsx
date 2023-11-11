@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 import { Nav } from "../../components/Nav/Nav";
@@ -6,16 +6,9 @@ import Button from "../../components/Button/Button";
 import CartCard from "../../components/CartCard/CartCard";
 import Axios from "axios";
 
-const items = [
-  {
-    name: "LG Gram 17",
-    description:
-      "The LG Gram 17 is an ultra-lightweight laptop with a large 17-inch display. Despite its size, it remains remarkably light, making it an excellent choice for users who prioritize portability",
-    unitPrice: "$1,499",
-  },
-];
-
 const Home = () => {
+
+  const [items,setItems]=useState([])
 
     const userDataString = localStorage.getItem("userData");
     const userData = JSON.parse(userDataString);
@@ -33,6 +26,7 @@ const Home = () => {
         );
 
         console.log(response.data);
+        setItems(response.data)
 
 
       } catch (error) {
@@ -58,8 +52,11 @@ const Home = () => {
       </div>
       {items.map((item,index) => {
         return (
-          <CartCard key={index} name={item.name} description={item.description} unitPrice={item.unitPrice} />
-        )
+          <CartCard
+            key={index}
+            ProductId={item.ProductId}
+          />
+        );
       })}
     </>
   );

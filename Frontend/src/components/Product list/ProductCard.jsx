@@ -10,7 +10,7 @@ export const ProductCard = (props) => {
       <Card.Body>
         <Card.Title className="text-center" style={{color:"black" ,fontSize:"20px"}}>{props.productname}</Card.Title>
         <Card.Text style={{alignItems:"center", color:"black", marginLeft:"30px"}}>
-          Rs. {props.price}
+          $. {props.price}
         </Card.Text>
       </Card.Body>
     </Card>

@@ -89,7 +89,7 @@ const [productData,setProductData]=useState(location.state ? location.state.data
                   {productData.description ? productData.description : ""}
                 </p>
                 <p className="product-price">
-                  {productData.price ? productData.price : ""}
+                  {productData.price ? `${productData.price} $` : ""}
                 </p>
                 <p className="product-discount">{productData.discount}</p>
                 <div className="boxEnd">
