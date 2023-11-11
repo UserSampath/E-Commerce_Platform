@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState, } from "react";
 import './ordDetails.css';
 import { Nav } from '../../components/Nav/Nav';
-
+import { useLocation } from "react-router-dom";
 const OrdDetails = () => {
+ 
+const location = useLocation();
+
+const [orderdData,setOrderdData]=useState(location.state ? location.state.item : null)
+
+useEffect(() => {
+  console.log(orderdData, "orderData");
+}, [orderdData]);
+const deliDay = (orderdData.deliveryAcceptedDate);
+const originalDate = new Date(deliDay);
+const PickupDate = (originalDate.toLocaleDateString());
+
+const newDate = new Date(originalDate.getTime() + 72 * 60 * 60 * 1000);
+const deliveryexpected =(newDate.toLocaleDateString());
+
   return (
     <>
       <Nav category="customer" />
@@ -13,7 +28,7 @@ const OrdDetails = () => {
           <div className="imagecontainner">
             <div className="itemImage">
               <img
-                src="../../../image/lap.jpg"
+                src={orderdData.productData.image}
                 width={'350px'}
                 height={'350px'}
                 style={{
@@ -26,7 +41,7 @@ const OrdDetails = () => {
             </div>
           </div>
           <div className="detailcontainner">
-            <p className="brand">Brand new Asus i3 Lap Top</p>
+            <p className="brand">{orderdData.productData.name}</p>
             <div className="productdetails">
               <div className="left-column">
                 <p>Price</p>
@@ -35,14 +50,12 @@ const OrdDetails = () => {
               </div>
               <div className="right-column">
                 <div>
-                <p>:</p>
-                <p>:</p>
-                <p>:</p>
+                <p>: {orderdData.productData.price}</p>
+                <p>: 300</p>
+                <p>: {orderdData.productData.price + 300}</p>
                 </div>
                 <div className='right'>
-                <p>100,000</p>
-                <p>300</p>
-                <p>100,300</p>
+                
                 </div>
                 
               </div>
@@ -53,7 +66,6 @@ const OrdDetails = () => {
             <div className='leftData'>
             <p>Status </p>
             <p>Placed at </p>
-            <p>Routed from the company </p>
             <p>Accepted for delivery</p>
             <p>Delivery expected </p>
             </div>
@@ -63,14 +75,14 @@ const OrdDetails = () => {
                 <p>-</p>
                 <p>-</p>
                 <p>-</p>
-                <p>-</p>
+                
                 </div>
               <div className='rightDate'>
-              <p>Delivering Process</p>
-              <p>2023-03-21</p>
-              <p>2023-03-21</p>
-              <p>2023-03-21</p>
-              <p>2023-03-21</p>
+              <p>{orderdData.Status}</p>
+              <p>{orderdData.ShippingAddress}</p>
+              <p>{PickupDate}</p>
+              <p>{deliveryexpected}</p>
+              
               </div>
               
             </div>
