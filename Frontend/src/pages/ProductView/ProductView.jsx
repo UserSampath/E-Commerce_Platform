@@ -4,7 +4,7 @@ import "./ProductView.css";
 import Button from "../../components/Button/Button";
 import { useNavigate, useLocation } from "react-router-dom";
 import Axios from "axios";
-
+import Swal from "sweetalert2";
 const ProductView = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,7 +24,16 @@ const [productData,setProductData]=useState(location.state ? location.state.data
   // }
 
   const confirmCheckoutButtonPress = () => {
-    window.alert("Add to Checkout Successful!");
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Your Order is added to checkout process !",
+      showConfirmButton: false,
+      timer: 2000,
+            customClass: {
+                popup: 'custom-popup-class'
+            }
+    });
     navigate("/confirmCheckout", {
       state: { productData },
     });
@@ -44,6 +53,19 @@ const [productData,setProductData]=useState(location.state ? location.state.data
         )
         setProductData(response.data.cart);
         console.log(response);
+        if(response.status == 200){
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your Order is added to your cart!",
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+                popup: 'custom-popup-class'
+            }
+        });
+        
+        }
     } catch (error) {
         console.log(error);
     }
@@ -56,7 +78,10 @@ const [productData,setProductData]=useState(location.state ? location.state.data
       <div className="boxMiddle">
         <div className="product-view-container">
           <div className="product-image">
-            <img src={ productData.image ? productData.image : ""} alt={productData&&productData.name} />
+            <img
+              src={productData.image ? productData.image : ""}
+              alt={productData && productData.name}
+            />
           </div>
           <div className="product-details">
             <div
@@ -73,14 +98,16 @@ const [productData,setProductData]=useState(location.state ? location.state.data
                 <p className="product-description">
                   {productData.description ? productData.description : ""}
                 </p>
-                <p className="product-price">{productData.price ? productData.price:""}</p>
+                <p className="product-price">
+                  {productData.price ? productData.price : ""}
+                </p>
                 <p className="product-discount">{productData.discount}</p>
                 <div className="boxEnd">
                   <div className="buttonsContainer">
                     <Button
                       type={"button-rose"}
                       text="Buy Now"
-                      func={()=>confirmCheckoutButtonPress()}
+                      func={() => confirmCheckoutButtonPress()}
                     />
                   </div>
                   <div className="buttonsContainer">
@@ -88,6 +115,14 @@ const [productData,setProductData]=useState(location.state ? location.state.data
                       type={"button-black"}
                       text="Add to Cart"
                       func={() => addCart()}
+                    />
+                  </div>
+
+                  <div className="buttonsContainer">
+                    <Button
+                      type={"button-red"}
+                      text="Cancel"
+                      func={() => navigate("/products")}
                     />
                   </div>
                 </div>

@@ -15,6 +15,11 @@
 
 .right-side {
   height: 30%;
+  background-color: #ffffff;
+  color: #000000;
+  width: 350px;
+  height: 140px;
+  border-radius: 5px;
 }
 
 .c-title {
@@ -37,28 +42,32 @@
 }
 
 .ckt-btn {
-  width: 350px;
-  height: 40px;
-  background-color: #0b0d29;
+  width: 250px;
+  height: 50px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  color: #ffffff;
 }
 
 .confirm {
+  background-color: rgb(13, 166, 23);
   border: 2px solid #ffffff;
-  color: #ffffff;
+  color: #000000;
 }
 
 .cancell:hover {
   border: 2px solid #ff0101;
-  color: #ff0101;
+  color: rgb(255, 255, 255);
 }
 .confirm:hover {
   border: 2px solid rgb(7, 243, 7);
-  color: rgb(7, 243, 7);
+  color: rgb(255, 255, 255);
 }
 
 .cancell {
+  background-color: #ff0101;
   border: 2px solid #ffffff;
-  color: #ffffff;
+  color: #000000;
 }
 
 /*Checkout styles */
@@ -156,4 +165,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.text-center{
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 25px;
+  
+}
+.productcheckout{
+  margin-left: 25px;
 }

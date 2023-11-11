@@ -50,8 +50,13 @@
 
 .product-image img {
   width: 463px;
-  height: 443px;
+  height: 449px;
   border-radius: 10px;
+}
+.custom-popup-class {
+  width: 400px; /* set the desired width */
+  height: 200px; 
+  font-size: 10px;/* set the desired height */
 }
 
 
