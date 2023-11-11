@@ -9,50 +9,16 @@ import {Link, useNavigate} from "react-router-dom"
 
 const items = [
   {
-    OrderId:123,
-    name: "Asus laptop",
+    OrderId: 123,
+    name: "Microsoft 4",
     description:
-      "8GB RAM, 1TB ROMr",
-      quantity: 24,
-    address:"Colombo",
-    price:"$60.70",
-    status:"pickup",
-    deliverExpectedby:"24th December 2023"
-  },
-  {
-    OrderId:124,
-    name: "Asus laptop",
-    description:
-      "8GB RAM, 1TB ROM,  .",
+      "The Surface Lap.",
     quantity: 24,
-    address:"Colombo",
-    price:"$60.70",
-    status:"pickup",
-    deliverExpectedby:"24th December 2023"
+    address: "Colombo",
+    price: "$600.70",
+    status: "pickup",
+    deliverExpectedby: "24th December 2023",
   },
-  {
-    OrderId:125,
-    name: "Asus laptop",
-    description:
-      "8GB RAM, 1TB ROM. .",
-    quantity: 24,
-    address:"Colombo",
-    price:"$60.70",
-    status:"pickup",
-    deliverExpectedby:"24th December 2023"
-  },
-  {
-    OrderId:126,
-    name: "Asus laptop",
-    description:
-      "8GB RAM, 1TB ROM, .",
-    quantity: 24,
-    address:"Colombo",
-    price:"$60.70",
-    status:"pickup",
-    deliverExpectedby:"24th December 2023"
-  },
-
 ];
 
 

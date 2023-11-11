@@ -13,6 +13,7 @@ import "./styles.css"; // Import your custom CSS for styling
 import { useNavigate, useLocation } from "react-router-dom";
 import { Nav } from "../Nav/Nav";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ConfirmCheckout = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const ConfirmCheckout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Details:", address, quantity);
+    // console.log("Form Details:", address, quantity);
     const data = {
       ProductId: ProductData.id,
       Status: "ORDERED",
@@ -46,7 +47,7 @@ const ConfirmCheckout = () => {
 
     const userDataString = localStorage.getItem("userData");
     const userData = JSON.parse(userDataString);
-    console.log("s", data, " console", userData.token);
+    // console.log("s", data, " console", userData.token);
 
     axios
       .post("http://localhost:4000/api/order/createOrder", data, {
@@ -55,7 +56,18 @@ const ConfirmCheckout = () => {
         },
       })
       .then((response) => {
-        console.log(response.data, "response");
+        console.log("response", response.data);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Order Placed!",
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+              popup: "custom-popup-class",
+            },
+          });
+        navigate("/products");
       })
       .catch((err) => {
         console.log(err);

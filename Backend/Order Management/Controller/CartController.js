@@ -9,7 +9,7 @@ const axios = require('axios');
 
 const getUserDetails = async (authorization) => {
     if (!authorization) {
-        return res.status(401).json({ error: "Authorization token required" });
+        return { error: "Authorization token required" };
     }
     const token = authorization.split(" ")[1];
 
@@ -22,14 +22,13 @@ const getUserDetails = async (authorization) => {
         const userData = response.data;
         if (!userData) {
             console.log("User not found");
-            return null;
+            return { error: "User not found" };
         }
         else {
             return userData;
         }
     } catch (error) {
-        console.error("Error while fetching user details:", error);
-        return null;
+        return { error: "Error while fetching user details" };
     }
 }
 
@@ -38,26 +37,29 @@ const getUserDetails = async (authorization) => {
 
 
 const createCart = async (req, res) => {
-    const { ProductId} = req.body;
+    const { ProductId } = req.body;
     try {
         const { authorization } = req.headers;
-        const userData = await getUserDetails(authorization);
+        const result = await getUserDetails(authorization);
+
+        if (result.error) {
+            // Handle the error response
+            console.log("Error:", result.error);
+            return res.status(500).json({ error: result.error });
+        }
+
+        const userData = result;
         if (userData.role != "Customer") {
             console.log("your not customer")
         }
-        console.log("sasas", userData)
+        // console.log("sasas", userData)
         const cart = await Cart.create({
             ProductId,
             CustomerId: userData._id,
-            
+
         });
 
-        // sendMail(userData.email, "Your new order placed", "Your new order placed successfully , thank you for your order");
-        res.status(200).json({
-            ProductId: cart.ProductId,
-            CustomerId: cart.CustomerId,
-            
-        });
+        res.status(200).json(cart);
 
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -69,18 +71,25 @@ const deleteCart = async (req, res) => {
 
     try {
         const { authorization } = req.headers;
-        const userData = await getUserDetails(authorization);
+        const result = await getUserDetails(authorization);
+
+        if (result.error) {
+            // Handle the error response
+            console.log("Error:", result.error);
+            return res.status(500).json({ error: result.error });
+        }
+
+        const userData = result;
         if (userData.role != "Customer") {
-            console.log("your not customer");
+            console.log("your not customer")
         }
         const cart = await Cart.findOneAndDelete({ _id: id });
-        console.log(cart);
         if (!cart) {
             return res.status(404).json({ error: "cart not found" });
         }
-        
 
-        return res.json({ cart });
+
+        return res.json(cart);
     } catch (error) {
         console.error(error);
         res.status(404).json({ error: "Internal Server error" });
@@ -92,14 +101,20 @@ const deleteCart = async (req, res) => {
 const getAllCartsForCustomer = async (req, res) => {
     try {
         const { authorization } = req.headers;
-        const userData = await getUserDetails(authorization);
-        if (userData.role !== "Customer") {
-            console.log("You're not a customer");
-            return res.status(403).json({ error: "Forbidden" });
+        const result = await getUserDetails(authorization);
+
+        if (result.error) {
+            // Handle the error response
+            console.log("Error:", result.error);
+            return res.status(500).json({ error: result.error });
         }
 
-        const customerCarts = await Cart.find({ CustomerId: userData._id });
-        res.status(200).json({ carts: customerCarts });
+        const userData = result;
+        if (userData.role != "Customer") {
+            console.log("your not customer")
+        }
+        const cartData = await Cart.find({ CustomerId: userData._id });
+        res.status(200).json(cartData);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
@@ -142,4 +157,4 @@ const getAllCartsForCustomer = async (req, res) => {
 //     }
 // }
 
-module.exports = { createCart ,deleteCart,getAllCartsForCustomer};
+module.exports = { createCart, deleteCart, getAllCartsForCustomer };
