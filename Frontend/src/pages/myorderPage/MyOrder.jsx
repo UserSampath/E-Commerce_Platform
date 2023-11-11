@@ -48,25 +48,18 @@ const MyOrder = () => {
           <h1 className="item">Item</h1>
           <h1 className="qty">Qty</h1>
           <h1>Status</h1>
-          <h1 className="deliver">Deliver Expected by</h1>
+          <h1 className="deliver">Ordered Date</h1>
         </div>
       </div>
       {items.map((item, index) => (
-         
-        <div onClick={()=> navigate(`/MyOrder/OrdDeatils/${item._id}`,{
-          state:{item}
-        })}>
-          <ProductItem
-            name={item.productData.name}
-            image={item.productData.image}
-            description={item.productData.description}
-            price={item.productData.price}
-            quantity={item.productData.quantity}
-            status={item.Status}
-            pickupDate={item.PickedUpDate}
-          />
-          </div>
-       
+        <div
+          onClick={() =>
+            navigate(`/MyOrder/OrdDeatils/${item._id}`, {
+              state: { item },
+            })
+          }>
+          <ProductItem key={index} item={item} />
+        </div>
       ))}
       <div className="container"></div>
     </>
