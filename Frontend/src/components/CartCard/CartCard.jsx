@@ -43,6 +43,12 @@ const CartCard = ({ ProductId, cartId }) => {
     }
   };
 
+  const buyNowtButtonPress = () => {
+    navigate("/confirmCheckout", {
+      state: {productData: itemData },
+    });
+  };
+
   return (
     <div style={{ marginBottom: "5px" }} className="boxMiddle">
       <div
@@ -97,11 +103,7 @@ const CartCard = ({ ProductId, cartId }) => {
           </div>
 
           <div style={{ marginTop: "24px", marginLeft: "20px" }}>
-            <Button
-              type={"button-blue"}
-              text="Buy"
-              // func={() => navigate("/confirmCheckout")}
-            />
+            <Button type={"button-blue"} text="Buy" func={buyNowtButtonPress} />
           </div>
         </div>
       </div>
