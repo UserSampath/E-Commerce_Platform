@@ -7,7 +7,8 @@ import Axios from "axios";
 import Swal from "sweetalert2";
 const ProductView = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = use
+Location();
 const [productData,setProductData]=useState(location.state ? location.state.data : null)
 
   // const productData = location.state ? location.state.data : null;

@@ -4,13 +4,13 @@ import { Nav } from "../../components/Nav/Nav";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const MyOrder = () => {
   const [items, setItems] = useState([]);
   const userDataString = localStorage.getItem("userData");
   const userData = JSON.parse(userDataString);
 
-  
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -52,13 +52,10 @@ const MyOrder = () => {
         </div>
       </div>
       {items.map((item, index) => (
-         <Link
-         key={index}
-         to={{
-           pathname: `/MyOrder/OrdDeatils/${item._id}`,
-          
-         }}
-       >
+         
+        <div onClick={()=> navigate(`/MyOrder/OrdDeatils/${item._id}`,{
+          state:{item}
+        })}>
           <ProductItem
             name={item.productData.name}
             image={item.productData.image}
@@ -68,7 +65,8 @@ const MyOrder = () => {
             status={item.Status}
             pickupDate={item.PickedUpDate}
           />
-        </Link>
+          </div>
+       
       ))}
       <div className="container"></div>
     </>
