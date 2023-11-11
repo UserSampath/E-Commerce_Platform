@@ -16,7 +16,8 @@ const PickupItems = ({
   const token = JSON.parse(localStorage.getItem("userData"));
   const delveredOrder =() =>{
     axios.patch("http://localhost:8000/api/delivery/markAsDelivered",{
-      id:id
+      id:id,
+      uid: token.id
     },{
       headers:{
         authorization: `Bearer ${token.token}`
@@ -24,7 +25,7 @@ const PickupItems = ({
     }).then((response) =>{
       if(response.status === 200){
         console.log(response);
-        alert("Order picked up successfully");
+        alert("Order marked as delivered");
         setrefresh(!refresh)
       }
     }).catch((error) =>{
@@ -86,7 +87,7 @@ const PickupItems = ({
               marginTop: "5px",
               fontFamily: "-moz-initial",
             }}>
-            {price*parseInt(quantity)}
+            ${price*parseInt(quantity)}
           </div>
         </div>
 

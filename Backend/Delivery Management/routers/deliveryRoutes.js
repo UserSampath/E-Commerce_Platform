@@ -13,7 +13,7 @@ router.patch("/acceptOrder", acceptOrder);
 router.patch("/markaspicked",pickedUpOrder);
 router.patch("/markAsDelivered",orderDelivered);
 router.patch("/markAsNotDelivered",orderNotDelivered);
-router.get("/orderByDID", getOrderByDID)
+// router.get("/orderByDID", getOrderByDID)
 router.get("/combinedOrders", combinedData)
 router.patch("/markasready",inventoryStatusUpdate)
 

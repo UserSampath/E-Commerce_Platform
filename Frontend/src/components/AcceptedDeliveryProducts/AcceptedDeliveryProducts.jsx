@@ -18,7 +18,8 @@ const AcceptedDeliveryProducts = ({
   const token = JSON.parse(localStorage.getItem("userData"));
   const pickOrder =() =>{
     axios.patch("http://localhost:8000/api/delivery/markaspicked",{
-      id:id
+      id:id,
+      uid: token.id
     },{
       headers:{
         authorization: `Bearer ${token.token}`
@@ -90,7 +91,7 @@ const AcceptedDeliveryProducts = ({
               marginTop: "5px",
               fontFamily: "-moz-initial",
             }}>
-            {value}
+            ${value}
           </div>
         </div>
 

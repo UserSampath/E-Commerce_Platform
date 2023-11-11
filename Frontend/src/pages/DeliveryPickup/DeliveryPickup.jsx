@@ -14,7 +14,7 @@ const DeliveryPickup = () => {
   const[orderData,setOrderData] =useState();
   const token = JSON.parse(localStorage.getItem("userData"));
   const [refresh,setrefresh] =useState(true);
-
+console.log(token.id);
 
   useEffect(() =>{
     // get order data from backend

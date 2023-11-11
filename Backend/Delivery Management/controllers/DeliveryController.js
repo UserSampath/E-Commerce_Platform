@@ -1,3 +1,4 @@
+const { date } = require("yup");
 const Order= require("../models/OrderModel")
 const axios= require("axios")
 
@@ -27,28 +28,21 @@ catch(error){
 }
 }
 //get all orders by  delivery person's ID
-const getOrderByDID = async(req,res) =>{
-    const{authorization} = req.headers;
+const getOrderByDID = async(req) =>{
+    
     try{
-        const user= await getUser(authorization);
-        // console.log(user);
-        if(user.error){
-            const error = user.error;
-            res.status(400).json({error:"User authentication failed",error});
-        }else{
-            
-            const id = user._id;
-           const orders = await Order.find({deliverId:{ $in: id }});
+            const id = req;
+           const orders = await Order.findById(id).exec();
            console.log(orders);
-           if(orders.length==0){
-            res.status(400).json({error:"No orders found"})
+           if(!orders){
+            return ({error:"No orders found"})
            }else{
-            res.status(200).json({orders})
-           } 
+            return ({orders})
+            
         }
     }catch(err){
         console.log(err);
-        res.status(500).json({error})
+        return ({err})
     }
 
 
@@ -57,13 +51,21 @@ const getOrderByDID = async(req,res) =>{
 // common function for updating delivery data
 const deliveryUpdate =async(data, callback) =>{
     const {authorization} = data.authorization;
-    const{id} = data.id;
+    const id = data.id;
+    console.log("iddddddddddddddddddddddddddddddd")
+    console.log(data.userCheck);
     const update = data.update;
     try{
         const date = new Date();
         const user= await getUser(authorization);
-        console.log(user);
+        const orderCheck = await getOrderByDID(id)
+
+        if(data.userCheck && orderCheck.orders.deliverId != data.uid){
+            const err ="Deliverer not matched"
+            return callback(err)  
+            }
         if(user.error|| user.role != "Delivery Man"){
+            console.log("it works")
             const userError= user.error;
             const error = {error:"User authentication failed",userError}
                 return callback(error);
@@ -96,12 +98,13 @@ const acceptOrder = async(req, res) => {
         $set:{
         deliverId:user._id,
         Status:"DELIVERY ACCEPTED",
-        deliveryAcceptedDate:date
+        deliveryAcceptedDate:date,
+        userCheck:false
     }
      }]
     const data = {
         authorization:req.headers,
-        id:req.body,
+        id:req.body.id,
         update: update
      }
      deliveryUpdate(data,(err,result)=>{
@@ -118,6 +121,7 @@ const acceptOrder = async(req, res) => {
 }
 //mark order as picked up
 const pickedUpOrder = async(req, res) => {
+    
     const date = new Date();
  try{
     const update = [{
@@ -128,8 +132,10 @@ const pickedUpOrder = async(req, res) => {
      }]
     const data = {
         authorization:req.headers,
-        id:req.body,
-        update: update
+        id:req.body.id,
+        update: update,
+        uid:req.body.uid,
+        userCheck:true
      }
     
      deliveryUpdate(data,(err,result)=>{
@@ -158,8 +164,10 @@ const orderDelivered = async(req, res) => {
      }]
     const data = {
         authorization:req.headers,
-        id:req.body,
-        update: update
+        id:req.body.id,
+        update: update,
+        uid:req.body.uid,
+        userCheck:true
      }
     //  console.log(update)
      deliveryUpdate(data,(err,result)=>{
@@ -187,8 +195,10 @@ const orderNotDelivered = async(req, res) => {
      }]
     const data = {
         authorization:req.headers,
-        id:req.body,
-        update: update
+        id:req.body.id,
+        update: update,
+        uid:req.body.uid,
+        userCheck:true
      }
     
      deliveryUpdate(data,(err,result)=>{

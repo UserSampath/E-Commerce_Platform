@@ -43,7 +43,8 @@ const InventoryStatus = () => {
     console.log(orderData)
   return (
     <>
-      <Nav category="deliver" />
+      <Nav category="inventory" />
+      <Nav category="" />
       <div className="boxMiddle">
         <h1
           className="mainHeading"

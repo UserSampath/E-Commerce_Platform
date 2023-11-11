@@ -85,7 +85,7 @@ const AvailableProduct = ({
               marginTop: "5px",
               fontFamily: "-moz-initial",
             }}>
-            {price*parseInt(quantity) }
+            ${price*parseInt(quantity) }
           </div>
         </div>
 
