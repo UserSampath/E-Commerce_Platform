@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import './ordDetails.css';
 import { Nav } from '../../components/Nav/Nav';
 
 const OrdDetails = () => {
+ 
+
+ 
+
   return (
     <>
       <Nav category="customer" />
@@ -40,9 +44,7 @@ const OrdDetails = () => {
                 <p>:</p>
                 </div>
                 <div className='right'>
-                <p>100,000</p>
-                <p>300</p>
-                <p>100,300</p>
+                
                 </div>
                 
               </div>

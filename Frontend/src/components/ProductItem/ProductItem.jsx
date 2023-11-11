@@ -1,7 +1,20 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./ProductItem.css"
-const ProductItem = ({name,description,quantity,address,status,deliverExpectedby,price}) => {
+const ProductItem = ({name,description,quantity,image,status,pickupDate,price}) => {
+
+  const timestamp = "2023-11-10T13:18:29.438Z";
+const originalDate = new Date(timestamp);
+
+// Create a new Date object with 72 hours added
+const newDate = new Date(originalDate.getTime() + 72 * 60 * 60 * 1000);
+
+console.log(originalDate.toISOString()); // Original timestamp
+console.log(newDate.toISOString()); // New timestamp with 72 hours added
+ const PickupDate = (newDate.toLocaleDateString());
+  
+ // You can use this timestamp as needed
+
   return (
     <div style={{marginBottom:"5px"}} className="boxMiddle">
       <div
@@ -23,7 +36,7 @@ const ProductItem = ({name,description,quantity,address,status,deliverExpectedby
           style={{ marginLeft: "20px", marginTop: "7px" , display:" flex",
           flexDirection:"row" }}>
           <img
-            src="../../../image/lap.jpg"
+            src={image}
             width={"60px"}
             height={"60px"}
             style={{ borderRadius: "10px",marginTop:"7px" }}
@@ -41,7 +54,7 @@ const ProductItem = ({name,description,quantity,address,status,deliverExpectedby
             <h2 className="quty">{quantity}</h2>
         
             <h2 className="status">{status}</h2>
-            <h2 className="deliver-expected">{deliverExpectedby}</h2>
+            <h2 className="deliver-expected">{PickupDate}</h2>
 </div>
         </div>
         

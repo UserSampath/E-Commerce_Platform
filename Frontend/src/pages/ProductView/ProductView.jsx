@@ -49,8 +49,7 @@ const [productData,setProductData]=useState(location.state ? location.state.data
         const response = await Axios.post("http://localhost:4000/api/cart/createCart/",{ProductId:productData.id},{
         headers: {
           Authorization: `Bearer ${userData.token}`
-        }}
-        )
+        }})
         setProductData(response.data.cart);
         console.log(response);
         if(response.status == 200){
