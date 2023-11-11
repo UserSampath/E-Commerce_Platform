@@ -44,7 +44,7 @@ const InventoryStatus = () => {
   return (
     <>
       <Nav category="inventory" />
-      <Nav category="" />
+
       <div className="boxMiddle">
         <h1
           className="mainHeading"

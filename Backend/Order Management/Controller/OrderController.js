@@ -207,7 +207,7 @@ const getAllOrderForCustomer = async (req, res) => {
             const products = response.data;
             let ordersWithProductData = [];
             for (let i = 0; i < orders.length; i++) {
-                let { _id, ProductId, CustomerId, Status, Quantity, ShippingAddress, createdAt, updatedAt, deliverId, orderedDate, deliveryAcceptedDate, PickedUpDate, orderDeliveredDate } = orders[i]._doc;
+                let { _id, ProductId, CustomerId, Status, Quantity, ShippingAddress, createdAt, updatedAt, deliverId, orderedDate, deliveryAcceptedDate, PickedUpDate, orderDeliveredDate, preparedDate } = orders[i]._doc;
                 let orderWithProduct = {
                     _id,
                     ProductId,
@@ -217,7 +217,7 @@ const getAllOrderForCustomer = async (req, res) => {
                     ShippingAddress,
                     createdAt,
                     updatedAt,
-                    deliverId, orderedDate, deliveryAcceptedDate, PickedUpDate, orderDeliveredDate
+                    deliverId, orderedDate, deliveryAcceptedDate, PickedUpDate, orderDeliveredDate, preparedDate
                 }
                 for (let j = 0; j < products.length; j++) {
                     if (products[j].id === parseInt(orderWithProduct.ProductId)) {

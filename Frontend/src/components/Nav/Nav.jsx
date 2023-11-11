@@ -66,8 +66,8 @@ export const Nav = (props) => {
       category: "inventory",
     },
     {
-      path: "/inventory",
-      name: "Inventory",
+      path: "/InventoryStatusUpdate",
+      name: "Ordered Products",
       category: "inventory",
     },
   ];

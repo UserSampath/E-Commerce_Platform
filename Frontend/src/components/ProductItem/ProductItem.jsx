@@ -6,7 +6,7 @@ const ProductItem = ({ item }) => {
   console.log(item);
   // Check if pickupDate is a valid date
   // const originalDate = new Date(pickupDate);
-  
+
   // if (isNaN(originalDate.getTime())) {
   //   console.error("Invalid pickupDate:", pickupDate);
   //   // Handle the error, e.g., display a placeholder or skip rendering this item
@@ -53,7 +53,7 @@ const ProductItem = ({ item }) => {
           />
           <div className="otherd">
             <div className="named">
-              <h3>{item.name}</h3>
+              <h3>{item.productData.name}</h3>
               <p className="description">{item.productData.description}</p>
               <p className="price">{item.productData.price}</p>
             </div>
