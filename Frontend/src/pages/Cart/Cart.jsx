@@ -1,39 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 import { Nav } from "../../components/Nav/Nav";
 import Button from "../../components/Button/Button";
 import CartCard from "../../components/CartCard/CartCard";
-
-const items = [
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-    unitPrice: 24,
-  },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-      unitPrice: 24,
-  },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-      unitPrice: 24,
-  },
-  {
-    name: "Asus laptop",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad tenetur numquam corporis ducimus quibusdam architecto molestiae autem earum doloribus vero, asperiores, laborum dolorum aliquid deserunt recusandae totam. Est, eius molestiae.",
-      unitPrice: 24,
-  },
-
-];
+import Axios from "axios";
 
 const Home = () => {
+
+  const [items,setItems]=useState([])
+
+    const userDataString = localStorage.getItem("userData");
+    const userData = JSON.parse(userDataString);
+
+  useEffect(() => {
+    const getCartData = async () => {
+      try {
+        const response = await Axios.get(
+          "http://localhost:4000/api/cart/getAllCustomerCart",
+          {
+            headers: {
+              Authorization: `Bearer ${userData.token}`,
+            },
+          }
+        );
+
+        console.log(response.data);
+        setItems(response.data)
+
+
+      } catch (error) {
+        // Handle errors here
+        console.error("Error fetching cart data:", error);
+      }
+    };
+
+    // Call the function
+    getCartData();
+  }, []);
+
     const navigate = useNavigate();
   return (
     <>
@@ -47,8 +52,12 @@ const Home = () => {
       </div>
       {items.map((item,index) => {
         return (
-          <CartCard key={index} name={item.name} description={item.description} unitPrice={item.unitPrice} />
-        )
+          <CartCard
+            key={index}
+            ProductId={item.ProductId}
+            cartId={item._id}
+          />
+        );
       })}
     </>
   );
