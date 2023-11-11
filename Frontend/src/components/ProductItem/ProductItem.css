@@ -26,7 +26,8 @@
   .status{
     padding: 10px;
     margin-right: 0px;
-    margin-left: 140px; /
+    margin-left: 120px;
+    font-size: 20px; /
   }
   .description{
     font-size: 10px;
@@ -41,4 +42,5 @@
     padding: 10px;
     margin-right: 0px;
     margin-left: 115px;
+    font-size: 20px;
   }

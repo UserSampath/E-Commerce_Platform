@@ -7,7 +7,8 @@ import Axios from "axios";
 import Swal from "sweetalert2";
 const ProductView = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = use
+Location();
 const [productData,setProductData]=useState(location.state ? location.state.data : null)
 
   // const productData = location.state ? location.state.data : null;
@@ -40,9 +41,9 @@ const [productData,setProductData]=useState(location.state ? location.state.data
         const response = await Axios.post("http://localhost:4000/api/cart/createCart/",{ProductId:productData.id},{
         headers: {
           Authorization: `Bearer ${userData.token}`
-        }}
-        )
-        console.log(response.data,"sss");
+        }})
+        setProductData(response.data.cart);
+        console.log(response);
         if(response.status == 200){
           Swal.fire({
             position: "center",

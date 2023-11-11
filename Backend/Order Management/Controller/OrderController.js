@@ -182,6 +182,7 @@ const getAllOrders = async (req, res) => {
 // Myorder part
 
 const getAllOrderForCustomer = async (req, res) => {
+    
     try {
         const { authorization } = req.headers;
         const result = await getUserDetails(authorization);
