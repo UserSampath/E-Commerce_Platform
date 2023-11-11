@@ -3,27 +3,45 @@ import Button from "../Button/Button";
 import "./CartCard.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const CartCard = ({ ProductId }) => {
+const CartCard = ({ ProductId, cartId }) => {
   const navigate = useNavigate();
-const [itemData,setItemData]=useState({})
+  const [itemData, setItemData] = useState({});
   useEffect(() => {
-    const getProductData = async() => { 
+    const getProductData = async () => {
       try {
-        const response = await axios(`http://localhost:8080/api/item/${ProductId}`)
+        const response = await axios(
+          `http://localhost:8080/api/item/${ProductId}`
+        );
         // console.log(response.data)
         setItemData(response.data);
-      }catch(e){}
-    }
-    getProductData()
-  }, []);
-
+      } catch (e) {}
+    };
+    getProductData();
+  }, [itemData]);
+  const userDataString = localStorage.getItem("userData");
+  const userData = JSON.parse(userDataString);
   const deleteButtonPress = async () => {
     try {
-      const response=await axios()
-     } catch (e) {
-      
+      console.log(userData);
+      const response = await axios.delete(
+        `http://localhost:4000/api/cart/deleteCart/${cartId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Deleted successfully");
+        window.location.reload();
+      } else {
+        console.error(`Failed to delete. Status code: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
     }
-  }
+  };
 
   return (
     <div style={{ marginBottom: "5px" }} className="boxMiddle">
@@ -71,7 +89,11 @@ const [itemData,setItemData]=useState({})
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ marginTop: "24px" }}>
-            <Button type={"button-red"} text="Delete" func={deleteButtonPress} />
+            <Button
+              type={"button-red"}
+              text="Delete"
+              func={deleteButtonPress}
+            />
           </div>
 
           <div style={{ marginTop: "24px", marginLeft: "20px" }}>

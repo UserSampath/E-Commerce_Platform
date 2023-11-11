@@ -47,7 +47,7 @@ const ConfirmCheckout = () => {
 
     const userDataString = localStorage.getItem("userData");
     const userData = JSON.parse(userDataString);
-    console.log("s", data, " console", userData.token);
+    // console.log("s", data, " console", userData.token);
 
     axios
       .post("http://localhost:4000/api/order/createOrder", data, {

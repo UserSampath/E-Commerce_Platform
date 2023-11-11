@@ -55,6 +55,7 @@ const Home = () => {
           <CartCard
             key={index}
             ProductId={item.ProductId}
+            cartId={item._id}
           />
         );
       })}
