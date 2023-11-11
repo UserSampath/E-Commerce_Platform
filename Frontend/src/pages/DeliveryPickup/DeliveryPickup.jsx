@@ -41,7 +41,7 @@ console.log(orderData)
         <h1
           className="mainHeading"
           style={{ marginTop: "70px", marginBottom: "20px" }}>
-          Pickup Products
+          Picked up Orders
         </h1>
       </div>
 

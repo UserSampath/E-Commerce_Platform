@@ -62,7 +62,7 @@ console.log(orderData)
         <h1
           className="mainHeading"
           style={{ marginTop: "70px", marginBottom: "20px" }}>
-          Accepted products
+          Accepted Orders
         </h1>
       </div>
 
