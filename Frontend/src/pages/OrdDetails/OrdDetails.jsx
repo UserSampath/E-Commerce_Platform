@@ -29,12 +29,12 @@ const deliveryexpected =(newDate.toLocaleDateString());
             <div className="itemImage">
               <img
                 src={orderdData.productData.image}
-                width={'350px'}
-                height={'350px'}
+                width={"350px"}
+                height={"350px"}
                 style={{
-                  borderRadius: '10px',
-                  marginTop: '7px',
-                  boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.3)',
+                  borderRadius: "10px",
+                  marginTop: "7px",
+                  boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.3)",
                 }}
                 alt=""
               />
@@ -50,42 +50,84 @@ const deliveryexpected =(newDate.toLocaleDateString());
               </div>
               <div className="right-column">
                 <div>
-                <p>: {orderdData.productData.price}</p>
-                <p>: 300</p>
-                <p>: {orderdData.productData.price + 300}</p>
+                  <p>: {`${orderdData.productData.price}$`}</p>
+                  <p>: 4$</p>
+                  <p>: {`${orderdData.productData.price + 4}$`}</p>
                 </div>
-                <div className='right'>
-                
-                </div>
-                
+                <div className="right"></div>
               </div>
             </div>
-            <p className='trackOrd'>Track Order</p>
+            <p className="trackOrd">Track Order</p>
             <div className="trackingDetails">
-         
-            <div className='leftData'>
-            <p>Status </p>
-            <p>Placed at </p>
-            <p>Accepted for delivery</p>
-            <p>Delivery expected </p>
-            </div>
-            <div className='rightData'>
-            <div>
-                <p>-</p>
-                <p>-</p>
-                <p>-</p>
-                <p>-</p>
-                
-                </div>
-              <div className='rightDate'>
-              <p>{orderdData.Status}</p>
-              <p>{orderdData.ShippingAddress}</p>
-              <p>{PickupDate}</p>
-              <p>{deliveryexpected}</p>
-              
+              <div className="leftData">
+                <p>Status </p>
+                <p>Address </p>
+                {orderdData.orderedDate && <p>Ordered date</p>}
+                {orderdData.preparedDate && <p> prepared date</p>}
+                {orderdData.deliveryAcceptedDate && (
+                  <p>delivery accepted date</p>
+                )}
+                {orderdData.PickedUpDate && orderdData.PickedUpDate}
               </div>
-              
-            </div>
+              <div className="rightData">
+                <div>
+                  <p></p>
+                  <p></p>
+                  <p></p>
+                  <p></p>
+                </div>
+                <div className="rightDate">
+                  <p>{orderdData.Status}</p>
+                  <p>{orderdData.ShippingAddress}</p>
+
+                  <p>
+                    {orderdData.orderedDate &&
+                      new Date(orderdData.orderedDate).toLocaleDateString(
+                        undefined,
+                        {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        }
+                      )}
+                  </p>
+
+                  <p>
+                    {orderdData.preparedDate &&
+                      new Date(orderdData.preparedDate).toLocaleDateString(
+                        undefined,
+                        {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        }
+                      )}
+                  </p>
+
+                  <p>
+                    {orderdData.deliveryAcceptedDate &&
+                      new Date(
+                        orderdData.deliveryAcceptedDate
+                      ).toLocaleDateString(undefined, {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                  </p>
+
+                  <p>
+                    {orderdData.PickedUpDate &&
+                      new Date(orderdData.PickedUpDate).toLocaleDateString(
+                        undefined,
+                        {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        }
+                      )}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
