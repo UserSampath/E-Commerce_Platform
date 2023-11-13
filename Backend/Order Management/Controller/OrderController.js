@@ -171,7 +171,7 @@ const getAllOrders = async (req, res) => {
             console.log("you're not a customer");
         }
 
-        const orders = await Order.find().populate("_id"); // Assuming "items" is the field you want to populate
+        const orders = await Order.find().populate("_id"); 
 
         return res.json({ orders });
     } catch (error) {

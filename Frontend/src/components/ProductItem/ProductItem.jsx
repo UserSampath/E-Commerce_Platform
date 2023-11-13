@@ -4,22 +4,6 @@ import "./ProductItem.css";
 
 const ProductItem = ({ item }) => {
   console.log(item);
-  // Check if pickupDate is a valid date
-  // const originalDate = new Date(pickupDate);
-
-  // if (isNaN(originalDate.getTime())) {
-  //   console.error("Invalid pickupDate:", pickupDate);
-  //   // Handle the error, e.g., display a placeholder or skip rendering this item
-  //   return null;
-  // }
-
-  // // Create a new Date object with 72 hours added
-  // const newDate = new Date(originalDate.getTime() + 72 * 60 * 60 * 1000);
-
-  // console.log(originalDate.toISOString()); // Original timestamp
-  // console.log(newDate.toISOString()); // New timestamp with 72 hours added
-  // const PickupDate = newDate.toLocaleDateString();
-
   return (
     <div style={{ marginBottom: "5px" }} className="boxMiddle">
       <div

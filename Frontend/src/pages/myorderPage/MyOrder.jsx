@@ -24,7 +24,7 @@ const MyOrder = () => {
           }
         );
 
-       setItems(response.data.ordersWithProductData);
+        setItems(response.data.ordersWithProductData);
         console.log(response.data.ordersWithProductData);
       } catch (error) {
         console.error("Error fetching orders:", error.message);

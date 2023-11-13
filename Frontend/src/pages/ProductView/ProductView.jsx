@@ -8,13 +8,11 @@ import Swal from "sweetalert2";
 const ProductView = () => {
   const navigate = useNavigate();
   const location = useLocation();
-const [productData,setProductData]=useState(location.state ? location.state.data : null)
+  const [productData, setProductData] = useState(
+    location.state ? location.state.data : null
+  );
 
   // const productData = location.state ? location.state.data : null;
-  
-
-
- 
 
   // const addToCartPress = () => {
   //   window.alert("Add to Cart Successful!");
@@ -22,42 +20,43 @@ const [productData,setProductData]=useState(location.state ? location.state.data
   // }
 
   const confirmCheckoutButtonPress = () => {
-  
     navigate("/confirmCheckout", {
       state: { productData },
     });
-   }
+  };
 
-   const userDataString = localStorage.getItem("userData");
-    const userData = JSON.parse(userDataString);    
+  const userDataString = localStorage.getItem("userData");
+  const userData = JSON.parse(userDataString);
 
-
-   const addCart = async () => {
-  
+  const addCart = async () => {
     try {
-        const response = await Axios.post("http://localhost:4000/api/cart/createCart/",{ProductId:productData.id},{
-        headers: {
-          Authorization: `Bearer ${userData.token}`
-        }})
-        setProductData(response.data.cart);
-        console.log(response);
-        if(response.status == 200){
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Your Order is added to your cart!",
-            showConfirmButton: false,
-            timer: 2000,
-            customClass: {
-                popup: 'custom-popup-class'
-            }
-        });
-        
+      const response = await Axios.post(
+        "http://localhost:4000/api/cart/createCart/",
+        { ProductId: productData.id },
+        {
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+          },
         }
+      );
+      // setProductData(response.data.cart);
+      console.log(response);
+      if (response.status == 200) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your Order is added to your cart!",
+          showConfirmButton: false,
+          timer: 2000,
+          customClass: {
+            popup: "custom-popup-class",
+          },
+        });
+      }
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-};
+  };
   return (
     <>
       <Nav category="customer" />

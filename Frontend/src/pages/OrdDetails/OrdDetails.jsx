@@ -67,7 +67,7 @@ const deliveryexpected =(newDate.toLocaleDateString());
                 {orderdData.deliveryAcceptedDate && (
                   <p>delivery accepted date</p>
                 )}
-                {orderdData.PickedUpDate && orderdData.PickedUpDate}
+                {orderdData.PickedUpDate && <p>delivery picked up date</p>}
               </div>
               <div className="rightData">
                 <div>
